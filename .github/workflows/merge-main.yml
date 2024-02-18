@@ -5,7 +5,7 @@ on:
     - cron: '0 0 * * *'  # Schedule at 12 am every day
   push:
     branches:
-        - Dev
+        - dev
 
 jobs:
   merge_and_deploy:
