@@ -17,6 +17,8 @@ jobs:
 
       - name: Merge Dev into Main
         run: |
+          git config --global user.name 'Fabeure'
+          git config --global user.email 'sazaouzi@gmail.com'
           git remote update
           git fetch 
           git checkout main
