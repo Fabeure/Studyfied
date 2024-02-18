@@ -19,10 +19,8 @@ jobs:
         run: |
           git config --global user.name 'Fabeure'
           git config --global user.email 'sazaouzi@gmail.com'
-          git remote update
           git fetch 
           git checkout main
-          git pull origin main
           git merge origin/dev --no-edit --allow-unrelated-histories
           git push origin main
 
