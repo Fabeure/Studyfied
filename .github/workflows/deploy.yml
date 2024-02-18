@@ -1,9 +1,10 @@
 name: Deploy
 
 on:
-    push:
-      branches:
-        - main
+    workflow_run:
+      workflows: [Merge dev branch]
+      types:
+        - completed
         
 jobs:
   build:
