@@ -1,4 +1,4 @@
-name: Merge and Deploy
+name: Merge dev branch
 
 on:
   schedule:
