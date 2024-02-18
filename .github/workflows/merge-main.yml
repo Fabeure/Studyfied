@@ -1,4 +1,4 @@
-name: Merge and Deploy
+name: Merge dev branch
 
 on:
   schedule:
@@ -20,8 +20,6 @@ jobs:
             source-branch: dev
             target-branch: main
             commit-message: "Auto merge"
-        - name : push main
-          run : git push 
 
 
  
