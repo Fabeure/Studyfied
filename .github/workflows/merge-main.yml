@@ -20,6 +20,8 @@ jobs:
             source-branch: dev
             target-branch: main
             commit-message: "Auto merge"
+        - name : push main
+          run : git push 
 
 
  
