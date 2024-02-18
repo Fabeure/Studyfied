@@ -8,21 +8,18 @@ on:
         - dev
 
 jobs:
-  merge_and_deploy:
+  merge-develop-to-main:
+    name: Merge dev -> main
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Merge Dev into Main
-        run: |
-          git config --global user.name 'Fabeure'
-          git config --global user.email 'sazaouzi@gmail.com'
-          git fetch 
-          git checkout main
-          git merge origin/dev --no-edit --allow-unrelated-histories
-          git push origin main
+        - name : merge dev to main
+          uses: tukasz/direct-merge-action@master
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            source-branch: dev
+            target-branch: main
+            commit-message: "Auto merge"
 
 
  
