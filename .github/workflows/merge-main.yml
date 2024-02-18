@@ -1,0 +1,26 @@
+name: Merge and Deploy
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Schedule at 12 am every day
+  push:
+    branches:
+        - Dev
+
+jobs:
+  merge_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Merge Dev into Main
+        run: |
+          git checkout main
+          git pull origin main
+          git merge origin/Dev --no-edit
+          git push origin main
+
+
+ 
