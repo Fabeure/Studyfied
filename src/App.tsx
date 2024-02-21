@@ -18,7 +18,12 @@ function App() {
       </div>
       <h1 className="text-3xl font-bold underline">farah</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => {
+          setCount((count) => count + 1)
+          fetch('http://localhost:8080/WeatherForecast')
+      .then(response => alert(response))
+      .catch(error => console.error(error));
+          }}>
           count is {count}
         </button>
         <p>
