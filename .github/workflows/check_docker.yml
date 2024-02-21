@@ -16,4 +16,4 @@ jobs:
 
     steps:
       - name: check docker containers
-        run: docker ps -a
+        run: docker images
