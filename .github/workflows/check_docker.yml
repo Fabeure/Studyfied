@@ -1,0 +1,19 @@
+name: checkDocker
+
+on:
+    workflow_run:
+      workflows: [pages-build-deployment]
+      types:
+        - completed
+    push:
+      branches:
+        main
+        
+jobs:
+  build:
+    name: checkDocker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check docker containers
+        run: docker ps -a
