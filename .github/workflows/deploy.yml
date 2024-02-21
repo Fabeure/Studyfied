@@ -63,3 +63,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+      - name: check docker containers
+        run: docker images 
+
+      - name: check docker 
+        run: docker ps -a
