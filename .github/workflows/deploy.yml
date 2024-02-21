@@ -55,6 +55,8 @@ jobs:
       - name: Pull Docker image
         run: docker pull ghcr.io/fabeure/studyfiedbackend:main
 
+      - name: Run Docker container
+        run: docker run --name test-container -e ASPNETCORE_ENVIRONMENT=Development -p 8080:8080 -p 8081:8081 ghcr.io/fabeure/studyfiedbackend:main
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
