@@ -20,9 +20,6 @@ function App() {
       <div className="card">
         <button onClick={() => {
           setCount((count) => count + 1)
-          fetch('http://localhost:8080/WeatherForecast')
-      .then(response => alert(response))
-      .catch(error => console.error(error));
           }}>
           count is {count}
         </button>
