@@ -33,11 +33,8 @@ jobs:
         run: npm test
 
       - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: ./dist
-
+        uses: actions/upload-pages-artifact
+        
   # Deploy job
   deploy:
     # Add a dependency to the build job
