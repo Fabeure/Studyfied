@@ -3,22 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import axios from "axios";
+
 function App() {
   const [count, setCount] = useState(0)
   async function fetchWeatherData() {
-    try {
-      const response = await fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast');
-  
-      // Handle potential CORS errors here if using fetch directly
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const text = await response.text();
-      console.log(text);
-    } catch (error) {
-      console.error('Error fetching weather data:', error);
-      // Handle errors gracefully, e.g., display an error message to the user
-    }
+    axios.get('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
+      .then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
   }
   return (
     <>
