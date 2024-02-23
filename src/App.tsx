@@ -20,7 +20,7 @@ function App() {
       <div className="card">
       <button onClick={() => {
           setCount((count) => count + 1)
-          fetch('https://studyfiedbackend.onrender.com/WeatherForecast')
+          fetch('https://cors.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
       .then(response => alert(response))
       .catch(error => console.error(error));
           }}>
