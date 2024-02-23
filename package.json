@@ -2,6 +2,7 @@
   "name": "studyfied",
   "private": true,
   "version": "0.0.0",
+  "proxy": "https://fabeure.github.io/",
   "type": "module",
   "scripts": {
     "dev": "vite",
