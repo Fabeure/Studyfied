@@ -15,19 +15,15 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 className="text-3xl font-bold underline">Fabeure 6:</h1>
+      <h1 className="text-3xl font-bold underline">Fabeure 7:</h1>
       <div className="card">
       <button onClick={() => {
           setCount((count) => count + 1)
           fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
           .then((response) => {
-            // Assuming endpoint returns plain text "true"
-            if (response.ok) {
-              response.text().then((text) => {
-                console.log(text);
-                alert(text);
-              });
-            }
+            console.log(response);
+          }).then((data) => {
+            console.log(data);
           })
           .catch((error) => console.error(error));;
           }}>
