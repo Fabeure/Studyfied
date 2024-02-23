@@ -5,6 +5,21 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  async function fetchWeatherData() {
+    try {
+      const response = await fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast');
+  
+      // Handle potential CORS errors here if using fetch directly
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const text = await response.text();
+      console.log(text);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      // Handle errors gracefully, e.g., display an error message to the user
+    }
+  }
   return (
     <>
       <div>
@@ -15,17 +30,11 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 className="text-3xl font-bold underline">Fabeure 7:</h1>
+      <h1 className="text-3xl font-bold underline">Fabeure 6:</h1>
       <div className="card">
       <button onClick={() => {
-          setCount((count) => count + 1)
-          fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
-          .then((response) => {
-            console.log(response);
-          }).then((data) => {
-            console.log(data);
-          })
-          .catch((error) => console.error(error));;
+          setCount((count) => count + 1);
+          fetchWeatherData();
           }}>
           count is {count}
         </button>
