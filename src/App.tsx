@@ -16,12 +16,12 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 className="text-3xl font-bold underline">Fabeure 5</h1>
+      <h1 className="text-3xl font-bold underline">Fabeure 6:</h1>
       <div className="card">
       <button onClick={() => {
           setCount((count) => count + 1)
           fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
-      .then(response => alert(response))
+      .then(response => alert(response.json()))
       .catch(error => console.error(error));
           }}>
           count is {count}
