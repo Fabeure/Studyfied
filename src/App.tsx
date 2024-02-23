@@ -10,7 +10,7 @@ function App() {
   async function fetchWeatherData() {
     axios.get('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
       .then(res =>{
-        console.log(res)
+        console.log(res.data)
       }).catch(err =>{
         console.log(err)
       })
