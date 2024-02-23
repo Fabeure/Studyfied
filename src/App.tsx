@@ -26,7 +26,7 @@ function App() {
             if (response.ok) {
               response.text().then((text) => {
                 console.log(text);
-                yahoo = text;
+                alert(text);
               });
             }
           })
