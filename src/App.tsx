@@ -5,7 +5,6 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  let yahoo = 'false'
   return (
     <>
       <div>
@@ -32,7 +31,7 @@ function App() {
           })
           .catch((error) => console.error(error));;
           }}>
-          count is {count} {yahoo}
+          count is {count}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
