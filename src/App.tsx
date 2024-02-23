@@ -8,7 +8,7 @@ import axios from "axios";
 function App() {
   const [count, setCount] = useState(0)
   async function fetchWeatherData() {
-    axios.get('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
+    axios.get('https://studyfiedbackend.onrender.com/WeatherForecast')
       .then(res =>{
         console.log(res.data)
       }).catch(err =>{
