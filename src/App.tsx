@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  let yahoo = 'false'
   return (
     <>
       <div>
@@ -21,12 +21,18 @@ function App() {
       <button onClick={() => {
           setCount((count) => count + 1)
           fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
-      .then(data => {
-        console.log(data)
-        alert(data)})
-      .catch(error => console.error(error));
+          .then((response) => {
+            // Assuming endpoint returns plain text "true"
+            if (response.ok) {
+              response.text().then((text) => {
+                console.log(text);
+                yahoo = text;
+              });
+            }
+          })
+          .catch((error) => console.error(error));;
           }}>
-          count is {count}
+          count is {count} {yahoo}
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
