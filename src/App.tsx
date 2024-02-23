@@ -22,7 +22,7 @@ function App() {
           setCount((count) => count + 1)
           fetch('https://corsproxy.io/?https://studyfiedbackend.onrender.com/WeatherForecast')
       .then(response => {
-        console.log(response.text)
+        console.log(response.text())
         console.log(response)})
       .catch(error => console.error(error));
           }}>
