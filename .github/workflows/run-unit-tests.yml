@@ -1,10 +1,10 @@
 name: Run Front-End Unit Tests
 
 on:
-    workflow_dispatch:
-      inputs:
-        branch:
-          description: 'branch to run tests against'
+  workflow_dispatch:
+    inputs:
+      Branch:
+        description: 'branch to run tests against'
         required: true
         default: 'main'
 
@@ -15,12 +15,12 @@ jobs:
 
     steps:
       - name: print out some info xd
-        run: echo "${{ github.event.inputs.branch}} ${{ github.head_ref }} "
+        run: echo "${{ github.event.inputs.Branch}} ${{ github.head_ref }} "
       
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branch}}
+          ref: ${{ github.event.inputs.Branch}}
 
       - name: Setup Node
         uses: actions/setup-node@v1
