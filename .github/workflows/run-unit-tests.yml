@@ -1,0 +1,37 @@
+name: Run Front-End Unit Tests
+
+on:
+    workflow_dispatch:
+      inputs:
+        branch:
+          description: 'branch to run tests against'
+        required: true
+        default: 'main'
+        
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: print out some info xd
+      run: echo "${{ github.event.inputs.branch}} ${{ github.head_ref }} "
+      
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch}}
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run Unit Tests
+        run: npm test
