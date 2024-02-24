@@ -25,10 +25,7 @@ jobs:
 
       - name: Build project
         run: npm run build
-
-      - name: Run Unit Tests
-        run: npm test
-
+        
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:

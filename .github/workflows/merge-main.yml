@@ -1,11 +1,7 @@
 name: Merge dev branch to main
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Schedule at 12 am every day
-  push:
-    branches:
-        - dev
+  workflow_dispatch
 
 jobs:
   merge-develop-to-main:
