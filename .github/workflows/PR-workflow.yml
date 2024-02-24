@@ -2,7 +2,7 @@ name: Pr Workflow
 
 on:
   pull_request:
-      types: [opened, edited]
+      types: [opened, edited, synchronize]
       branches: [ dev ]
 
         
