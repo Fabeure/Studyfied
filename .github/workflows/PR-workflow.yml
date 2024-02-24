@@ -1,12 +1,9 @@
-name: Pr-Workflow
+name: Pr Workflow
 
 on:
   pull-request:
-    branches:
-      main
-      types:
-        - opened
-        - edited 
+    branches: [ dev ]
+      types: [opened, edited]
         
 jobs:
   build:
@@ -17,7 +14,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          - ref: {{github.base_ref}}
+          - ref: {{ github.base_ref }}
 
 
       - name: Setup Node
@@ -33,9 +30,3 @@ jobs:
 
       - name: Run Unit Tests
         run: npm test
-
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./dis
