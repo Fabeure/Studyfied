@@ -2,7 +2,7 @@ name: Pr Workflow
 
 on:
   pull_request:
-      types: [opened, edited]
+      types: [opened, edited, synchronize]
       branches: [ dev ]
 
         
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.base_ref }}
+          ref: ${{ github.head_ref }}
 
 
       - name: Setup Node
