@@ -1,4 +1,4 @@
-name: Merge dev branch
+name: Merge dev branch to main
 
 on:
   schedule:

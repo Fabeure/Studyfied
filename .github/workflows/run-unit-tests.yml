@@ -7,7 +7,7 @@ on:
           description: 'branch to run tests against'
         required: true
         default: 'main'
-        
+
 jobs:
   build:
     name: Build
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: print out some info xd
-      run: echo "${{ github.event.inputs.branch}} ${{ github.head_ref }} "
+        run: echo "${{ github.event.inputs.branch}} ${{ github.head_ref }} "
       
       - name: Checkout repo
         uses: actions/checkout@v2
