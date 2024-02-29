@@ -15,3 +15,4 @@ jobs:
         uses: anatawa12/fork-sync-all-branches@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          exclude: \bgh-pages\b
