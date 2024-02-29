@@ -1,0 +1,21 @@
+name: Merge dev branch in dev ENV
+
+on:
+  workflow_run:
+    workflows: [Sync Fork]
+    types:
+      - completed
+
+jobs:
+  merge-develop-to-main:
+    name: Merge dev -> main
+    runs-on: ubuntu-latest
+    
+    steps:
+        - name : merge dev to main
+          uses: tukasz/direct-merge-action@master
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            source-branch: dev
+            target-branch: main
+            commit-message: "Auto merge"
