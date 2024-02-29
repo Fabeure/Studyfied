@@ -16,6 +16,3 @@ jobs:
             source-branch: dev
             target-branch: main
             commit-message: "Auto merge"
-
-
- 
