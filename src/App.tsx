@@ -8,7 +8,7 @@ import axios from "axios";
 function App() {
   const [count, setCount] = useState(0)
   async function fetchWeatherData() {
-    axios.get('https://studyfiedbackend.onrender.com/WeatherForecast')
+    axios.get(`${import.meta.env.VITE_BACKEND_API}/WeatherForecast`)
       .then(res =>{
         console.log(res.data)
       }).catch(err =>{
@@ -25,7 +25,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 className="text-3xl font-bold underline">saber</h1>
+      <h1 className="text-3xl font-bold underline">{import.meta.env.VITE_TEST_VAR}</h1>
       <div className="card">
       <button onClick={() => {
           setCount((count) => count + 1);
