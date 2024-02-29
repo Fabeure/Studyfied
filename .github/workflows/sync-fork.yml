@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: See github Repo
-        run:
-            echo ${{ github.repository }}
-      - name: Sync Fork
-        uses: anatawa12/fork-sync-all-branches@v1
+      - uses: TobKed/github-forks-sync-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          exclude: \bgh-pages\b
+          upstream_repository: Fabeure/Studyfied
+          target_repository: Saber-Azouzi/Studyfied
+          upstream_branch: dev
+          target_branch: dev
+          force: true
+          tags: true
