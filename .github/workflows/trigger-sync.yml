@@ -1,7 +1,9 @@
 name: Trigger fork sync
 
 on:
-    workflow_dispatch
+    push:
+        branches:
+            dev
 
 jobs:
   merge-develop-to-main:
