@@ -11,6 +11,6 @@ jobs:
         name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ github.secrets.PAT }}
           repository: Saber-Azouzi/Studyfied    
           event-type: sync
