@@ -13,6 +13,6 @@ jobs:
           uses: peter-evans/repository-dispatch@v3
           with:
             token: ${{ secrets.PAT }}
-            repository: username/my-repo
-            event-type: my-event
+            repository: Saber-Azouzi/Studyfied
+            event-type: sync
 
