@@ -1,16 +1,18 @@
-name: Trigger Target Workflow
+name: Trigger fork sync
 
 on:
-  workflow_dispatch
+    workflow_dispatch
 
 jobs:
-    trigger:
-        runs-on: ubuntu-latest
+  merge-develop-to-main:
+    name: Trigger remote sync workflow
+    runs-on: ubuntu-latest
     
     steps:
-        name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ github.secrets.PAT }}
-          repository: Saber-Azouzi/Studyfied    
-          event-type: sync
+        - name : trigger fork sync
+          uses: peter-evans/repository-dispatch@v3
+          with:
+            token: ${{ secrets.PAT }}
+            repository: username/my-repo
+            event-type: my-event
+
