@@ -8,9 +8,11 @@ export default function Login() {
       .get(`${import.meta.env.VITE_BACKEND_API}/WeatherForecast`)
       .then((res) => {
         console.log(res.data);
+        alert(res.data);
       })
       .catch((err) => {
         console.log(err);
+        alert(err + " | check console");
       });
   }
 
