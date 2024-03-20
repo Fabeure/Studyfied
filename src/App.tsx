@@ -1,47 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import NavBar from "./components/NavBar";
+import PlaceHolderPage from "./pages/PlaceHolderPage";
 
-import axios from "axios";
+// default url
+const baseURL = "/Studyfied";
+const pageRoutes = [
+  { name: "Home", path: baseURL, element: <Home /> },
+  {
+    name: "Placeholder",
+    path: `${baseURL}/placeholder`,
+    element: <PlaceHolderPage />,
+  },
+  { name: "Login", path: `${baseURL}/login`, element: <Login /> },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-  async function fetchWeatherData() {
-    axios.get(`${import.meta.env.VITE_BACKEND_API}/WeatherForecast`)
-      .then(res =>{
-        console.log(res.data)
-      }).catch(err =>{
-        console.log(err)
-      })
-  }
+  // const [count, setCount] = useState(0);
+  // const [activePage, setActivePage] = useState("home");
+
+  // async function fetchWeatherData() {
+  //   // Mocking weather data fetch
+  //   console.log('Fetching weather data...');
+  // }
+
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-3xl font-bold underline">😎😎😎 test</h1>
-      <div className="card">
-      <button onClick={() => {
-          setCount((count) => count + 1);
-          fetchWeatherData();
-          }}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <NavBar links={pageRoutes} />
+      <Routes>
+        {pageRoutes.map((route) => (
+          <Route path={route.path} element={route.element} />
+        ))}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
