@@ -1,6 +1,19 @@
-// import React from "react";
+import axios from "axios";
 
 export default function Login() {
+  // api call
+  // broken for now -- need cross origin requests to be enabled
+  async function fetchWeatherData() {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_API}/WeatherForecast`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className="page-content">
       <h1 style={{ marginTop: "1rem", marginBottom: "4rem" }}>
@@ -44,9 +57,7 @@ export default function Login() {
             id=""
             style={{ border: "solid black 1px", margin: "0.2rem" }}
           />
-          <button onClick={() => console.log("Register clicked")}>
-            Register
-          </button>
+          <button onClick={() => fetchWeatherData()}>Register</button>
         </div>
         {/* ////////// divider */}
         <div
@@ -78,7 +89,7 @@ export default function Login() {
             id=""
             style={{ margin: "0.2rem", border: "solid black 1px" }}
           />
-          <button onClick={() => console.log("Login clicked")}>Login</button>
+          <button onClick={() => fetchWeatherData()}>Login</button>
         </div>
       </div>
     </div>
