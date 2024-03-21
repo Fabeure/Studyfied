@@ -19,8 +19,8 @@ const NavBar: React.FC<NavBarProps> = ({ links }) => {
       <ul>
         {links
           .filter((route) => route.name != "Login")
-          .map((route) => (
-            <li>
+          .map((route, key) => (
+            <li key={key}>
               <NavLink
                 to={route.path}
                 end

@@ -31,8 +31,8 @@ function App() {
     <Router>
       <NavBar links={pageRoutes} />
       <Routes>
-        {pageRoutes.map((route) => (
-          <Route path={route.path} element={route.element} />
+        {pageRoutes.map((route, key) => (
+          <Route key={key} path={route.path} element={route.element} />
         ))}
       </Routes>
     </Router>

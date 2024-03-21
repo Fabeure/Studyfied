@@ -1,20 +1,93 @@
 import axios from "axios";
+import { useState } from "react";
+
+const registerEndpoint = `${
+  import.meta.env.VITE_BACKEND_API
+}/api/v1/authenticate/register`;
+
+const loginEndpoint = `${
+  import.meta.env.VITE_BACKEND_API
+}/api/v1/authenticate/login`;
 
 export default function Login() {
-  // api call
-  // broken for now -- need cross origin requests to be enabled
-  async function fetchWeatherData() {
+  // input states
+  const [regEmail, setRegEmail] = useState("");
+  const [regUsername, setRegUsername] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regFullName, setRegFullName] = useState("");
+  const [regConfirmPass, setRegConfirmPass] = useState("");
+  const [logEmail, setLogEmail] = useState("");
+  const [logPassword, setLogPassword] = useState("");
+
+  // input handler
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    switch (name) {
+      case "regemail":
+        setRegEmail(value);
+        break;
+      case "reguser":
+        setRegUsername(value);
+        break;
+      case "regname":
+        setRegFullName(value);
+        break;
+      case "regpass":
+        setRegPassword(value);
+        break;
+      case "confirmpass":
+        setRegConfirmPass(value);
+        break;
+      case "logEmail":
+        setLogEmail(value);
+        break;
+      case "logPassword":
+        setLogPassword(value);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  // register button handler
+  const handleRegister = () => {
+    const registerData = {
+      Email: regEmail,
+      Username: regUsername,
+      FullName: regFullName,
+      Password: regPassword,
+      ConfirmPassword: regConfirmPass,
+    };
+    console.log(registerData);
     axios
-      .get(`${import.meta.env.VITE_BACKEND_API}/WeatherForecast`)
+      .post(registerEndpoint, registerData)
       .then((res) => {
         console.log(res.data);
-        alert(res.data);
       })
       .catch((err) => {
         console.log(err);
         alert(err + " | check console");
       });
-  }
+  };
+
+  // login button handler
+  const handleLogin = () => {
+    const loginData = {
+      Email: logEmail,
+      Password: logPassword,
+    };
+    console.log(loginData);
+    axios
+      .post(loginEndpoint, loginData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err + " | check console");
+      });
+  };
 
   return (
     <div className="page-content">
@@ -38,28 +111,52 @@ export default function Login() {
           }}
         >
           <h1>New here</h1>
-          <label htmlFor="">email</label>
+          <label htmlFor="regemail">Email</label>
           <input
             type="text"
-            name=""
-            id=""
+            name="regemail"
+            id="regemail"
+            value={regEmail}
+            onChange={handleInputChange}
             style={{ border: "solid black 1px", margin: "0.2rem" }}
           />
-          <label htmlFor="">password</label>
+          <label htmlFor="reguser">Username</label>
           <input
             type="text"
-            name=""
-            id=""
+            name="reguser"
+            id="reguser"
+            value={regUsername}
+            onChange={handleInputChange}
             style={{ border: "solid black 1px", margin: "0.2rem" }}
           />
-          <label htmlFor="">confirm password</label>
+          <label htmlFor="regname">Full name</label>
           <input
             type="text"
-            name=""
-            id=""
+            name="regname"
+            id="regname"
+            value={regFullName}
+            onChange={handleInputChange}
             style={{ border: "solid black 1px", margin: "0.2rem" }}
           />
-          <button onClick={() => fetchWeatherData()}>Register</button>
+          <label htmlFor="regpass">password</label>
+          <input
+            type="password"
+            name="regpass"
+            id="regpass"
+            value={regPassword}
+            onChange={handleInputChange}
+            style={{ border: "solid black 1px", margin: "0.2rem" }}
+          />
+          <label htmlFor="confirmpass">confirm password</label>
+          <input
+            type="password"
+            name="confirmpass"
+            id="confirmpass"
+            value={regConfirmPass}
+            onChange={handleInputChange}
+            style={{ border: "solid black 1px", margin: "0.2rem" }}
+          />
+          <button onClick={handleRegister}>Register</button>
         </div>
         {/* ////////// divider */}
         <div
@@ -77,21 +174,25 @@ export default function Login() {
           }}
         >
           <h1>Already a member</h1>
-          <label htmlFor="">email</label>
+          <label htmlFor="logEmail">email</label>
           <input
             type="text"
-            name=""
-            id=""
+            name="logEmail"
+            id="logEmail"
+            value={logEmail}
+            onChange={handleInputChange}
             style={{ margin: "0.2rem", border: "solid black 1px" }}
           />
-          <label htmlFor="">password</label>
+          <label htmlFor="logPassword">password</label>
           <input
-            type="text"
-            name=""
-            id=""
+            type="password"
+            name="logPassword"
+            id="logPassword"
+            value={logPassword}
+            onChange={handleInputChange}
             style={{ margin: "0.2rem", border: "solid black 1px" }}
           />
-          <button onClick={() => fetchWeatherData()}>Login</button>
+          <button onClick={handleLogin}>Login</button>
         </div>
       </div>
     </div>
