@@ -16,6 +16,8 @@ const pageRoutes = [
     element: <PlaceHolderPage />,
   },
   { name: "Login", path: `${baseURL}/login`, element: <Login /> },
+
+
 ];
 
 function App() {
