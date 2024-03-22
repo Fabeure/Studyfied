@@ -45,9 +45,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #23305c;
-  color: white;
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .navbar ul {
@@ -55,9 +53,7 @@
   display: flex;
 }
 
-.navbar ul li {
-  margin-right: 1rem;
-}
+
 
 .navbar a {
   color: white;
