@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import "./LoginPage.css"
 
 const registerEndpoint = `${
   import.meta.env.VITE_BACKEND_API

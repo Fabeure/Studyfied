@@ -1,13 +1,14 @@
-// import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import NavBar from "./components/NavBar";
-import PlaceHolderPage from "./pages/PlaceHolderPage";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import NavBar from "./components/NavBar/NavBar";
+import PlaceHolderPage from "./pages/Placeholder/PlaceHolderPage";
 
 // default url
 const baseURL = "/Studyfied";
+
+// pages
 const pageRoutes = [
   { name: "Home", path: baseURL, element: <Home /> },
   {
@@ -16,19 +17,9 @@ const pageRoutes = [
     element: <PlaceHolderPage />,
   },
   { name: "Login", path: `${baseURL}/login`, element: <Login /> },
-
-
 ];
 
 function App() {
-  // const [count, setCount] = useState(0);
-  // const [activePage, setActivePage] = useState("home");
-
-  // async function fetchWeatherData() {
-  //   // Mocking weather data fetch
-  //   console.log('Fetching weather data...');
-  // }
-
   return (
     <Router>
       <NavBar links={pageRoutes} />
