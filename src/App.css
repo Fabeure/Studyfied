@@ -41,29 +41,7 @@
   color: #888;
 } */
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem;
-}
 
-.navbar ul {
-  list-style-type: none;
-  display: flex;
-}
-
-
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-}
-
-.navbar a.active {
-  /* text-decoration: underline; */
-  color : yellow;
-}
 
 .page-content{
   /* background-color: gray; */

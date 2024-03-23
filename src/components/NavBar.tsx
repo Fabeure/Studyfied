@@ -18,38 +18,37 @@ const NavBar: React.FC<NavBarProps> = ({ links }) => {
   return (
     <>
       <nav className="navbar">
-        <ul>
+        <ul className="linkGroup">
           <div className="logo routeName ">
             <img className="logoImage" src={logo} alt="My Photo" />
           </div>
           {links
             .filter((route) => route.name != "Login")
             .map((route, key) => (
-              <li key={key}>
+              <li className="linkWrapper" key={key}>
                 <NavLink
                   to={route.path}
                   end
                   className={({ isActive }) =>
-                    isActive ? "active" : "inactive"
+                    `routeName ${isActive ? "active" : "inactive"}`
                   }
                 >
-                  <div className="routeName">{route.name}</div>
+                  {route.name}
                 </NavLink>
               </li>
             ))}
         </ul>
-       
-          {loginPath && (
-            <NavLink
-              to={loginPath}
-              className={({ isActive }) =>
-                `loginLink ${isActive ? "active" : "inactive"}`
-              }
-            >
-              Login
-            </NavLink>
-          )}
-      
+
+        {loginPath && (
+          <NavLink
+            to={loginPath}
+            className={({ isActive }) =>
+              `loginLink ${isActive ? "active" : "inactive"}`
+            }
+          >
+            Login
+          </NavLink>
+        )}
       </nav>
       <div className="separator"></div>
     </>
