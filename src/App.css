@@ -45,9 +45,9 @@
 
 .page-content{
   /* background-color: gray; */
-  height: 80vh;
+  /* height: 80vh; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   /* margin: 0.5rem; */
 }

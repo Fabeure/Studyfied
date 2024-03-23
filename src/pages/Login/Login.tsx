@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import "./LoginPage.css"
+import "./LoginPage.css";
 
 const registerEndpoint = `${
   import.meta.env.VITE_BACKEND_API
@@ -92,108 +92,102 @@ export default function Login() {
 
   return (
     <div className="page-content">
-      <h1 style={{ marginTop: "1rem", marginBottom: "4rem" }}>
-        Don't have an account ? Sign up
-      </h1>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          width: "60%",
-        }}
-      >
-        {/* ///////////// register wrapper */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "start",
-            width: "49%",
-          }}
+      <h1 className="loginPage-header">
+        Don't have an account ?{" "}
+        <span
+          style={{ color: "rgb(255, 128, 0)", fontWeight: "bold", fontStyle: "italic" }}
         >
-          <h1>New here</h1>
-          <label htmlFor="regemail">Email</label>
-          <input
-            type="text"
-            name="regemail"
-            id="regemail"
-            value={regEmail}
-            onChange={handleInputChange}
-            style={{ border: "solid black 1px", margin: "0.2rem" }}
-          />
-          <label htmlFor="reguser">Username</label>
-          <input
-            type="text"
-            name="reguser"
-            id="reguser"
-            value={regUsername}
-            onChange={handleInputChange}
-            style={{ border: "solid black 1px", margin: "0.2rem" }}
-          />
-          <label htmlFor="regname">Full name</label>
-          <input
-            type="text"
-            name="regname"
-            id="regname"
-            value={regFullName}
-            onChange={handleInputChange}
-            style={{ border: "solid black 1px", margin: "0.2rem" }}
-          />
-          <label htmlFor="regpass">password</label>
-          <input
-            type="password"
-            name="regpass"
-            id="regpass"
-            value={regPassword}
-            onChange={handleInputChange}
-            style={{ border: "solid black 1px", margin: "0.2rem" }}
-          />
-          <label htmlFor="confirmpass">confirm password</label>
-          <input
-            type="password"
-            name="confirmpass"
-            id="confirmpass"
-            value={regConfirmPass}
-            onChange={handleInputChange}
-            style={{ border: "solid black 1px", margin: "0.2rem" }}
-          />
-          <button onClick={handleRegister}>Register</button>
+          Sign up
+        </span>
+      </h1>
+      <div className="formsWrapper">
+        {/* ///////////// register wrapper */}
+        <div className="registerForm-wrapper">
+          <h1 className="registerForm-title">New here</h1>
+          <div className="registerForm-row">
+            <div className="textFieldWrapper">
+              <label htmlFor="regname">Full name</label>
+              <input
+                type="text"
+                name="regname"
+                id="regname"
+                value={regFullName}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="textFieldWrapper">
+              <label htmlFor="reguser">Username</label>
+              <input
+                type="text"
+                name="reguser"
+                id="reguser"
+                value={regUsername}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <div className="registerForm-row">
+            <div className="textFieldWrapper">
+              <label htmlFor="regemail">Email</label>
+              <input
+                type="text"
+                name="regemail"
+                id="regemail"
+                value={regEmail}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="textFieldWrapper">
+              <label htmlFor="regpass">Password</label>
+              <input
+                type="password"
+                name="regpass"
+                id="regpass"
+                value={regPassword}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <div className="registerForm-row">
+            <div className="textFieldWrapper">
+              <label htmlFor="confirmpass">Confirm password</label>
+              <input
+                type="password"
+                name="confirmpass"
+                id="confirmpass"
+                value={regConfirmPass}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <button className="registerForm-btn" onClick={handleRegister}>
+            Register
+          </button>
         </div>
         {/* ////////// divider */}
-        <div
-          style={{ backgroundColor: "violet", width: "1px", margin: "1rem" }}
-        ></div>
+        <div className="formsWrapper-divider"></div>
         {/* /////////////// login wrapper */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            height: "fit-content",
-            alignItems: "start",
-            width: "49%",
-          }}
-        >
-          <h1>Already a member</h1>
-          <label htmlFor="logEmail">email</label>
+        <div className="loginForm-wrapper">
+          <h1 className="loginForm-title">Already a member</h1>
+          <label htmlFor="logEmail">Email</label>
           <input
             type="text"
             name="logEmail"
             id="logEmail"
             value={logEmail}
             onChange={handleInputChange}
-            style={{ margin: "0.2rem", border: "solid black 1px" }}
           />
-          <label htmlFor="logPassword">password</label>
+          <label htmlFor="logPassword">Password</label>
           <input
             type="password"
             name="logPassword"
             id="logPassword"
             value={logPassword}
             onChange={handleInputChange}
-            style={{ margin: "0.2rem", border: "solid black 1px" }}
           />
-          <button onClick={handleLogin}>Login</button>
+          <button className="loginForm-btn" onClick={handleLogin}>
+            Login
+          </button>
         </div>
       </div>
     </div>
