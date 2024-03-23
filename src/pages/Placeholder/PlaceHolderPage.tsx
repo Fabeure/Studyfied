@@ -23,7 +23,7 @@ export default function PlaceHolderPage() {
   }
   return (
     <div style={{ padding: "2rem" }}>
-      <h1 style={{ marginBottom: "2rem" }}>Coming soon 🎬</h1>
+      <h1 style={{ fontSize:"3rem",paddingTop:"3rem",paddingBottom: "2rem" }}>Coming soon 🎬</h1>
       <button onClick={fetchWeatherData} style={{ marginBottom: "1rem" }}>
         Call test api
       </button>
