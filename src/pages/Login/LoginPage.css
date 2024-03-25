@@ -1,14 +1,22 @@
 .page-content {
-  /* background-color: purple; */
+  /* background-color: var(--tc-light); */
   align-items: center;
   justify-content: space-around;
-  gap: 2.5rem;
+  gap: 2rem;
+  color: var(--tc-dark);
 }
 
 .loginPage-header {
   /* background-color: blue; */
   padding-top: 1rem;
-  font-size: 3rem;
+  font-size: 3.5rem;
+  color: var(--tc-dark);
+}
+
+.loginPage-header span {
+  font-weight: bold;
+  font-style: italic;
+  color: var(--tc-gold);
 }
 
 .formsWrapper {
@@ -16,7 +24,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 7rem;
+  gap: 4rem;
   /* height: 100%; */
 }
 
@@ -24,93 +32,128 @@
   /* background-color: red; */
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  /* height: 100%; */
+  padding: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  border-color: var(--tc-light);
+  border-radius: 0.5rem;
+  border-width: 1px;
+  gap: 1rem;
 }
 
 .registerForm-wrapper {
   /* background-color: black; */
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  border-color: var(--tc-light);
+  border-radius: 0.5rem;
+  border-width: 1px;
+  gap: 1rem;
   /* height: 1; */
 }
 
 .registerForm-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 2rem;
 }
 
-.textFieldWrapper{
-    display: flex;
-    flex-direction: column;
-    /* gap: 0.2rem; */
+.textFieldWrapper {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.2rem; */
 }
 
 .formsWrapper-divider {
   padding: 1px;
-  background-color: gold;
+  background-color: var(--tc-gold);
 }
 
 .registerForm-title,
 .loginForm-title {
   /* background-color: red; */
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: rgb(255, 128, 0);
+  color: var(--tc-dark);
   margin-bottom: 1rem;
-  /* text-align: lefts; */
+  font-style: italic;
 }
 
 .formsWrapper label {
   /* background-color: firebrick; */
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   padding-left: 0.3rem;
 }
 
 .formsWrapper input {
   margin: 0.2rem;
   margin-bottom: 1rem;
-  border-color: rgb(122, 122, 122);
+  border-color: var(--tc-light);
   border-width: 1px;
   border-radius: 3px;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   padding-left: 0.2rem;
   /* background-color: aqua; */
 }
 
-.formsWrapper button {
-    background-color: rgb(33, 17, 0);
-    color: aliceblue;
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: background-color 0.5s, color 0.2s;
+.formsWrapper input:focus {
+  outline: none;
+  border-color: var(--tc-gold);
 }
 
-.formsWrapper button:hover{
-    background-color: rgb(78, 78, 78);
-    /* color: rgb(63, 63, 63); */
+.formsWrapper button {
+  background-color: var(--tc-light);
+  color: var(--tc-blue);
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background-color 0.5s, color 0.2s;
+}
+
+.formsWrapper button:hover {
+  background-color: var(--tc-dark);
+  color: var(--tc-light);
+  border-color: var(--tc-blue);
 }
 
 @media (prefers-color-scheme: dark) {
+  .loginPage-header {
+    color: var(--tc-light);
+  }
+
+  .loginPage-header span {
+    color: var(--tc-gold);
+  }
+
   .registerForm-title,
   .loginForm-title {
-    color: goldenrod;
+    color: var(--tc-gold);
   }
+
   .formsWrapper input {
-    border-color: black;
+    border-color: var(--tc-dark);
   }
+
   .formsWrapper button {
-    background-color: rgb(255, 128, 0);
+    background-color: var(--tc-dark);
+    color: var(--tc-light);
   }
-  .formsWrapper button:hover{
-    background-color: rgb(255, 179, 80);
-    color: rgb(72, 74, 76);
-    /* color: rgb(63, 63, 63); */
-}
+
+  .formsWrapper button:hover {
+    background-color: var(--tc-light);
+    color: var(--tc-dark);
+  }
+
+  .formsWrapper label {
+    color: var(--tc-light);
+  }
 }
