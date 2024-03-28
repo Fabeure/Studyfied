@@ -1,6 +1,6 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRegisterValidation } from "../validators";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
@@ -27,6 +27,8 @@ function RegisterForm() {
     fullName: "",
     username: "",
   });
+  const [disableRegister, setDisableRegister] = useState(true);
+  const [registerDenied, setRegisterDenied] = useState(false);
 
   //  custom hook
   useRegisterValidation(
@@ -47,6 +49,28 @@ function RegisterForm() {
       errorMessages: setErrorMessages,
     }
   );
+
+  useEffect(() => {
+    let invalid = false;
+    Object.keys(errorMessages).forEach((key) => {
+      if (
+        errorMessages[
+          key as
+            | "email"
+            | "password"
+            | "fullName"
+            | "username"
+            | "confirmPassword"
+        ] != ""
+      ) {
+        invalid = invalid || true;
+        // break;
+      }
+    });
+    setDisableRegister(invalid);
+    console.log(errorMessages);
+    console.log("form is valid " + !invalid);
+  }, [errorMessages]);
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,10 +112,12 @@ function RegisterForm() {
       .post(registerEndpoint, registerData)
       .then((res) => {
         console.log(res.data);
+        alert("account created");
       })
       .catch((err) => {
         console.log(err);
-        alert(err + " | check console");
+        alert("check console");
+        setRegisterDenied(true);
       });
   };
 
@@ -117,9 +143,28 @@ function RegisterForm() {
           alignItems={"center"}
           direction={"row"}
         >
-          <AutoAwesomeRoundedIcon sx={{ color: "secondary.main" }} fontSize="large" />
+          <AutoAwesomeRoundedIcon
+            sx={{ color: "secondary.main" }}
+            fontSize="large"
+          />
           <h1 className="registerForm-title">New here</h1>
         </Grid>
+
+        {registerDenied && (
+          <Grid
+            item
+            xs
+            container
+            columnGap={1}
+            alignItems={"center"}
+            direction={"row"}
+          >
+            <h2 style={{ color: "red" }}>
+              Registration error, try again... :/
+            </h2>
+          </Grid>
+        )}
+
         <Grid item container xs columnGap={5}>
           <Grid
             item
@@ -276,9 +321,11 @@ function RegisterForm() {
             />
           </Grid>
         </Grid>
+
         <Grid item xs={12}>
           <Button
             variant="contained"
+            disabled={disableRegister}
             color="primary"
             sx={{
               fontSize: "1.1rem",
@@ -286,6 +333,7 @@ function RegisterForm() {
               paddingY: "0.7rem",
               borderRadius: 3,
               boxShadow: 0,
+              textTransform: "none",
               ["&:hover"]: {
                 color: "primary.dark",
                 boxShadow: 0,

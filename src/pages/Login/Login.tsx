@@ -6,16 +6,8 @@ import "./LoginPage.css";
 export default function Login() {
   return (
     <Box className="page-content" bgcolor={"#fffbf5"} width={"100%"}>
-      <Grid
-        item
-        container
-        direction={"column"}
-        alignItems={"center"}
-        // justifyContent={"center"}
-        xs={12}
-        // rowSpacing={9}
-      >
-        <Grid paddingTop={3} item xs={3} >
+      <Grid item container direction={"column"} alignItems={"center"} xs={12}>
+        <Grid paddingTop={3} item xs={3}>
           <h1 className="loginPage-header">
             Don't have an account ? <span>Sign up</span>
           </h1>
@@ -25,12 +17,8 @@ export default function Login() {
           container
           direction={"row"}
           justifyContent={"center"}
-          // alignItems={"center"}
           xs={0}
-          // rowSpacing={8}
           columnSpacing={6}
-          // bgcolor={"pink"}
-          // paddingTop={6}
         >
           {/* ///////////// Register */}
           <Grid item xs={5.5}>
@@ -45,10 +33,8 @@ export default function Login() {
             item
             container
             xs={4}
-            // bgcolor={"white"}
             flexDirection={"column"}
             justifyContent={"center"}
-            // alignItems={"center"}
           >
             <LoginForm />
           </Grid>

@@ -1,7 +1,11 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { useState } from "react";
-import { isEmail, isPassword } from "../validators";
 import axios from "axios";
+import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
+import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
+import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const loginEndpoint = `${
   import.meta.env.VITE_BACKEND_API
@@ -10,6 +14,9 @@ const loginEndpoint = `${
 function LoginForm() {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
+  const [loginDenied, setLoginDenied] = useState(false);
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +33,7 @@ function LoginForm() {
         break;
     }
   };
+
   // login button handler
   const handleLogin = () => {
     const loginData = {
@@ -36,10 +44,17 @@ function LoginForm() {
       .post(loginEndpoint, loginData)
       .then((res) => {
         console.log(res.data);
+        alert("welcome");
+        const accessToken = res.data?.accessToken;
+        const email = res.data?.email;
+        const userId = res.data?.userId;
+        setUser({ accessToken, email, userId });
+        navigate("/Studyfied/profile");
       })
       .catch((err) => {
         console.log(err);
-        alert(err.response.data + " | check console");
+        alert(" | check console");
+        setLoginDenied(true);
       });
   };
 
@@ -52,50 +67,78 @@ function LoginForm() {
       paddingTop={"1rem"}
       paddingX={"2rem"}
       bgcolor={"white"}
-      //   height={"100%"}
-      //   width={"30rem"}
       minWidth={"fit-content"}
     >
-      <Grid container direction={"column"} rowGap={2}>
-        <Grid
-          item
-          xs
-          alignItems={"center"}
-          justifyContent={"center"}
-          //   bgcolor={"yellow"}
-        >
+      <Grid container direction={"column"} rowGap={3}>
+        <Grid item container xs alignItems={"center"} columnGap={1}>
+          <Groups2RoundedIcon
+            fontSize="large"
+            sx={{ color: "secondary.main" }}
+          />
           <h1 className="loginForm-title">Already a member</h1>
         </Grid>
-        <Grid item xs>
+        {loginDenied && (
+          <Grid item xs>
+            <h2 style={{ color: "red" }}>
+              Email and/or password don't correspond to an account
+            </h2>
+          </Grid>
+        )}
+        <Grid
+          item
+          container
+          xs
+          direction={"row"}
+          alignItems={"center"}
+          columnGap={1}
+        >
+          <MarkunreadRoundedIcon sx={{ color: "primary.dark" }} />
           <TextField
             label="Email"
-            sx={{
-              [`& fieldset`]: {
-                borderRadius: 3,
-              },
-              width: "100%",
-            }}
             color="primary"
             name="logEmail"
-            error={!isEmail(logEmail) && logEmail != ""}
+            error={loginDenied}
             value={logEmail}
             onChange={handleInputChange}
+            sx={{
+              flexGrow: 1,
+              [`& fieldset`]: {
+                borderRadius: 1,
+                borderTopStyle: "none",
+                borderLeftStyle: "none",
+                borderRightStyle: "none",
+                borderBottomColor: "secondary.light",
+              },
+            }}
           />
         </Grid>
-        <Grid item xs>
+        <Grid
+          item
+          container
+          xs
+          direction={"row"}
+          alignItems={"center"}
+          columnGap={1}
+        >
+          <VpnKeyRoundedIcon sx={{ color: "primary.dark" }} />
           <TextField
             label="Password"
-            sx={{
-              [`& fieldset`]: {
-                borderRadius: 3,
-              },
-              width: "100%",
-            }}
+            type="password"
             color="primary"
             name="logPassword"
-            error={!isPassword(logPassword) && logPassword != ""}
+            error={loginDenied}
             value={logPassword}
             onChange={handleInputChange}
+            sx={{
+              flexGrow: 1,
+              [`& fieldset`]: {
+                borderRadius: 1,
+                borderTopStyle: "none",
+                borderLeftStyle: "none",
+                borderRightStyle: "none",
+                borderBottomColor: "secondary.light",
+              },
+            }}
           />
         </Grid>
         <Grid item xs>
@@ -104,9 +147,16 @@ function LoginForm() {
             color="primary"
             sx={{
               width: "100%",
+              fontSize: "1.1rem",
               paddingY: "0.7rem",
               borderRadius: 3,
               boxShadow: 0,
+              textTransform:"none",
+              ["&:hover"]: {
+                color: "primary.dark",
+                boxShadow: 0,
+                backgroundColor: "secondary.main",
+              },
             }}
             onClick={handleLogin}
           >
