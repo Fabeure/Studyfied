@@ -2,7 +2,7 @@ import "./HomePage.css";
 
 import { Container } from "@mui/material";
 import * as React from "react";
-
+import addSVG from "../../assets/addgrey.png";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,9 +11,9 @@ import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Typography from "@mui/material/Typography";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 function Home() {
-  const [sets, setSets] = React.useState(/*[
+  const [sets, setSets] = React.useState([
     {
       id: "1",
       topic: "Maths",
@@ -35,7 +35,8 @@ function Home() {
     {
       id: "4",
       topic: "History",
-      description: "History is the study of the past",
+      description:
+        "History is the study of the past History is the study of the pastHistory is the study of the past History is the study of the past",
       creationTime: "2021-10-10T14:48:00",
     },
     {
@@ -74,8 +75,7 @@ function Home() {
       description: "Computing is the study of computers",
       creationTime: "2021-10-10T14:48:00",
     },
-  ]
-  */[]);
+  ]);
 
   const L = sets.length;
   let [leftIndex, setLeftIndex] = React.useState(0);
@@ -143,128 +143,145 @@ function Home() {
 
   return (
     <div className="page-content m-5">
+      {sets.length !== 0 ? (
+        <>
+          <div className="sets-container">
+            <div
+              id="slider"
+              className="flex flex-row space-x-7 justify-center card-container  "
+              style={{
+                margin: "100px",
+              }}
+            >
+              {currentSets.map((set) => {
+                return (
+                  <div>
+                    <Card
+                      variant="outlined"
+                      sx={{
+                        border: "1px solid #f3f2f2",
+                        borderRadius: 7,
+                        boxShadow: " 0px 5px 6px 1px rgba(0, 0, 0, 0.2)",
+                        width: 275,
+                      }}
+                      className="card"
+                    >
+                      <React.Fragment>
+                        <CardContent
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            width: "100%",
+                            height: "150px",
+                          }}
+                        >
+                          <Typography sx={{ height: "50px" }}>
+                            {set.topic}
+                          </Typography>
 
+                          <Typography
+                            sx={{
+                              textAlign: "left",
+                              height: "75px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            {set.description}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              mb: 1,
+                              height: "50px",
+                              fontSize: "medium",
+                              marginTop: 2,
+                            }}
+                            color="text.secondary"
+                          >
+                            {set.creationTime}
+                          </Typography>
+                        </CardContent>
 
+                        <div className="learnmore-container">
+                          <button className="learn-more" style={{}}>
+                            Learn more
+                          </button>
+                        </div>
+                      </React.Fragment>
+                    </Card>
+                  </div>
+                );
+                return null;
+              })}
+            </div>
+          </div>
+          <div className="navigation-buttons" style={{}}>
+            <button
+              className="Scroll-Btn Prev-Btn"
+              disabled={disablePrevBtn}
+              onClick={handlePrevSets}
+            >
+              <ArrowBackIosNewIcon />
+            </button>
+            <button
+              className="Scroll-Btn Next-Btn"
+              disabled={disableNextBtn}
+              onClick={handleNextSets}
+            >
+              <ArrowForwardIosIcon />
+            </button>
+          </div>
+          {/**/}
+       
+        </>
+      ) : (
+        <Card
+        variant="outlined"
+        sx={{
+          border: "1px solid #f3f2f2",
+          borderRadius: 7,
+          boxShadow: " 0px 5px 6px 1px rgba(0, 0, 0, 0.2)",
+          width: 275,
+          bgcolor: "rgba(243, 242, 242, 0.5)",
+        }}
+        className="add-card"
+      >
+        <React.Fragment >
+         <Box sx={{
+             
+        }}>
 
+          <CardContent>
+           
+            <div className="add-icon-container">
+              <img className="add-icon"  src={addSVG} alt="Icon"  />
 
-   
-
-
-      
-      {sets.length !== 0? (
-   <div className="sets-container">
-
-
-   <div
-id="slider"
-className="flex flex-row space-x-7 justify-center card-container  "
-style={{
-margin: "100px",
-}}
->
-{currentSets.map((set) => {
-return (
- <Card
-   variant="outlined"
-   sx={{
-     border: "1px solid #f3f2f2",
-     borderRadius: 7,
-     boxShadow: " 0px 5px 6px 1px rgba(0, 0, 0, 0.2)",
-     width: 275,
-   }}
-   className="card"
- >
-   <React.Fragment>
-     <CardContent
-       sx={{
-         display: "flex",
-         flexDirection: "column",
-         alignItems: "flex-start",
-         width: "100%",
-       }}
-     >
-       <Typography
-         variant="h5"
-         sx={{
-           textWeight: "bold",
-           textTransform: "capitalize",
-           marginLeft: 1,
-           marginTop: 1,
-           marginBottom: 2,
-         }}
-         component="div"
-       >
-         {set && set.topic}
-       </Typography>
-
-       <Typography sx={{ textAlign: "left" }}>
-         {set?.description}
-       </Typography>
-       <Typography
-         sx={{ mb: 1, fontSize: "medium", marginTop: 2 }}
-         color="text.secondary"
-       >
-         {set.creationTime}
-       </Typography>
-     </CardContent>
-
-     <CardActions>
-       <button className="learn-more" style={{}}>
-         Learn more
-       </button>
-     </CardActions>
-   </React.Fragment>
- </Card>
-);
-return null;
-})}
-</div>
-</div>
-
-      ):
-      (
-<Card
-      variant="outlined"
-      sx={{
-        border: "1px solid #f3f2f2",
-        borderRadius: 7,
-        boxShadow: " 0px 5px 6px 1px rgba(0, 0, 0, 0.2)",
-        width: 275,
-        bgcolor: "#f3f2f2",
-      }}
-      className="add-card"
-    >
-      <React.Fragment>
-        <CardContent
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-<div className="add-icon">
-<AddCircleOutlineIcon />
-
-  </div>        
-
-
-          <Typography
-            sx={{ mb: 1, fontSize: "medium", marginTop: 2 }}
-            color="text.secondary"
+              </div>
+          </CardContent>
+          <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+            }}
           >
-            create a new set 
-          </Typography>
-        </CardContent>
+           
 
-        <CardActions>
-         
-        </CardActions>
-      </React.Fragment>
-    </Card>
+            <Typography
+              sx={{ mb: 1, fontSize: "medium", marginTop: 5,
+            fontStyle: "italic",
+          color: "rgba(0, 0, 0, 0.6)"}}
+              color="text.secondary"
+            >
+              create a new set
+            </Typography>
+          </CardContent>
+          </Box>
+          <CardActions></CardActions>
+        </React.Fragment>
+      </Card>
+      )}
 
-      ) }
-  
       {/* <div className="navigation-buttons" style={{}}>
         <button
           className="Scroll-Btn Prev-Btn"
