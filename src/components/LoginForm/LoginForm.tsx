@@ -1,6 +1,6 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { useState } from "react";
-import { isEmail, isPassword } from "../../pages/Login/validators";
+import { isEmail, isPassword } from "../validators";
 import axios from "axios";
 
 const loginEndpoint = `${
@@ -56,7 +56,7 @@ function LoginForm() {
       //   width={"30rem"}
       minWidth={"fit-content"}
     >
-      <Grid container xs={12} direction={"column"} rowGap={2}>
+      <Grid container direction={"column"} rowGap={2}>
         <Grid
           item
           xs
@@ -102,7 +102,12 @@ function LoginForm() {
           <Button
             variant="contained"
             color="primary"
-            sx={{ width: "100%", paddingY: "0.7rem",borderRadius:3 }}
+            sx={{
+              width: "100%",
+              paddingY: "0.7rem",
+              borderRadius: 3,
+              boxShadow: 0,
+            }}
             onClick={handleLogin}
           >
             Log in
