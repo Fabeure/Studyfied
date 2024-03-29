@@ -1,19 +1,30 @@
+import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 
 import { Container } from "@mui/material";
-import * as React from "react";
+//import * as React from "react";
 import addSVG from "../../assets/addgrey.png";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Typography from "@mui/material/Typography";
+//import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import "./HomePage.css";
+//import { sets } from "./data";
+// import { Container } from "@mui/material";*
+// import Box from "@mui/material/Box";
+// import Button from "@mui/material/Button";
+
+
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 function Home() {
-  const [sets, setSets] = React.useState([
+
+  ///////// States
+
+   const [sets, setSets] = React.useState([
     {
       id: "1",
       topic: "Maths",
@@ -77,72 +88,40 @@ function Home() {
     },
   ]);
 
-  const L = sets.length;
-  let [leftIndex, setLeftIndex] = React.useState(0);
-  let [rightIndex, setRightIndex] = React.useState(2);
-  let [disableNextBtn, setDisableNextBtn] = React.useState(false);
-  let [disablePrevBtn, setDisablePrevBtn] = React.useState(true);
-  let leftindex: number = 0;
-  let rightindex: number = 2;
-  const [currentSets, setCurrentSets] = React.useState(sets.slice(0, 2 + 1));
 
-  const handleNextSets = () => {
-    leftindex = leftIndex + 3;
-    rightindex = rightIndex + 3;
+  const [startingIndex, setStartingIndex] = useState(0);
+  const [disableNextBtn, setDisableNextBtn] = useState(false);
+  const [disablePrevBtn, setDisablePrevBtn] = useState(true);
+  const [currentSets, setCurrentSets] = useState(sets.slice(0, 3));
 
-    let nextSets = sets.slice(leftindex, rightindex + 1);
-
-    if (rightindex > L - 1) {
-      setDisableNextBtn(true);
-
-      nextSets = sets.slice(L - 3, L);
-      setCurrentSets(nextSets);
-
-      setLeftIndex(L - 3);
-      setRightIndex(L - 1);
-    } else {
-      setLeftIndex(leftindex);
-      setRightIndex(rightindex);
-      setDisablePrevBtn(false);
-      setCurrentSets(nextSets);
-    }
-  };
-
-  const handlePrevSets = () => {
-    leftindex = leftIndex - 2;
-    rightindex = rightIndex - 2;
-
-    if (leftindex < 0) {
-      setLeftIndex(0);
-      setRightIndex(2);
-      setDisablePrevBtn(true);
-      let prevSets = sets.slice(0, 3);
-      setCurrentSets(prevSets);
-    } else {
-      setLeftIndex(leftindex);
-      setRightIndex(rightindex);
-      let prevSets = sets.slice(leftindex, rightindex + 1);
-      setDisableNextBtn(false);
-      setCurrentSets(prevSets);
-    }
-  };
-
-  const bull = (
-    <Box
-      component="span"
-      sx={{
-        bgcolor: "tomato",
-        display: "inline-block",
-        mx: "7px",
-        transform: "scale(0.8)",
-      }}
-    >
-      •
-    </Box>
+  ///~~~~~~~~ Executes a function when a state change is detected
+  useEffect(
+    () => {
+      //~~ instructions to execute when a state change is detected :
+      setCurrentSets(sets.slice(startingIndex, startingIndex + 3));
+      setDisableNextBtn(startingIndex >= L - 3);
+      setDisablePrevBtn(startingIndex == 0);
+    },
+    //~~  the state you want to watch :
+    [startingIndex]
   );
 
+  ///~~~~~~~~ nav arrow click handler
+  function handleArrowClick(event: React.MouseEvent<HTMLButtonElement>): void {
+    const btn = event.currentTarget.name;
+    if (btn === "prevButton") {
+      setStartingIndex(Math.max(startingIndex - 3, 0));
+    }
+    if (btn === "nextButton") {
+      setStartingIndex(Math.min(startingIndex + 3, L));
+    }
+  }
+  const L = sets.length;
+
   return (
-    <div className="page-content m-5">
+   
+
+  <div className="page-content m-5">
       {sets.length !== 0 ? (
         <>
           <div className="sets-container">
@@ -218,15 +197,18 @@ function Home() {
           <div className="navigation-buttons" style={{}}>
             <button
               className="Scroll-Btn Prev-Btn"
+              name="prevButton"
               disabled={disablePrevBtn}
-              onClick={handlePrevSets}
+              onClick={handleArrowClick}
             >
               <ArrowBackIosNewIcon />
             </button>
             <button
               className="Scroll-Btn Next-Btn"
+              name="nextButton"
+
               disabled={disableNextBtn}
-              onClick={handleNextSets}
+              onClick={handleArrowClick}
             >
               <ArrowForwardIosIcon />
             </button>
@@ -282,23 +264,9 @@ function Home() {
       </Card>
       )}
 
-      {/* <div className="navigation-buttons" style={{}}>
-        <button
-          className="Scroll-Btn Prev-Btn"
-          disabled={disablePrevBtn}
-          onClick={handlePrevSets}
-        >
-          <ArrowBackIosNewIcon />
-        </button>
-        <button
-          className="Scroll-Btn Next-Btn"
-          disabled={disableNextBtn}
-          onClick={handleNextSets}
-        >
-          <ArrowForwardIosIcon />
-        </button>
-      </div> */}
+     
     </div>
   );
 }
 export default Home;
+  
