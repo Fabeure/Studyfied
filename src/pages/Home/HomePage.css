@@ -2,17 +2,21 @@
 
     background: #f3f2f2;
     font-size: 'small';
-    margin-bottom: '10px';
-    margin-left: '10px';
     border:none;
     border-radius: 20px;
-    margin-top: -8px;
     transition: 0.3s;
+    bottom:0;
+    order:-1;
+    margin-left: 5px;
 }
 
 .learn-more:hover {
 background-color: rgb(211, 211, 211);
 
+}
+.learnmore-container{
+    display: flex;
+ 
 }
 .card-container{
     display: flex;
@@ -24,6 +28,7 @@ background-color: rgb(211, 211, 211);
 .card{
     overflow: hidden;
     margin-top: 10px;
+    height: 200px;
     /*
     margin: 10px;
     width: 300px;
@@ -49,8 +54,13 @@ background-color: rgb(211, 211, 211);
     border-radius: 50px;
     color:var(--color-yellow);
 width:48px;
-border:none;
+border:0px ;
+outline: none !important; /* Remove outline on focus */
 
+
+}
+.prev-btn{
+    border: none;
 
 }
 .Scroll-Btn:enabled:hover{
@@ -60,20 +70,41 @@ border:none;
 .Next-Btn{
     justify-self: end; /* Align arrow to the right edge */
     align-self: center; 
+
 }
 .add-icon{
+    margin-left: 35px;
+    font-size: 70px !important;
+width:50px;
+    /* color: var(--color-light-blue);
 
-    color: var(--color-light-blue);
-    font-size: 30px;
+    font-size: 70px !important;
     margin-top: 10px;
     margin-left: 10px;
     font-style: italic;
+    position: absolute;
+    margin-left: 120px; */
+
+}
+.add-icon-container{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute;
+   
+
 }
 .add-card{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important ;
+    justify-content: center !important;
+    align-items: center !important;
     border-radius: 20px;
     width: 300px;
+    height:200px;
     
+}
+.add-card:hover{
+    background-color: rgba(243, 242, 242, 1);
+    transition: 0.3s;
+    cursor: pointer;
 }
