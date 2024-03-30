@@ -18,10 +18,10 @@
   gap: 1rem;
   /* height: 100%; */
 }
-
-/* .routeName.active,
+/* 
 .loginLink.active {
-  color: gold;
+  color: darkblue;
+  background-color: gold;
 } */
 
 .linkWrapper .routeName {
@@ -112,7 +112,7 @@
     background-color: aliceblue;
   }
 
-  .loginLink:hover{
+  .loginLink:hover {
     background-color: rgba(240, 248, 255, 0.869);
   }
 }

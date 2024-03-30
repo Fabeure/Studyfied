@@ -4,6 +4,10 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
 import PlaceHolderPage from "./pages/Placeholder/PlaceHolderPage";
+import { ThemeProvider } from "@mui/material";
+import { AppTheme } from "./styles/AppTheme";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 // default url
 const baseURL = "/Studyfied";
@@ -17,18 +21,27 @@ const pageRoutes = [
     element: <PlaceHolderPage />,
   },
   { name: "Login", path: `${baseURL}/login`, element: <Login /> },
+  { name: "Profile", path: `${baseURL}/profile`, element: <ProfilePage /> },
 ];
 
 function App() {
   return (
-    <Router>
-      <NavBar links={pageRoutes} />
-      <Routes>
-        {pageRoutes.map((route, key) => (
-          <Route key={key} path={route.path} element={route.element} />
-        ))}
-      </Routes>
-    </Router>
+    <ThemeProvider theme={AppTheme}>
+      <Router>
+        <NavBar links={pageRoutes} />
+        <Routes>
+          <Route path={baseURL}>
+            <Route path="" element={<Home />} />
+            <Route path="placeholder" element={<PlaceHolderPage />} />
+            <Route path="login" element={<Login />} />
+            /////// Protected routes :
+            <Route element={<RequireAuth />}>
+              <Route path="profile" element={<ProfilePage />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

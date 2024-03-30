@@ -12,8 +12,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Typography from "@mui/material/Typography";
 import "./HomePage.css";
 
-
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+const L=4;
 function Home() {
 
   const [sets, setSets] = React.useState([
@@ -64,7 +63,20 @@ function Home() {
       setStartingIndex(Math.min(startingIndex + 1, L));
     }
   }
-  const L = sets.length;
+
+  // const bull = (
+  //   <Box
+  //     component="span"
+  //     sx={{
+  //       bgcolor: "tomato",
+  //       display: "inline-block",
+  //       mx: "7px",
+  //       transform: "scale(0.8)",
+  //     }}
+  //   >
+  //     •
+  //   </Box>
+  // );
 
   return (
     <div className="page-content m-5">
@@ -126,7 +138,6 @@ function Home() {
                     </Card>
                   </div>
                 );
-                return null;
               })}
             </div>
           </div>
