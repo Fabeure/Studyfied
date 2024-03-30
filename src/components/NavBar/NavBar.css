@@ -4,9 +4,12 @@
   align-items: center;
   padding: 0.8rem;
   padding-top: 0.4rem;
+  margin-left: 100px;
+  margin-right: 70px;
 }
 
 .linkGroup {
+
   list-style-type: none;
   display: flex;
   justify-content: flex-start;
@@ -74,13 +77,13 @@
 
   height: 1px;
   /* Adjust the thickness of the line */
-  background-color: #ccc;
+  background-color: var(--color-light-blue);
   /* Adjust the color of the line */
 }
 
 .logo {
   /* display: inline-block; */
-  width: 3rem;
+  width: 4.5rem;
   height: 3rem;
 
   overflow: hidden;

@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/studyfast.svg";
 interface LinkType {
   name: string; // Name of the link
   path: string; // Path associated with the link
