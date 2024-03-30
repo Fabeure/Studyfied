@@ -140,8 +140,8 @@ function Home() {
                 );
               })}
             </div>
-          </div>
-          <div className="navigation-buttons" style={{}}>
+         
+          <div className="navigation-buttons" >
             <button
               className="Scroll-Btn Prev-Btn"
               name="prevButton"
@@ -158,6 +158,7 @@ function Home() {
             >
               <ArrowForwardIosIcon />
             </button>
+          </div>
           </div>
           {/**/}
         </>
