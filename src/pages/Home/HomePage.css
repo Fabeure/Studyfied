@@ -1,18 +1,30 @@
 .page-content{
-    background-color:rgb(213, 232, 237);
+    background-color:rgba(213, 232, 237,0.5);
 }
 
 
 .card-content{
 display:flex ;
+direction: row;
 
+
+}
+
+.card-icon{
+    padding: 20px;
+}
+.card-topic{
+    padding-bottom: 10px;
+    font-size: 25px;
+    color: var(--color-light-blue);
 
 }
 .right-card-content{
-   flex:2;
+  width:70%
 }
 .left-card-content{
-    flex:1;
+width:30%;
+height: 30px;
     /* display:flex;
     justify-content:center;
     align-items:center; */
@@ -32,7 +44,7 @@ display:flex ;
     border: none;
     border-radius: 20px;
     transition: 0.4s;
-    order: -1;
+
     margin-left: 10px;
     
 }
@@ -59,12 +71,10 @@ display:flex ;
     overflow: hidden;
     margin-top: 10px;
     height: 200px;
-
+display: flex;
 }
 
-.card-topic {
-    height: "250px" !important
-}
+
 
 .navigation-buttons {
     @media (min-width: 1200px) {
@@ -139,44 +149,4 @@ display:flex ;
     justify-self: end;
     align-self: center;
 
-}
-
-.add-icon {
-    margin-left: 35px;
-    font-size: 70px !important;
-    width: 50px;
-    /* color: var(--color-light-blue);
-
-    font-size: 70px !important;
-    margin-top: 10px;
-    margin-left: 10px;
-    font-style: italic;
-    position: absolute;
-    margin-left: 120px; */
-
-}
-
-.add-icon-container {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: absolute;
-
-
-}
-
-.add-card {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    border-radius: 20px;
-    width: 300px;
-    height: 200px;
-
-}
-
-.add-card:hover {
-    background-color: rgba(243, 242, 242, 1);
-    transition: 0.3s;
-    cursor: pointer;
 }

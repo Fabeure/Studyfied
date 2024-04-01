@@ -43,8 +43,8 @@ function Home() {
 
   return (
     <div className="page-content ">
-      {sets.length !== 0 ? (
-        <>
+      
+     
           <div className="sets-container">
             <div className="navigation-buttons">
               <button
@@ -73,6 +73,23 @@ function Home() {
               }}
             >
               {currentSets.map((set) => {
+                  let icon = ''; // Initialize image source variable
+
+                  // Switch statement to set image source based on set.icon value
+                  switch (set.icon) {
+                      case 'summary':
+                          icon = summary; // Path to image for value1
+                          break;
+                      case 'explain':
+                          icon = explain; // Path to image for value2
+                          break;
+                          case 'quiz':
+                            icon = quiz; // Path to image for value2
+                            break;
+                      default:
+                          icon = flashCards; // Default image path
+                          break;
+                  }
                 return (
                   <div>
                     <Card
@@ -86,14 +103,16 @@ function Home() {
                       }}
                       className="card"
                     >
-                      <React.Fragment>
+                      <div className="left-card-content">
+                        <img src={icon} alt="icon" className="card-icon" />
+                      </div>
+                      <div className="right-card-content">
                         <CardContent
                           sx={{
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "flex-start",
                             width: "100%",
-                            height: "150px",
                           }}
                         >
                           <p className="card-topic">{set.topic}</p>
@@ -101,7 +120,6 @@ function Home() {
                           <Typography
                             sx={{
                               textAlign: "left",
-                              height: "150px",
                               overflow: "hidden",
                             }}
                           >
@@ -112,7 +130,7 @@ function Home() {
                         <div className="learnmore-container">
                           <button className="learn-more">Try it now !</button>
                         </div>
-                      </React.Fragment>
+                      </div>
                     </Card>
                   </div>
                 );
@@ -120,57 +138,7 @@ function Home() {
             </div>
           </div>
           {/**/}
-        </>
-      ) : (
-        <Card
-          variant="outlined"
-          sx={{
-            border: "1px solid #f3f2f2",
-            borderRadius: 7,
-            boxShadow: " 0px 5px 6px 1px rgba(0, 0, 0, 0.2)",
-            width: 275,
-            bgcolor: "rgba(243, 242, 242, 0.5)",
-          }}
-          className="add-card"
-        >
-          <React.Fragment>
-            <div className="card-content">
-              <div className="left-content">
-                <img src="{set.icon}" alt="" />
-              </div>
-              <div className="right-card-content">
-                <CardContent>
-                  <div className="add-card-icon-container">
-                    <img className="add-icon" src={addSVG} alt="Icon" />
-                  </div>
-                </CardContent>
-                <CardContent
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      mb: 1,
-                      fontSize: "medium",
-                      marginTop: 5,
-                      fontStyle: "italic",
-                      color: "rgba(0, 0, 0, 0.6)",
-                    }}
-                    color="text.secondary"
-                  >
-                    create a new set
-                  </Typography>
-                </CardContent>
-              </div>
-            </div>
-            <CardActions></CardActions>
-          </React.Fragment>
-        </Card>
-      )}
-    </div>
+        </div>
   );
 }
 export default Home;
