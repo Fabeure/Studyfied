@@ -83,6 +83,34 @@ function Home() {
       {sets.length !== 0 ? (
         <>
           <div className="sets-container">
+
+
+          <div className="navigation-buttons" >
+            <button
+              className="Scroll-Btn Prev-Btn"
+              name="prevButton"
+              disabled={disablePrevBtn}
+              onClick={handleArrowClick}
+            >
+              <ArrowBackIosNewIcon className="arrow-icon" />
+            </button>
+            <button
+              className="Scroll-Btn Next-Btn"
+              name="nextButton"
+              disabled={disableNextBtn}
+              onClick={handleArrowClick}
+            >
+              <ArrowForwardIosIcon  className="arrow-icon" />
+            </button>
+          </div>
+
+
+
+
+
+
+
+
             <div
               id="slider"
               className="flex flex-row space-x-7 justify-center card-container  "
@@ -99,8 +127,8 @@ function Home() {
                         border: "1px solid #f3f2f2",
                         borderRadius: 7,
                         boxShadow: " 0px 5px 6px 2px rgba(0, 0, 0, 0.3)",
-                        width: 650,
-                        height: 300,
+                        width: {md:650,sm:400, xs:250},
+                        height: {m:300,sm:200, xs:150},
                       }}
                       className="card"
                     >
@@ -141,24 +169,7 @@ function Home() {
               })}
             </div>
          
-          <div className="navigation-buttons" >
-            <button
-              className="Scroll-Btn Prev-Btn"
-              name="prevButton"
-              disabled={disablePrevBtn}
-              onClick={handleArrowClick}
-            >
-              <ArrowBackIosNewIcon />
-            </button>
-            <button
-              className="Scroll-Btn Next-Btn"
-              name="nextButton"
-              disabled={disableNextBtn}
-              onClick={handleArrowClick}
-            >
-              <ArrowForwardIosIcon />
-            </button>
-          </div>
+         
           </div>
           {/**/}
         </>
