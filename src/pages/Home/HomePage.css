@@ -1,13 +1,40 @@
+.page-content{
+    background-color:rgb(213, 232, 237);
+}
+
+
+.card-content{
+display:flex ;
+
+
+}
+.right-card-content{
+   flex:2;
+}
+.left-card-content{
+    flex:1;
+    /* display:flex;
+    justify-content:center;
+    align-items:center; */
+}
+
+
+
+
+
+
+
 .learn-more {
+    outline: none !important;
 
     background: #f3f2f2;
     font-size: 'small';
     border: none;
     border-radius: 20px;
     transition: 0.4s;
-    bottom: 0;
     order: -1;
-    margin-left: 5px;
+    margin-left: 10px;
+    
 }
 
 .learn-more:hover {
@@ -40,18 +67,23 @@
 }
 
 .navigation-buttons {
-    margin-top: 190px;
-
-    @media (min-width: 600px) {
+    @media (min-width: 1200px) {
         /* Medium-sized screens (md) */
-        margin-top: 190px;
-        width: 90%;
+        margin-top: 175px;
+        width: 75%;
+    }
+
+
+    @media (min-width: 600px) and (max-width: 1199px) {
+        /* Medium-sized screens (md) */
+        margin-top: 175px;
+        width: 78%;
     }
 
     @media (max-width: 599px) and (min-width: 400px) {
         /* Small screens (sm) */
         margin-top: 165px;
-        width: 95%;
+        width: 90%;
     }
 
     @media (max-width: 399px) {
@@ -60,14 +92,12 @@
         width: 100%;
     }
 
-    margin-left: 4vw;
-    margin-right: 4vw;
+    margin-left: 10vw;
     border-radius: 20px;
-    width: 85%;
+    width: 80%;
     
     position: absolute;
     display: flex;
-    /* Enable flexbox for thée container */
     justify-content: space-between;
     /* justify-content: center; */
     align-items: center;
