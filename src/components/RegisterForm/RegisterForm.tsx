@@ -10,7 +10,7 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 
 const registerEndpoint = `${
-  import.meta.env.VITE_BACKEND_API
+  process.env.VITE_BACKEND_API
 }/api/v1/authenticate/register`;
 
 function RegisterForm() {
@@ -130,8 +130,6 @@ function RegisterForm() {
       paddingTop={"1rem"}
       paddingX={"2rem"}
       bgcolor={"white"}
-      //   height={"100%"}
-      //   width={"30rem"}
       minWidth={"fit-content"}
     >
       <Grid container direction={"column"} rowGap={3}>

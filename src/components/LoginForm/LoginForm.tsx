@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const loginEndpoint = `${
-  import.meta.env.VITE_BACKEND_API
+  process.env.VITE_BACKEND_API
 }/api/v1/authenticate/login`;
 
 function LoginForm() {
