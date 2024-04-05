@@ -1,7 +1,7 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useRegisterValidation } from "../validators";
+import { useRegisterValidation } from "../../hooks/useRegisterValidation";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
