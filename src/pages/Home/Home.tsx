@@ -56,7 +56,6 @@ function Home() {
             <ArrowForwardIosIcon className="arrow-icon" />
           </button>
         </div>
-
         <div
           id="slider"
           className="flex flex-row space-x-7 justify-center card-container  "
@@ -82,7 +81,7 @@ function Home() {
                 break;
             }
             return (
-              <div>
+              <div key={set.id}>
                 <Card
                   variant="outlined"
                   sx={{

@@ -4,7 +4,6 @@ import axios from "axios";
 import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const loginEndpoint = `${
@@ -15,7 +14,6 @@ function LoginForm() {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
-  const navigate = useNavigate();
   const { setUser } = useAuth();
 
   // input handler
@@ -49,7 +47,7 @@ function LoginForm() {
         const email = res.data?.email;
         const userId = res.data?.userId;
         setUser({ accessToken, email, userId });
-        navigate("/Studyfied/profile");
+        window.location.href = "/Studyfied/profile";
       })
       .catch((err) => {
         console.log(err);
