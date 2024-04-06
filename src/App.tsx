@@ -1,47 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import NavBar from "./components/NavBar/NavBar";
+import { ThemeProvider } from "@mui/material";
+import { AppTheme } from "./styles/AppTheme";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
-import axios from "axios";
+// default url
+const baseURL = "/Studyfied";
+
+// pages
+const pageRoutes = [
+  { name: "Home", path: baseURL, element: <Home /> },
+  { name: "Login", path: `${baseURL}/login`, element: <Login /> },
+  { name: "Profile", path: `${baseURL}/profile`, element: <ProfilePage /> },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-  async function fetchWeatherData() {
-    axios.get(`${import.meta.env.VITE_BACKEND_API}/WeatherForecast`)
-      .then(res =>{
-        console.log(res.data)
-      }).catch(err =>{
-        console.log(err)
-      })
-  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-3xl font-bold underline">😎😎😎 test</h1>
-      <div className="card">
-      <button onClick={() => {
-          setCount((count) => count + 1);
-          fetchWeatherData();
-          }}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={AppTheme}>
+      <Router>
+        <NavBar links={pageRoutes} />
+        <Routes>
+          <Route path={baseURL}>
+            <Route path="" element={<Home />} />
+            <Route path="login" element={<Login />} />
+            /////// Protected routes :
+            <Route element={<RequireAuth />}>
+              <Route path="profile" element={<ProfilePage />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
