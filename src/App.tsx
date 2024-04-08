@@ -8,13 +8,15 @@ import { ThemeProvider } from "@mui/material";
 import { AppTheme } from "./styles/AppTheme";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ProfilePage from "./pages/Profile/ProfilePage";
-
+import FlashcardsList from "./pages/Flashcards/FlashcardsList";
 // default url
 const baseURL = "/Studyfied";
 
 // pages
 const pageRoutes = [
   { name: "Home", path: baseURL, element: <Home /> },
+  { name: "FlashCards", path: `${baseURL}/flashcards`, element: <FlashcardsList /> },
+
   {
     name: "Placeholder",
     path: `${baseURL}/placeholder`,
@@ -32,6 +34,7 @@ function App() {
         <Routes>
           <Route path={baseURL}>
             <Route path="" element={<Home />} />
+            <Route path="flashcards" element={<FlashcardsList />} />
             <Route path="placeholder" element={<PlaceHolderPage />} />
             <Route path="login" element={<Login />} />
             /////// Protected routes :
