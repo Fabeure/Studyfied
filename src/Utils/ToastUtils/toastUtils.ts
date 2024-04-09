@@ -35,7 +35,7 @@ export function showToast(response?: BaseResponse, message?: string){
         }
 
         case ResultCodeEnum.PartialSuccess: {
-            toast.error(response.userMessage, {
+            toast.info(response.userMessage, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,

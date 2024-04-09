@@ -38,6 +38,7 @@ function Home() {
 
   return (
     <div className="page-content ">
+      <ToastContainer />
       <div className="sets-container">
         <div className="navigation-buttons">
           <button
@@ -127,7 +128,6 @@ function Home() {
           })}
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 }
