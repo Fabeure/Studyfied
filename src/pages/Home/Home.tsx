@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
-
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -11,16 +10,18 @@ import flashCards from "../../assets/illustrations/flashCards.png";
 import summary from "../../assets/illustrations/summary.png";
 import explain from "../../assets/illustrations/explain.png";
 import { setsFromData } from "./data";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const L = 4;
 function Home() {
-  const sets = setsFromData;
   const [startingIndex, setStartingIndex] = useState(0);
   const [disableNextBtn, setDisableNextBtn] = useState(false);
   const [disablePrevBtn, setDisablePrevBtn] = useState(true);
-  const [currentSets, setCurrentSets] = useState(sets.slice(0, 1));
+  const [currentSets, setCurrentSets] = useState(setsFromData.slice(0, 1));
 
   useEffect(() => {
-    setCurrentSets(sets.slice(startingIndex, startingIndex + 1));
+    setCurrentSets(setsFromData.slice(startingIndex, startingIndex + 1));
     setDisableNextBtn(startingIndex >= L - 1);
     setDisablePrevBtn(startingIndex == 0);
   }, [startingIndex]);
@@ -37,6 +38,7 @@ function Home() {
 
   return (
     <div className="page-content ">
+      <ToastContainer />
       <div className="sets-container">
         <div className="navigation-buttons">
           <button
@@ -116,7 +118,6 @@ function Home() {
                         {set.description}
                       </Typography>
                     </CardContent>
-
                     <div className="learnmore-container">
                       <button className="learn-more">Try it now !</button>
                     </div>
