@@ -6,6 +6,7 @@
   padding-top: 0.4rem;
   margin-left: 100px;
   margin-right: 70px;
+  border-color: none;
 }
 
 .linkGroup {
@@ -36,15 +37,6 @@
   border-width: 0.1rem;
 }
 
-.linkWrapper .routeName.active {
-  border-color: gold;
-  background-color: rgb(255, 198, 93);
-}
-
-.linkWrapper .routeName.inactive:hover {
-  background-color: rgba(255, 198, 93, 0.251);
-}
-
 /* NavBar.css */
 
 .routeName {
@@ -54,22 +46,6 @@
   font-size: 1.2rem;
   height: 100%;
   transition: background-color 0.3s;
-}
-
-.loginLink {
-  color: white;
-  background-color: rgb(28, 15, 11);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.7rem;
-  width: 7rem;
-  border-radius: 1.5rem;
-  transition: background-color 0.3s;
-}
-
-.loginLink:hover {
-  background-color: rgba(28, 15, 11, 0.823);
 }
 
 .separator {
@@ -115,4 +91,13 @@
   .loginLink:hover {
     background-color: rgba(240, 248, 255, 0.869);
   }
+}
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); /* Add blur effect to the background */
+  z-index: 998; /* Ensure the background is behind the popup */
 }

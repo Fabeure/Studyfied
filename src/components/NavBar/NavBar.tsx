@@ -1,32 +1,43 @@
-import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
-import "./NavBar.css";
-import logo from "../../assets/studyfast.svg";
 import { Button, Grid } from "@mui/material";
+import logo from "../../assets/studyfast.svg";
+import "./NavBar.css";
 import useAuth from "../../hooks/useAuth";
+import LoginPopup from "../../pages/Login/LoginPopUp";
+import { useState } from "react";
 
 interface LinkType {
-  name: string; // Name of the link
-  path: string; // Path associated with the link
-  element: ReactNode; // Type of the React component to render
+  name: string;
+  path: string;
+  element: React.ReactNode;
 }
+
 interface NavBarProps {
   links: LinkType[];
 }
 
-const NavBar: React.FC<NavBarProps> = ({ links }) => {
-  const loginPath = links.find(({ name }) => name == "Login")?.path;
+const NavBar: React.FC<NavBarProps> = ({links}) => {
+  const loginPath = links.find(({ name }) => name === "Login")?.path;
   const { user, setUser } = useAuth();
+  
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
+  const handleLoginClick = () => {
+    setShowLoginPopup(true);
+  };
+
+  const handleCloseLoginPopup = () => {
+    setShowLoginPopup(false);
+  };
   return (
     <>
       <nav className="navbar">
         <ul className="linkGroup">
-          <div className="logo routeName ">
+          <div className="logo routeName">
             <img className="logoImage" src={logo} alt="My Photo" />
           </div>
           {links
-            .filter((route) => route.name != "Login")
+            .filter((route) => route.name !== "Login")
             .map((route, key) => (
               <li className="linkWrapper" key={key}>
                 <NavLink
@@ -42,56 +53,51 @@ const NavBar: React.FC<NavBarProps> = ({ links }) => {
             ))}
         </ul>
 
-        {user.accessToken != "" && (
+        {user.accessToken !== "" && (
           <Grid
             container
-            // bgcolor={"red"}
-            direction={"row"}
-            justifyContent={"end"}
-            alignItems={"center"}
+            direction="row"
+            justifyContent="end"
+            alignItems="center"
             columnGap={3}
           >
             <Grid item>Hello : {user.email}</Grid>
             <Grid item>
-              <NavLink to="/Studyfied">
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    setUser({ accessToken: "", email: "", userId: "" });
-                  }}
-                  sx={{
-                    // width: "100%",
-                    fontSize: "1rem",
-                    padding: "0.7rem",
-                    borderRadius: "1.5rem",
-                    width:"7rem",
-                    boxShadow: 0,
-                    backgroundColor: "black",
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setUser({ accessToken: "", email: "", userId: "" });
+                }}
+                sx={{
+                  fontSize: "1rem",
+                  padding: "0.7rem",
+                  borderRadius: "1.5rem",
+                  width: "7rem",
+                  boxShadow: 0,
+                  backgroundColor: "black",
+                  color: "secondary.light",
+                  textTransform: "none",
+                  "&:hover": {
                     color: "secondary.light",
-                    textTransform: "none",
-                    ["&:hover"]: {
-                      color: "secondary.light",
-                      boxShadow: 0,
-                      backgroundColor: "#3a3a3a",
-                    },
-                  }}
-                >
-                  Log out
-                </Button>
-              </NavLink>
+                    boxShadow: 0,
+                    backgroundColor: "#3a3a3a",
+                  },
+                }}
+              >
+                Log out
+              </Button>
             </Grid>
           </Grid>
         )}
-        {loginPath && user.accessToken == "" && (
-          <NavLink
-            to={loginPath}
-            className={({ isActive }) =>
-              `loginLink ${isActive ? "active" : "inactive"}`
-            }
-          >
+
+        {loginPath && user.accessToken === "" && (
+          <Button variant="contained" onClick={handleLoginClick}>
             Login
-          </NavLink>
+          </Button>
         )}
+
+      {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
+      {showLoginPopup && <div className="blur-background"></div>}      
       </nav>
       <div className="separator"></div>
     </>
