@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-18T21:44:04.297Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="T9-2g1iHAyYUapguNQHc" version="24.2.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-18T21:49:55.741Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="fo_zQIkhoXWlYpcxn-Sy" version="24.2.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1500" dy="1926" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -125,10 +125,11 @@
         <mxCell id="sVPTDgXXpyOsoHTpZXYm-57" value="Auto Deploy&lt;div style=&quot;font-size: 16px;&quot;&gt;Sync environment, Build, Test, Deploy&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;div style=&quot;font-size: 29px;&quot;&gt;&lt;br style=&quot;font-size: 29px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=29;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="875" y="440" width="290" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="sVPTDgXXpyOsoHTpZXYm-62" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-62" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.684;exitY=-0.002;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="sVPTDgXXpyOsoHTpZXYm-35" target="sVPTDgXXpyOsoHTpZXYm-68">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1210" y="120" as="sourcePoint" />
-            <mxPoint x="1210" y="-120" as="targetPoint" />
+            <mxPoint x="1200" y="120" as="sourcePoint" />
+            <mxPoint x="1200" y="-50" as="targetPoint" />
+            <Array as="points" />
           </mxGeometry>
         </mxCell>
         <mxCell id="sVPTDgXXpyOsoHTpZXYm-63" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
@@ -142,6 +143,40 @@
         </mxCell>
         <mxCell id="sVPTDgXXpyOsoHTpZXYm-65" value="FrontEnd&lt;div&gt;saber-azouzi.github.io&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="960" y="585" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-66" value="Manual Merge&lt;div style=&quot;font-size: 16px;&quot;&gt;Merge main&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=29;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1220" y="-30" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="sVPTDgXXpyOsoHTpZXYm-68">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="414" y="-260" as="targetPoint" />
+            <mxPoint x="994" y="-139.99999999999977" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="704" y="-140" />
+              <mxPoint x="414" y="-139" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-68" value="" style="swimlane;startSize=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1120" y="-220" width="170" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-69" value="&lt;b style=&quot;font-size: 29px;&quot;&gt;&lt;font style=&quot;font-size: 29px;&quot;&gt;Main&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="sVPTDgXXpyOsoHTpZXYm-68">
+          <mxGeometry x="40" y="55" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-70" value="Manual Deploy&lt;br&gt;&lt;span style=&quot;font-size: 16px; background-color: initial;&quot;&gt;Build, Test, Run E2ES, Deploy&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=29;fontStyle=1" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="860" y="-240" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-72" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="719.29" y="-140" as="sourcePoint" />
+            <mxPoint x="719.29" y="-260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-73" value="Backend&lt;div&gt;studyfiedbackend.onrender.com&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="240" y="-350" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sVPTDgXXpyOsoHTpZXYm-74" value="FrontEnd&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;fabeure.github.io&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="550" y="-350" width="340" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
