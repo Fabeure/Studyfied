@@ -7,7 +7,7 @@ import { ThemeProvider } from "@mui/material";
 import { AppTheme } from "./styles/AppTheme";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ProfilePage from "./pages/Profile/ProfilePage";
-
+import FlashcardsList from "./pages/Flashcards/FlashcardsList";
 // default url
 const baseURL = "/Studyfied";
 
