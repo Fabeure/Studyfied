@@ -8,4 +8,4 @@ export class flashcardModel {
     id:string='';   
     
 }
-// export default flashcardModel;
+ export default flashcardModel;
