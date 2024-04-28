@@ -6,25 +6,6 @@ function Home() {
 <div className="landing-page mt-[80px] ml-[50px] z-10 ">
   <LandingPage />
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <svg
         className="w-full  blur-md "
         preserveAspectRatio="xMidYMid slice"

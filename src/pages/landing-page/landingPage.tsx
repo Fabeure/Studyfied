@@ -1,6 +1,5 @@
 import "./landingPage.css";
 import sparkles from "../../assets/sparkles.png";
-import brain from "../../assets/brain.jpg";
 function landingPage() {
   return (
     <>
