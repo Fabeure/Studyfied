@@ -1,8 +1,30 @@
 import "./HomePage.css";
-
+import LandingPage from "../landing-page/landingPage";
 function Home() {
   return (
     <>
+<div className="landing-page mt-[80px] ml-[50px] z-10 ">
+  <LandingPage />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <svg
         className="w-full  blur-md "
         preserveAspectRatio="xMidYMid slice"
@@ -45,8 +67,7 @@ function Home() {
     <path fill="#020A25 " className="in-bottom opacity-80" d="M102,67.1c-9.6-6.1-22-3.1-29.5,2-15.4,10.7-19.6,37.5-7.6,47.8s35.9,3.9,44.5-12.5C115.5,92.6,113.9,74.6,102,67.1Z"/>
       </svg>
 
-      <div className="z-10  h-[1000px]"> holdfghjk,l;</div>
-      <div className=" z-10 h-[1000px]"> holdfghjk,l;</div>
+      
     </>
   );
 }

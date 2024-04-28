@@ -30,19 +30,21 @@
   border-radius: 30px;
   border-style: solid;
   border-width: 0.1px 3px 0.1px 3px;
-  box-shadow: 0 0 0 1px #00000000, 0 0 3px 1px #000000;
+  box-shadow: 0 1px 0 2px #b443ff00, 0 0 3px 5px #260339;
   font-weight: lighter;
   margin: -1px 0 -2px 0;
   border-color: rgba(201, 120, 255, 0.125);
   text-transform: uppercase;
   color: #ffffff;
   background: transparent;
+  transform: scale(1) ;
 }
 
 .button:hover {
   border-color: rgba(201, 120, 255, 0.225);
-  background: rgba(0, 0, 0, 0.1);
-  transform: 3s;
+  transform: scale(1.05) ;
+  box-shadow: 0 1px 0 4px #b443ff00, 0 0 5px 5px #260339;
+transition: transform 0.5s ease-in-out ; 
 
 }
 
