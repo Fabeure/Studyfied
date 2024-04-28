@@ -1,6 +1,7 @@
 import "./NavBar.css";
 
 import logoLeaf from "../../assets/logo_leaf.png";
+import LoginPopup from "../LoginPopup/LoginPopUp";
 
 function NavBar() {
   return (
@@ -23,6 +24,8 @@ function NavBar() {
          </button>
         </div>
       </nav>
+      {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
+      {showLoginPopup && <div className="blur-background"></div>}     
     </>
   );
 }
