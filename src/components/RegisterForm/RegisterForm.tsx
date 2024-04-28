@@ -123,13 +123,9 @@ function RegisterForm() {
 
   return (
     <Box
-      border={"1px solid"}
-      borderRadius={"6px"}
-      borderColor={"var(--tc-light)"}
       paddingBottom={"2rem"}
       paddingTop={"1rem"}
       paddingX={"2rem"}
-      bgcolor={"white"}
       minWidth={"fit-content"}
     >
       <Grid container direction={"column"} rowGap={3}>

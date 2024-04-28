@@ -16,16 +16,22 @@ const ANIMATION_DURATION = 500; // Animation duration in milliseconds
 function Cards() {
   const [startingIndex, setStartingIndex] = useState(0);
   const [currentSets, setCurrentSets] = useState(setsFromData.slice(0, 1));
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {  
     // Start the timer on component mount and update on startingIndex change
     const newTimerId = setInterval(() => {
-      setStartingIndex(prevIndex => (prevIndex === L - 1 ? 0 : prevIndex + 1)); // Increment index with circular behavior
+      if (!isHovering){
+        setStartingIndex(prevIndex => (prevIndex === L - 1 ? 0 : prevIndex + 1)); // Increment index with circular behavior
+      }
+      else {
+        clearTimeout(newTimerId);
+      }
     }, CYCLE_TIME);
   
     // Cleanup function to clear the timer when the component unmounts
     return () => clearInterval(newTimerId);
-  }, [startingIndex]);
+  }, [startingIndex, isHovering]);
 
   useEffect(() => {
     // Add animation class on index change
@@ -95,11 +101,13 @@ function Cards() {
             break;
         }
         return (
-          <div key={set.id}>
+          <div key={set.id}              
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}>
             <Card
               variant="outlined"
               sx={{
-                border: "1px solid #f3f2f2",
+                border: "none",
                 borderRadius: 7,
                 boxShadow: " 0px 5px 6px 2px rgba(0, 0, 0, 0.3)",
                 width: { md: 650, sm: 400, xs: 250 },
@@ -125,6 +133,7 @@ function Cards() {
                     sx={{
                       textAlign: "left",
                       overflow: "hidden",
+                      color: "white"
                     }}
                   >
                     {set.description}

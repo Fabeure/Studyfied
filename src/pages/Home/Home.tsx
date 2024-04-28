@@ -8,7 +8,7 @@ function Home() {
 
 
   return (  
-    <div className="page-content ">
+    <div className="page-content">
       <InitialScreen />
       <ToastContainer />
       <MainBanner />

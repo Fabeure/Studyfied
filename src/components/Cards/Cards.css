@@ -1,9 +1,9 @@
 .page-content {
-    background-color: rgba(213, 232, 237, 0.5);
 }
 
 .card-content {
     display: flex;
+    color: var(--tc-white);
     direction: row;
 }
 
@@ -14,7 +14,7 @@
 .card-topic {
     padding-bottom: 10px;
     font-size: 25px;
-    color: var(--color-light-blue);
+    color: var(--tc-white);
 }
 
 .right-card-content {
@@ -57,6 +57,8 @@
     margin-top: 10px;
     height: 200px;
     display: flex;
+    background: rgb(55,8,114);
+    background: linear-gradient(90deg, rgba(55,8,114,1) 2%, rgba(55,8,114,1) 6%, rgba(84,11,131,1) 27%, rgba(108,13,145,1) 35%, rgba(113,13,148,1) 52%, rgba(119,14,151,1) 61%, rgba(74,31,144,1) 81%, rgba(44,42,139,1) 90%, rgba(19,51,135,1) 100%);
 }
 
 .navigation-buttons {
@@ -106,7 +108,7 @@
 }
 
 .Scroll-Btn:enabled:hover {
-    background-color: rgb(244, 243, 243);
+    background-color: hsla(0, 0%, 100%, .1);
     transition: 0.4s;
 }
 

@@ -3,7 +3,7 @@ import { Button, Grid } from "@mui/material";
 import logo from "../../assets/studyfast.svg";
 import "./NavBar.css";
 import useAuth from "../../hooks/useAuth";
-import LoginPopup from "../../pages/Login/LoginPopUp";
+import LoginPopup from "../LoginPopup/LoginPopUp";
 import { useState } from "react";
 
 interface LinkType {
@@ -91,15 +91,18 @@ const NavBar: React.FC<NavBarProps> = ({links}) => {
         )}
 
         {loginPath && user.accessToken === "" && (
-          <Button variant="contained" onClick={handleLoginClick}>
-            Login
+          <Button variant="contained" onClick={handleLoginClick}
+          sx={{
+            background: 'linear-gradient(90deg, rgba(55,8,114,1) 2%, rgba(55,8,114,1) 6%, rgba(84,11,131,1) 27%, rgba(108,13,145,1) 35%, rgba(113,13,148,1) 52%, rgba(119,14,151,1) 61%, rgba(74,31,144,1) 81%, rgba(44,42,139,1) 90%, rgba(19,51,135,1) 100%)'
+          }}
+          >
+          Login
           </Button>
         )}
 
       {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
       {showLoginPopup && <div className="blur-background"></div>}      
       </nav>
-      <div className="separator"></div>
     </>
   );
 };
