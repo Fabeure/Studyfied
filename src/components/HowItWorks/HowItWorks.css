@@ -1,0 +1,101 @@
+.blurred {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+  backdrop-filter: blur(20px); /* Add blur effect to the background */
+  z-index: 998; /* Ensure the background is behind the popup */
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 50vw; /* limit to 50% of viewport width */
+  height: auto;
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.title {
+  width: 100%; /* Make the title span the full width of the parent */
+  text-align: center; /* Center the text */
+  margin-bottom: 20px; /* Add some space between the title and the content */
+  color: white; /* Set text color to white */
+  font-weight: bold; /* Make the text bold */
+  margin-top: -230px; /* Move the title a little higher */
+  font-size: 24px; /* Set the font size to 24 pixels */
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Make the content wrapper span the full width */
+}
+
+.left-side {
+  width: 30%;
+}
+
+.right-side {
+  width: 70%;
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  justify-content: flex-start; /* Align items to the top */
+  align-items: center;
+}
+
+.right-side p {
+  text-align: left; /* Align text content to the left */
+  max-width: 90%; /* Limit the width of the text content */
+  word-wrap: break-word; /* Allow the text to wrap within its container */
+  color: whitesmoke;
+}
+
+.arrow-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 50px;
+  z-index: 1000; /* Ensure arrows are above other elements */
+}
+
+.arrow {
+  border-radius: 20px;
+  margin: 0 10px; /* Adjust the margin between the arrows and button */
+  cursor: pointer; /* Add pointer cursor */
+}
+
+.left-arrow {
+  position: absolute;
+  left: 10px; /* Adjust position */
+}
+
+.right-arrow {
+  position: absolute;
+  right: 10px; /* Adjust position */
+}
+
+.button-container {
+  position: absolute;
+  bottom: -20px; /* Adjust the position of the button relative to the .content div */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure button is above other elements */
+}
+
+.button {
+  width: auto; /* Make button width dynamic */
+  padding: 10px 20px; /* Example padding for button */
+}

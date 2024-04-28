@@ -1,0 +1,146 @@
+.page-content {
+}
+
+.card-content {
+    display: flex;
+    color: var(--tc-white);
+    direction: row;
+}
+
+.card-icon {
+    padding: 20px;
+}
+
+.card-topic {
+    padding-bottom: 10px;
+    font-size: 25px;
+    color: var(--tc-white);
+}
+
+.right-card-content {
+    width: 70%
+}
+
+.left-card-content {
+    width: 30%;
+    height: 30px;
+}
+
+.learn-more {
+    outline: none !important;
+    background: #f3f2f2;
+    font-size: 'small';
+    border: none;
+    border-radius: 20px;
+    transition: 0.4s;
+    margin-left: 10px;
+}
+
+.learn-more:hover {
+    background-color: rgb(211, 211, 211);
+}
+
+.learnmore-container {
+    display: flex;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    overflow: hidden;
+    margin-top: 10px;
+    height: 200px;
+    display: flex;
+    background: rgb(55,8,114);
+    background: linear-gradient(90deg, rgba(55,8,114,1) 2%, rgba(55,8,114,1) 6%, rgba(84,11,131,1) 27%, rgba(108,13,145,1) 35%, rgba(113,13,148,1) 52%, rgba(119,14,151,1) 61%, rgba(74,31,144,1) 81%, rgba(44,42,139,1) 90%, rgba(19,51,135,1) 100%);
+}
+
+.navigation-buttons {
+    @media (min-width: 1200px) {
+        margin-top: 175px;
+        width: 75%;
+    }
+
+    @media (min-width: 600px) and (max-width: 1199px) {
+        margin-top: 175px;
+        width: 78%;
+    }
+
+    @media (max-width: 599px) and (min-width: 400px) {
+        margin-top: 165px;
+        width: 90%;
+    }
+
+    @media (max-width: 399px) {
+        margin-top: 160px;
+        width: 100%;
+    }
+
+    margin-left: 10vw;
+    border-radius: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Scroll-Btn {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    color: var(--color-yellow);
+    width: 70px;
+    height: 70px;
+    border: 0px;
+    outline: none !important;
+}
+
+.arrow-icon {
+    font-size: 50px !important;
+}
+
+.Scroll-Btn:enabled:hover {
+    background-color: hsla(0, 0%, 100%, .1);
+    transition: 0.4s;
+}
+
+.Next-Btn {
+    justify-self: end;
+    align-self: center;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn ease-in-out 0.5s forwards;
+  }
+  
+  .fade-out {
+    opacity: 1;
+    animation: fadeOut ease-in-out 0.5s forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
