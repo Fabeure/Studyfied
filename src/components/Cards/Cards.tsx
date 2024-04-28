@@ -60,22 +60,13 @@ function Cards() {
   }
   return (
     <div className="sets-container">
-    <div className="navigation-buttons">
       <button
-        className="Scroll-Btn Prev-Btn"
+        className="Scroll-Btn"
         name="prevButton"
         onClick={handleArrowClick}
       >
         <ArrowBackIosNewIcon className="arrow-icon" />
       </button>
-      <button
-        className="Scroll-Btn Next-Btn"
-        name="nextButton"
-        onClick={handleArrowClick}
-      >
-        <ArrowForwardIosIcon className="arrow-icon" />
-      </button>
-    </div>
     <div
       id="slider"
       className="flex flex-row space-x-7 justify-center card-container"
@@ -112,6 +103,7 @@ function Cards() {
                 boxShadow: " 0px 5px 6px 2px rgba(0, 0, 0, 0.3)",
                 width: { md: 650, sm: 400, xs: 250 },
                 height: { m: 300, sm: 200, xs: 150 },
+                backgroundColor: "transparent"
               }}
               className="card"
             >
@@ -148,6 +140,13 @@ function Cards() {
         );
       })}
     </div>
+    <button
+        className="Scroll-Btn"
+        name="nextButton"
+        onClick={handleArrowClick}
+      >
+        <ArrowForwardIosIcon className="arrow-icon" />
+      </button>
   </div>
   )
 }

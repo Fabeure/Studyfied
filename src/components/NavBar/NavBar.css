@@ -1,9 +1,6 @@
 .navbar {
   background: linear-gradient(to right, rgba(250, 6, 173, 0.32), rgba(158, 90, 249, 0.2), rgba(36, 5, 130, 0.3));
   border-radius: 0 0 30px 30px;
-
-  width: 100%;
-  z-index: 1;
 }
 
 .name {
@@ -44,8 +41,7 @@
   border-color: rgba(201, 120, 255, 0.225);
   transform: scale(1.05) ;
   box-shadow: 0 1px 0 4px #b443ff00, 0 0 5px 5px #260339;
-transition: transform 0.5s ease-in-out ; 
-
+  transition: transform 0.5s ease-in-out ; 
 }
 
 .button:focus {

@@ -8,6 +8,7 @@ import { AppTheme } from "./styles/AppTheme";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import FlashCardsPage from "./pages/Flashcards/FlashCards";
+import { ToastContainer } from "react-toastify";
 
 // default url
 const baseURL = "/Studyfied";
@@ -23,6 +24,7 @@ const pageRoutes = [
 function App() {
   return (
     <ThemeProvider theme={AppTheme}>
+      <ToastContainer />
       <Router>
         <NavBar/>
         <Routes>

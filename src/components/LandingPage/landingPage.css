@@ -17,17 +17,15 @@
 
 .tryBtn {
     border-radius: 30px !important;
-    background: linear-gradient(to left, rgba(250, 6, 156, 0.645) 40%, rgba(115, 0, 186, 0.701), rgba(36, 5, 130, 0.3)) !important;
+    background: linear-gradient(to left, rgba(250, 6, 156, 0.45) 40%, rgba(115, 0, 186, 0.31), rgba(36, 5, 130, 0.1)) !important;
     color: white;
     border: none;
     transform:scale(1);
     transition: transform 0.4s ease-in-out !important; /* Transition for background change */
-    /* transition:box-shadow 0.1s ease-in-out !important; /* Transition for scale change */
 } 
 
 .tryBtn:hover {
     transform:scale(1.07);
-
 }
 
 .tryBtn:focus {
@@ -49,8 +47,8 @@
 }
 
 @keyframes animate {
-
     0%,
+    
     100% {
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }

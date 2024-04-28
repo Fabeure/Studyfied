@@ -1,10 +1,13 @@
 import "./Home.css";
-import LandingPage from "../../components/LandingPage/landingPage";
+import LandingPage from "../../components/LandingPage/LandingPage";
+import Cards from "../../components/Cards/Cards";
+import AnimatedBackGround from "../../components/AnimatedBackGround/AnimatedBackGround";
 function Home() {
   return (
   <>
-  <div className="landing-page mt-[80px] ml-[50px] z-10 ">
+  <div className="mt-[80px] ml-[50px] z-10 ">
     <LandingPage />
+    <Cards />
     </div>
   </>
   );
