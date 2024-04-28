@@ -1,7 +1,7 @@
 import "./Home.css";
-import LandingPage from "../../components/LandingPage/LandingPage";
 import Cards from "../../components/Cards/Cards";
-import AnimatedBackGround from "../../components/AnimatedBackGround/AnimatedBackGround";
+import LandingPage from "../../components/LandingPage/LandingPage";
+
 function Home() {
   return (
   <>

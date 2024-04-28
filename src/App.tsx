@@ -7,8 +7,9 @@ import { ThemeProvider } from "@mui/material";
 import { AppTheme } from "./styles/AppTheme";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ProfilePage from "./pages/Profile/ProfilePage";
-import FlashCardsPage from "./pages/Flashcards/FlashCards";
+import FlashCardsPage from "./pages/FlashCards/FlashCards"
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 // default url
 const baseURL = "/Studyfied";
