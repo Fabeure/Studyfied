@@ -24,7 +24,7 @@ function App() {
   return (
     <ThemeProvider theme={AppTheme}>
       <Router>
-        <NavBar links={pageRoutes} />
+        <NavBar/>
         <Routes>
           <Route path={baseURL}>
             <Route path="" element={<Home />} />
