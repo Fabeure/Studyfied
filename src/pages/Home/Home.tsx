@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import LandingPage from "../landing-page/landingPage";
+import LandingPage from "../../components/landing-page/landingPage";
 function Home() {
   return (
     <>
