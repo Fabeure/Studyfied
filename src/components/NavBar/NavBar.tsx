@@ -1,6 +1,6 @@
 import "./NavBar.css";
 
-import logoLeaf from "../../assets/logo_leaf.png";
+import logoLeaf from "../../assets/leafLogo.png";
 
 function NavBar() {
   return (
