@@ -1,25 +1,24 @@
-import "./landingPage.css";
-import sparkles from "../../assets/sparkles.png";
-function landingPage() {
+import "./feature.css";
+import { HomepageData } from "../../constants/homepageData";
+import { HomepageDataModel } from "../../models/homepageDataModel";
+function Feature(props: { id: number }) {
+  const { id } = props; // Destructure the id prop from props object
+
   return (
     <>
       <div className="landing-page flex">
         <div className="right-container tracking-[0.1rem] flew flex-col  ">
-          <div className="sparkles w-[60px] md:w-[80px] ">
-            <img src={sparkles} alt="sparkles" />
-          </div>
+          <div className="sparkles w-[60px] md:w-[80px] "></div>
           <div className="text   ml-[40px] ">
             <div className="slogan   mb-[20px] ">
               <div className="slogan1  text-white text-left font-bold md:text-[40px] text-[30px] ">
-                UNLOCK YOUR POTENTIAL .
+                HELOOOOOOOOOOOOOOOO
               </div>
               <div className="slogan2 mt-[-15px] text-white font-light italic md:text-[40px] text-[30px] text-left">
                 StudyFlux - Learn smarter not harder
               </div>
             </div>
-            <div className="text-white problematic font-light text-left mt-[50px] mb-[20px] ">
-              Textbooks got you feeling like you're lost in a jungle?
-            </div>
+            <div className="text-white problematic font-light text-left mt-[50px] mb-[20px] "></div>
 
             <div className=" text-white overview font-light text-left">
               StudyFlux cuts through the foliage, summarizing key points,
@@ -33,10 +32,10 @@ function landingPage() {
           </div>
         </div>
         <div className="left-container  flex  justify-center  ">
-          <div className="blob"></div>
+          <div className="blob"> fghjk</div>
         </div>
       </div>
     </>
   );
 }
-export default landingPage;
+export default Feature;

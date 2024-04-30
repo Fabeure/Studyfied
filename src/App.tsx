@@ -22,7 +22,7 @@ function App() {
   return (
     <ThemeProvider theme={AppTheme}>
       <Router>
-        <NavBar  />
+        <NavBar />
         <Routes>
           <Route path={baseURL}>
             <Route path="" element={<Home />} />

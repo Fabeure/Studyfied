@@ -1,8 +1,29 @@
 import "./NavBar.css";
-
+import useAuth from "../../hooks/useAuth";
+import LoginPopup from "../../pages/Login/LoginPopUp";
+import { useState } from "react";
 import logoLeaf from "../../assets/leafLogo.png";
 
 function NavBar() {
+
+
+  const { user, setUser } = useAuth();
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLoginPopup(true);
+  };
+
+  const handleCloseLoginPopup = () => {
+    setShowLoginPopup(false);
+  };
+
+
+
+
+
+
+
   return (
     <>
       <nav className="navbar flex flex-end w-full">
@@ -15,12 +36,12 @@ function NavBar() {
           </div>
         </div>
         <div className="left-container flex items-center row-reverse mr-[20px] md:mr-[100px] xl:mr-[150px] ">
-         <button className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase ">
-          sign in
-         </button>
-         <button className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase ">
-          get a demo
-         </button>
+          <button className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase ">
+            sign in
+          </button>
+          <button className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase ">
+            get a demo
+          </button>
         </div>
       </nav>
     </>

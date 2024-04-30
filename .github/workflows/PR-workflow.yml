@@ -2,10 +2,9 @@ name: Pull Request workflow
 
 on:
   pull_request:
-      types: [opened, edited, synchronize]
-      branches: [ dev ]
+    types: [opened, edited, synchronize]
+    branches: [dev]
 
-        
 jobs:
   build:
     name: Build
@@ -16,7 +15,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-
 
       - name: Setup Node
         uses: actions/setup-node@v4

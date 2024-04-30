@@ -1,4 +1,4 @@
-import { HomepageDataModel } from "../models/homepageData.model";
+import { HomepageDataModel } from "../models/homepageDataModel";
 
 export const HomepageData: HomepageDataModel[] = [
   {

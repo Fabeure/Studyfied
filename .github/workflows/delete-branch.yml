@@ -1,8 +1,8 @@
 name: Delete branch when closing pull request
-on: 
+on:
   pull_request:
     types: [closed]
-  
+
 jobs:
   delete-branch:
     runs-on: ubuntu-latest

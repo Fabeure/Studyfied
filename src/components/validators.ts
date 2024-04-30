@@ -58,7 +58,7 @@ interface DependencyType {
 
 export const useRegisterValidation = (
   dependencies: DependencyType,
-  setters: SettersType
+  setters: SettersType,
 ) => {
   useEffect(() => {
     let helperText = "";

@@ -1,13 +1,11 @@
 body {
-    background-color: #02010F;
-    height:5000px;
+  background-color: #02010f;
+  height: 5000px;
 }
 svg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100vh;
 }
-
-

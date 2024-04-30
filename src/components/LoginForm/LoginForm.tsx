@@ -6,9 +6,7 @@ import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
 
-const loginEndpoint = `${
-  process.env.VITE_BACKEND_API
-}/api/v1/authenticate/login`;
+const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
 
 function LoginForm() {
   const [logEmail, setLogEmail] = useState("");
@@ -149,7 +147,7 @@ function LoginForm() {
               paddingY: "0.7rem",
               borderRadius: 3,
               boxShadow: 0,
-              textTransform:"none",
+              textTransform: "none",
               ["&:hover"]: {
                 color: "primary.dark",
                 boxShadow: 0,
