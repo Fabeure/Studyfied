@@ -1,4 +1,4 @@
-import "./LandingPage.css";
+import "./landingPage.css";
 import sparkles from "../../assets/sparkles.png";
 
 function LandingPage() {
