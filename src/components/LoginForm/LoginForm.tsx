@@ -7,27 +7,25 @@ import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
-const loginEndpoint = `${
-  process.env.VITE_BACKEND_API
-}/api/v1/authenticate/login`;
+const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
 
 interface LoginPopupProps {
   onClose: () => void;
 }
 
-function LoginForm({onClose}: LoginPopupProps) {
+function LoginForm({ onClose }: LoginPopupProps) {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const routeChange = () =>{ 
+  const routeChange = () => {
     onClose();
-    const path = '/Studyfied/login'; 
+    const path = "/Studyfied/login";
     navigate(path);
-  }
+  };
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

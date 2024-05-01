@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Cards.css"
+import "./Cards.css";
 import { setsFromData } from "./data";
 import { Card, CardContent, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -18,17 +18,18 @@ function Cards() {
   const [currentSets, setCurrentSets] = useState(setsFromData.slice(0, 1));
   const [isHovering, setIsHovering] = useState(false);
 
-  useEffect(() => {  
+  useEffect(() => {
     // Start the timer on component mount and update on startingIndex change
     const newTimerId = setInterval(() => {
-      if (!isHovering){
-        setStartingIndex(prevIndex => (prevIndex === L - 1 ? 0 : prevIndex + 1)); // Increment index with circular behavior
-      }
-      else {
+      if (!isHovering) {
+        setStartingIndex((prevIndex) =>
+          prevIndex === L - 1 ? 0 : prevIndex + 1,
+        ); // Increment index with circular behavior
+      } else {
         clearTimeout(newTimerId);
       }
     }, CYCLE_TIME);
-  
+
     // Cleanup function to clear the timer when the component unmounts
     return () => clearInterval(newTimerId);
   }, [startingIndex, isHovering]);
@@ -52,10 +53,14 @@ function Cards() {
   function handleArrowClick(event: React.MouseEvent<HTMLButtonElement>): void {
     const btn = event.currentTarget.name;
     if (btn === "prevButton") {
-      setStartingIndex(prevIndex => (prevIndex === 0 ? L - 1 : prevIndex - 1));
+      setStartingIndex((prevIndex) =>
+        prevIndex === 0 ? L - 1 : prevIndex - 1,
+      );
     }
     if (btn === "nextButton") {
-      setStartingIndex(prevIndex => (prevIndex === L - 1 ? 0 : prevIndex + 1));
+      setStartingIndex((prevIndex) =>
+        prevIndex === L - 1 ? 0 : prevIndex + 1,
+      );
     }
   }
   return (
@@ -67,87 +72,89 @@ function Cards() {
       >
         <ArrowBackIosNewIcon className="arrow-icon" />
       </button>
-    <div
-      id="slider"
-      className="flex flex-row space-x-7 justify-center card-container"
-      style={{
-        margin: "100px",
-      }}
-    >
-      {currentSets.map((set) => {
-        let icon = "";
+      <div
+        id="slider"
+        className="flex flex-row space-x-7 justify-center card-container"
+        style={{
+          margin: "100px",
+        }}
+      >
+        {currentSets.map((set) => {
+          let icon = "";
 
-        switch (set.icon) {
-          case "summary":
-            icon = summary;
-            break;
-          case "explain":
-            icon = explain;
-            break;
-          case "quiz":
-            icon = quiz;
-            break;
-          default:
-            icon = flashCards;
-            break;
-        }
-        return (
-          <div key={set.id}              
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}>
-            <Card
-              variant="outlined"
-              sx={{
-                border: "none",
-                borderRadius: 7,
-                boxShadow: " 0px 5px 6px 2px rgba(0, 0, 0, 0.3)",
-                width: { md: 650, sm: 400, xs: 250 },
-                height: { m: 300, sm: 200, xs: 150 },
-                backgroundColor: "transparent"
-              }}
-              className="card"
+          switch (set.icon) {
+            case "summary":
+              icon = summary;
+              break;
+            case "explain":
+              icon = explain;
+              break;
+            case "quiz":
+              icon = quiz;
+              break;
+            default:
+              icon = flashCards;
+              break;
+          }
+          return (
+            <div
+              key={set.id}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="left-card-content">
-                <img src={icon} alt="icon" className="card-icon" />
-              </div>
-              <div className="right-card-content">
-                <CardContent
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    width: "100%",
-                  }}
-                >
-                  <p className="card-topic">{set.topic}</p>
-
-                  <Typography
+              <Card
+                variant="outlined"
+                sx={{
+                  border: "none",
+                  borderRadius: 7,
+                  boxShadow: " 0px 5px 6px 2px rgba(0, 0, 0, 0.3)",
+                  width: { md: 650, sm: 400, xs: 250 },
+                  height: { m: 300, sm: 200, xs: 150 },
+                  backgroundColor: "transparent",
+                }}
+                className="card"
+              >
+                <div className="left-card-content">
+                  <img src={icon} alt="icon" className="card-icon" />
+                </div>
+                <div className="right-card-content">
+                  <CardContent
                     sx={{
-                      textAlign: "left",
-                      overflow: "hidden",
-                      color: "white"
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      width: "100%",
                     }}
                   >
-                    {set.description}
-                  </Typography>
-                </CardContent>
-                <div className="learnmore-container">
-                  <button className="learn-more">Try it now !</button>
+                    <p className="card-topic">{set.topic}</p>
+
+                    <Typography
+                      sx={{
+                        textAlign: "left",
+                        overflow: "hidden",
+                        color: "white",
+                      }}
+                    >
+                      {set.description}
+                    </Typography>
+                  </CardContent>
+                  <div className="learnmore-container">
+                    <button className="learn-more">Try it now !</button>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </div>
-        );
-      })}
-    </div>
-    <button
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+      <button
         className="Scroll-Btn"
         name="nextButton"
         onClick={handleArrowClick}
       >
         <ArrowForwardIosIcon className="arrow-icon" />
       </button>
-  </div>
-  )
+    </div>
+  );
 }
 export default Cards;

@@ -14,7 +14,7 @@ function LoginPopup({ onClose }: LoginPopupProps) {
   return (
     <div className="loginForm" onClick={onClose}>
       <div className="popup-content" onClick={handlePopupClick}>
-        <LoginForm onClose={onClose}/>
+        <LoginForm onClose={onClose} />
       </div>
     </div>
   );

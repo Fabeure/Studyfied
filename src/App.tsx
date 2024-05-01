@@ -7,9 +7,9 @@ import { ThemeProvider } from "@mui/material";
 import { AppTheme } from "./styles/AppTheme";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ProfilePage from "./pages/Profile/ProfilePage";
-import FlashCardsPage from "./pages/FlashCards/FlashCards"
+import FlashCardsPage from "./pages/FlashCards/FlashCards";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 // default url
 const baseURL = "/Studyfied";
@@ -19,7 +19,11 @@ const pageRoutes = [
   { name: "Home", path: baseURL, element: <Home /> },
   { name: "Login", path: `${baseURL}/login`, element: <Login /> },
   { name: "Profile", path: `${baseURL}/profile`, element: <ProfilePage /> },
-  { name: "Flashcards", path: `${baseURL}/flashcards`, element: <FlashCardsPage />}
+  {
+    name: "Flashcards",
+    path: `${baseURL}/flashcards`,
+    element: <FlashCardsPage />,
+  },
 ];
 
 function App() {
@@ -27,7 +31,7 @@ function App() {
     <ThemeProvider theme={AppTheme}>
       <ToastContainer />
       <Router>
-        <NavBar/>
+        <NavBar />
         <Routes>
           <Route path={baseURL}>
             <Route path="" element={<Home />} />

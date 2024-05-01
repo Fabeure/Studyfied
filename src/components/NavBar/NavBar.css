@@ -13,7 +13,6 @@
   font-size: 20px;
   color: rgb(255, 255, 255);
   margin-left: 10px;
-  
 }
 
 .logo {
@@ -37,7 +36,7 @@
     0 0 3px 5px #260339;
   font-weight: lighter;
   border-color: rgba(201, 120, 255, 0.125);
- margin-left: 10px;
+  margin-left: 10px;
   text-transform: uppercase;
   color: #ffffff;
   background: transparent;
@@ -46,9 +45,11 @@
 
 .button:hover {
   border-color: rgba(201, 120, 255, 0.225);
-  transform: scale(1.05) ;
-  box-shadow: 0 1px 0 4px #b443ff00, 0 0 5px 5px #260339;
-  transition: transform 0.5s ease-in-out ; 
+  transform: scale(1.05);
+  box-shadow:
+    0 1px 0 4px #b443ff00,
+    0 0 5px 5px #260339;
+  transition: transform 0.5s ease-in-out;
 }
 
 .button:focus {

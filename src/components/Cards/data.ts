@@ -13,7 +13,7 @@ export const setsFromData: SetType[] = [
     description:
       "Effortlessly condense long texts into concise summaries for quick understanding.",
     icon: "summary",
-    link : ""
+    link: "",
   },
   {
     id: "2",
@@ -22,7 +22,7 @@ export const setsFromData: SetType[] = [
       "Create interactive study aids from any content to enhance learning and retention.",
 
     icon: "flashCards",
-    link: `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`
+    link: `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`,
   },
   {
     id: "3",
@@ -31,7 +31,7 @@ export const setsFromData: SetType[] = [
       "Engage users with customized quizzes that test knowledge and promote active learning.",
 
     icon: "quiz",
-    link : ""
+    link: "",
   },
   {
     id: "4",
@@ -40,6 +40,6 @@ export const setsFromData: SetType[] = [
       "Gain deep insights and understanding with AI-generated explanations.",
 
     icon: "explain",
-    link : ""
+    link: "",
   },
 ];

@@ -1,16 +1,17 @@
 import "./Home.css";
-import Cards from "../../components/Cards/Cards";
 import LandingPage from "../../components/LandingPage/LandingPage";
-import Feature from "../../components/feature/feature";
-
+import Demo from "../../components/Demo/Demo";
 
 function Home() {
   return (
-  <>
-  <div className="mt-[80px] ml-[50px] z-10 ">
-    <LandingPage />
-    </div>
-  </>
+    <>
+      <div className="mt-[80px] ml-[50px] z-10 ">
+        <LandingPage />
+      </div>
+      <div className="mt-[200px]  z-10 ">
+        <Demo />
+      </div>
+    </>
   );
 }
 export default Home;

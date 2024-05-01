@@ -29,7 +29,8 @@ function FlashCardInputForm() {
   return (
     <div className="flashcard-input-form">
       <div className="header">
-        Please enter a title for your new flash cards set, and a topic for the flash cards.
+        Please enter a title for your new flash cards set, and a topic for the
+        flash cards.
       </div>
       <form onSubmit={handleTopicSubmit} className="form-container">
         <input

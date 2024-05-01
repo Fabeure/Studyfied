@@ -42,9 +42,7 @@
   color: #888;
 } */
 
-
-
-.page-content{
+.page-content {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
