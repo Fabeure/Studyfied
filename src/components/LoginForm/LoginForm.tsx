@@ -162,7 +162,7 @@ function LoginForm({onClose}: LoginPopupProps) {
               paddingY: "0.7rem",
               borderRadius: 3,
               boxShadow: 0,
-              textTransform:"none",
+              textTransform: "none",
               ["&:hover"]: {
                 color: "primary.dark",
                 boxShadow: 0,

@@ -1,8 +1,11 @@
 import "./landingPage.css";
 import sparkles from "../../assets/sparkles.png";
-
+<<<<<<<< HEAD:src/components/LandingPage/landingPage.tsx
 
 function LandingPage() {
+========
+function landingPage() {
+>>>>>>>> feature/figma-home-page:src/components/landing-page/landingPage.tsx
   return (
     <>
       <div className="landing-page flex">
@@ -29,12 +32,15 @@ function LandingPage() {
               companion to guide you to academic enlightenment!
             </div>
             <div className="flex flex-start"></div>
+<<<<<<<< HEAD:src/components/LandingPage/landingPage.tsx
             <button className=" tryBtn italic rounded-sm flex justify-center font-bold ml-[60px] mt-[50px] w-[150px] md:w-[200px]">
               Get started today!
               </button>
+========
             <button className=" tryBtn italic  rounded-sm flex justify-center  font-bold ml-[60px]  mt-[50px] w-[150px] md:w-[200px]  ">
               Try it now !
             </button>
+>>>>>>>> feature/figma-home-page:src/components/landing-page/landingPage.tsx
           </div>
         </div>
         <div className="left-container flex justify-center">
