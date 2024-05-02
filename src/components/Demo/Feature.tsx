@@ -62,7 +62,7 @@ const Feature = ({ id }: { id: number }) => {
           </div>
           <div className=" w-full">
             <button
-              className={` ${id % 2 ? " ml-[5%]" : " ml-[60%] lg:ml-[70%] "} mt-[10px] lg:text-[19px] md:text-[14px] text-[10px] tryIt tracking-[0.09rem]`}
+              className={` ${id % 2 ? " ml-[5%]" : " ml-[60%] lg:ml-[70%] "} mt-[25px] lg:text-[20px] md:text-[15px] text-[10px] tryIt tracking-[0.09rem]`}
             >
               Try it now!
             </button>

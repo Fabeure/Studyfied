@@ -1,3 +1,12 @@
-body {
-  background-color: #02010f;
+
+body{
+  background-image: url('../../assets/parabolic-ellipse.svg');
+  background-size: cover; 
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+   
 }
+
+
+
