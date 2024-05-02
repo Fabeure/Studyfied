@@ -15,32 +15,34 @@ const Feature = ({ id }: { id: number }) => {
       <div
         className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row light-background " : "flex-row-reverse"} `}
       >
-        <div className="description-container w-[50%] ">
-          <div className="icon-container  ml-[30%] mb-[50px] ">
-            <img
-              className="icon w-[35%] h-[35%]"
-              src={
-                data.topic === "flashcard"
-                  ? flashcard
-                  : data.topic === "chatbot"
-                    ? chatbot
-                    : data.topic === "summary"
-                      ? summary
-                      : quiz
-              }
-              alt=""
-            />{" "}
-          </div>
+        <div className="description-container w-[50%]">
+          <div className={`positioning  ${!(id % 2) ? null : "ml-[5%] "} `}>
+            <div className="icon-container  ml-[30%] mb-[50px] ">
+              <img
+                className="icon w-[35%] h-[35%]"
+                src={
+                  data.topic === "flashcard"
+                    ? flashcard
+                    : data.topic === "chatbot"
+                      ? chatbot
+                      : data.topic === "summary"
+                        ? summary
+                        : quiz
+                }
+                alt=""
+              />
+            </div>
 
-          <div className=" tracking-[0.09rem] slogan lg:text-[30px] md:text-[23px] text-[15px] w-[90%] font-semibold">
-            <span className="mr-[20px]"></span>
-            {data.slogan}
-          </div>
-          <div className="tracking-[0.09rem] font-light mt-[60px] lg:text-[18px] md:text-[14px] text-[10px]">
-            {data.content1}
-          </div>
-          <div className=" tracking-[0.09rem] font-light mt-[25px] lg:text-[15px] md:text-[10px] text-[9px]">
-            {data.content2}
+            <div className=" tracking-[0.09rem] slogan lg:text-[30px] md:text-[23px] text-[15px] w-[90%] font-semibold">
+              <span className="mr-[20px]"></span>
+              {data.slogan}
+            </div>
+            <div className="tracking-[0.09rem] font-light mt-[60px] lg:text-[18px] md:text-[14px] text-[10px]">
+              {data.content1}
+            </div>
+            <div className=" tracking-[0.09rem] font-light mt-[25px] lg:text-[15px] md:text-[10px] text-[9px]">
+              {data.content2}
+            </div>
           </div>
         </div>
 
@@ -62,7 +64,7 @@ const Feature = ({ id }: { id: number }) => {
           </div>
           <div className=" w-full">
             <button
-              className={` ${id % 2 ? " ml-[5%]" : " ml-[60%] lg:ml-[70%] "} mt-[25px] lg:text-[20px] md:text-[15px] text-[10px] tryIt tracking-[0.09rem]`}
+              className={` ${id % 2 ? " ml-[5%]" : " ml-[60%] lg:ml-[70%] "} mt-[25px] lg:text-[16px] md:text-[13px] text-[10px] tryIt tracking-[0.09rem]`}
             >
               Try it now!
             </button>

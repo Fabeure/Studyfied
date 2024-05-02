@@ -6,10 +6,10 @@ function Home() {
     <>
       <div className="home-page ">
         <div className="cont ">
-          <div className="mt-[80px] ml-[50px]  ">
+          <div  id="landing-page" className="mt-[80px] ml-[50px]  ">
             <LandingPage />
           </div>
-          <div className="mt-[200px]   ">
+          <div  id="demo" className="mt-[200px]   ">
             <Demo />
           </div>
         </div>
