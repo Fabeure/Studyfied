@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import  {  useEffect } from "react";
+import { useEffect } from "react";
 
 import logoLeaf from "../../assets/leafLogo.png";
 import LoginPopup from "../LoginPopup/LoginPopUp";
@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {
-
   const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   const handleLoginClick = () => {
@@ -19,13 +18,12 @@ function NavBar() {
   };
 
   const navigate = useNavigate();
- 
 
   const scrollDemo = () => {
-    const targetElement = document.getElementById('demo');
+    const targetElement = document.getElementById("demo");
 
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+      targetElement.scrollIntoView({ behavior: "smooth" });
     }
   };
   return (
@@ -56,7 +54,10 @@ function NavBar() {
           >
             sign in
           </button>
-          <button onClick={scrollDemo} className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase">
+          <button
+            onClick={scrollDemo}
+            className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase"
+          >
             get a demo
           </button>
         </div>
