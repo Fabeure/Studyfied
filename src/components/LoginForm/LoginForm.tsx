@@ -4,19 +4,30 @@ import axios from "axios";
 import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${
-  import.meta.env.VITE_BACKEND_API
+  process.env.VITE_BACKEND_API
 }/api/v1/authenticate/login`;
 
-function LoginForm() {
+interface LoginPopupProps {
+  onClose: () => void;
+}
+
+function LoginForm({onClose}: LoginPopupProps) {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
-  const navigate = useNavigate();
   const { setUser } = useAuth();
+
+  const navigate = useNavigate(); 
+
+  const routeChange = () =>{ 
+    onClose();
+    const path = '/Studyfied/login'; 
+    navigate(path);
+  }
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +60,7 @@ function LoginForm() {
         const email = res.data?.email;
         const userId = res.data?.userId;
         setUser({ accessToken, email, userId });
-        navigate("/Studyfied/profile");
+        window.location.href = "/Studyfied/profile";
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +86,7 @@ function LoginForm() {
             fontSize="large"
             sx={{ color: "secondary.main" }}
           />
-          <h1 className="loginForm-title">Already a member</h1>
+          <h1 className="loginForm-title">Login To Your Account</h1>
         </Grid>
         {loginDenied && (
           <Grid item xs>
@@ -162,6 +173,7 @@ function LoginForm() {
           >
             Log in
           </Button>
+          <p onClick={routeChange}>dont have an account? Register here</p>
         </Grid>
       </Grid>
     </Box>
