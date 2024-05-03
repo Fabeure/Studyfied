@@ -1,0 +1,17 @@
+.card-container {
+  height: 200px;
+  width: 40%;
+  border-radius: 50px;
+  background-color: rgba(48, 7, 62, 0.192);
+  box-shadow: 0px 0px 15px rgba(77, 14, 100, 0.7);
+}
+.card-container:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 20px rgba(77, 14, 100, 1);
+}
+
+@media (max-width: 768px) {
+  .card {
+    height: 150px;
+  }
+}
