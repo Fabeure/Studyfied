@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./FlashCardInputForm.css"; // Import your CSS file
 
 function FlashCardInputForm() {
   const [topic, setTopic] = useState("");
   const [title, setTitle] = useState("");
 
-  const handleTopicInputChange = (event) => {
+  const handleTopicInputChange = (event:any) => {
     setTopic(event.target.value);
   };
 
-  const handleTitleChange = (event) => {
+  const handleTitleChange = (event:any) => {
     setTitle(event.target.value);
   };
 
-  const handleTopicSubmit = (event) => {
+  const handleTopicSubmit = (event:any) => {
     event.preventDefault();
 
     try {
