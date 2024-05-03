@@ -8,11 +8,17 @@ interface LoginPopupProps {
 
 function LoginPopup({ onClose }: LoginPopupProps) {
   return (
-    <div className="loginForm">
+    <div
+      className="loginForm"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
       <div className="popup-content">
-      <span className="close" onClick={onClose}>
-          {/* Enhance close button */}
-          <svg
+        {/* /////////////// close button is not needed
+        <span className="close" onClick={onClose}> */}
+        {/* Enhance close button */}
+        {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
@@ -26,8 +32,8 @@ function LoginPopup({ onClose }: LoginPopupProps) {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </span>
-        <LoginForm onClose={onClose}/>
+        </span> */}
+        <LoginForm onClose={onClose} />
       </div>
     </div>
   );
