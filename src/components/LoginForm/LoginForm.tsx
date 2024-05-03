@@ -5,12 +5,13 @@ import axios from "axios";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
 
-interface LoginPopupProps {
-  onClose: () => void;
+interface LoginFormProps {
+  // onClose: () => void;
+  onRegister: () => void;
 }
 
 const inputSx: SxProps<Theme> = {
@@ -26,16 +27,16 @@ const inputSx: SxProps<Theme> = {
   // },
   [`& fieldset`]: {
     borderRadius: "2em",
-    // borderTopStyle: "none",
-    // borderLeftStyle: "none",
-    // borderRightStyle: "none",
     borderColor: "#A693CD",
     borderWidth: "0px",
     backgroundColor: "rgba(29, 22, 45, 0.15)",
-    backdropFilter: "blur(8px)",
   },
   [`& label`]: {
     color: "white",
+  },
+  [`& input`]: {
+    color: "white",
+    backdropFilter: "blur(8px)",
   },
 };
 
@@ -56,19 +57,19 @@ const buttonSx: SxProps<Theme> = {
   },
 };
 
-function LoginForm({ onClose }: LoginPopupProps) {
+function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const routeChange = () => {
-    onClose();
-    const path = "/Studyfied/login";
-    navigate(path);
-  };
+  // const routeChange = () => {
+  //   onClose();
+  //   const path = "/Studyfied/login";
+  //   navigate(path);
+  // };
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,7 +122,7 @@ function LoginForm({ onClose }: LoginPopupProps) {
       bgcolor={"rgba(29, 22, 45, 0.65)"}
       minWidth={"fit-content"}
       sx={{
-        backdropFilter: "blur(11px)",
+        backdropFilter: "blur(20px)",
         // background:
         //   "linear-gradient(to right, rgba(29, 22, 45, 0.65) 37%, rgba(31, 18, 61, 0.65))",
         // boxShadow: "0 0 5px 10px rgba(29, 22, 45, 0.65)",
@@ -141,11 +142,17 @@ function LoginForm({ onClose }: LoginPopupProps) {
             fontSize="large"
             sx={{ color: "rgba(166, 147, 205, 1)" }}
           /> */}
-          <h1 className="loginForm-title">Welcome</h1>
+          <h1 className="loginForm-title">Welcome back</h1>
         </Grid>
         {loginDenied && (
           <Grid item xs>
-            <h2 style={{ color: "rgb(255, 152, 210)",fontStyle:"italic",fontWeight:"bolder" }}>
+            <h2
+              style={{
+                color: "rgb(255, 152, 210)",
+                fontStyle: "italic",
+                fontWeight: "bolder",
+              }}
+            >
               Email and/or password don't correspond to an account
             </h2>
           </Grid>
@@ -203,7 +210,8 @@ function LoginForm({ onClose }: LoginPopupProps) {
           don't have an account?{" "}
           <span
             style={{ fontWeight: "bold", cursor: "pointer" }}
-            onClick={routeChange}
+            // onClick={routeChange}
+            onClick={onRegister}
           >
             Register here
           </span>{" "}

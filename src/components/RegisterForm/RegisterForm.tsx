@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField } from "@mui/material";
+import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useRegisterValidation } from "../../hooks/useRegisterValidation";
@@ -9,11 +9,59 @@ import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRena
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 
-const registerEndpoint = `${
-  process.env.VITE_BACKEND_API
-}/api/v1/authenticate/register`;
+const registerEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/register`;
 
-function RegisterForm() {
+interface RegisterFormProps {
+  onLogin: () => void;
+}
+
+const inputSx: SxProps<Theme> = {
+  flexGrow: 1,
+  // [`& fieldset legend`]: {
+  //   color: "lime",
+  //   borderColor: "white", // Change background color on hover
+  //   borderWidth: "3px",
+  //   borderStyle: "solid",
+  //   [`&:hover`]: {
+  //     borderColor: "red",
+  //   },
+  // },
+  [`& fieldset`]: {
+    borderRadius: "2em",
+    // borderTopStyle: "none",
+    // borderLeftStyle: "none",
+    // borderRightStyle: "none",
+    borderColor: "#A693CD",
+    borderWidth: "0px",
+    backgroundColor: "rgba(29, 22, 45, 0.15)",
+  },
+  [`& label`]: {
+    color: "rgba(255,255,255,0.7)",
+  },
+  [`& input`]: {
+    color: "white",
+    backdropFilter: "blur(8px)",
+  },
+};
+
+const buttonSx: SxProps<Theme> = {
+  width: "100%",
+  fontSize: "1.1rem",
+  paddingY: "0.7rem",
+  borderRadius: "3em",
+  boxShadow: 0,
+  textTransform: "none",
+  backgroundColor: "#A693CD",
+  fontWeight: "bold",
+  color: "white",
+  ["&:hover"]: {
+    // color: "primary.dark",
+    boxShadow: 0,
+    backgroundColor: "#AA4DB2",
+  },
+};
+
+function RegisterForm({ onLogin }: RegisterFormProps) {
   // input states
   const [regEmail, setRegEmail] = useState("");
   const [regUsername, setRegUsername] = useState("");
@@ -123,29 +171,32 @@ function RegisterForm() {
 
   return (
     <Box
-      border={"1px solid"}
-      borderRadius={"6px"}
-      borderColor={"var(--tc-light)"}
-      paddingBottom={"2rem"}
-      paddingTop={"1rem"}
-      paddingX={"2rem"}
-      bgcolor={"white"}
+      borderRadius={"3em"}
+      paddingBottom={"2.5rem"}
+      paddingTop={"2.5rem"}
+      paddingX={"3rem"}
+      bgcolor={"rgba(29, 22, 45, 0.65)"}
       minWidth={"fit-content"}
+      sx={{
+        backdropFilter: "blur(20px)",
+        boxShadow: "0 0 15px 5px rgba(170, 77, 178, 0.3)",
+      }}
     >
-      <Grid container direction={"column"} rowGap={3}>
+      <Grid container direction={"column"} rowGap={3} minWidth={"600px"}>
         <Grid
           item
           xs
           container
           columnGap={1}
           alignItems={"center"}
+          justifyContent={"center"}
           direction={"row"}
         >
           <AutoAwesomeRoundedIcon
-            sx={{ color: "secondary.main" }}
+            sx={{ color: "rgba(166, 147, 205, 1)" }}
             fontSize="large"
           />
-          <h1 className="registerForm-title">New here</h1>
+          <h1 className="registerForm-title">I'm new here</h1>
         </Grid>
 
         {registerDenied && (
@@ -157,7 +208,13 @@ function RegisterForm() {
             alignItems={"center"}
             direction={"row"}
           >
-            <h2 style={{ color: "red" }}>
+            <h2
+              style={{
+                color: "rgb(255, 152, 210)",
+                fontStyle: "italic",
+                fontWeight: "bolder",
+              }}
+            >
               Registration error, try again... :/
             </h2>
           </Grid>
@@ -172,7 +229,7 @@ function RegisterForm() {
             alignItems={"center"}
             columnGap={1}
           >
-            <BadgeRoundedIcon sx={{ color: "primary.dark" }} />
+            <BadgeRoundedIcon sx={{ color: "rgba(166, 147, 205, 1)" }} />
             <TextField
               type="text"
               label="Full Name"
@@ -181,16 +238,7 @@ function RegisterForm() {
               helperText={errorMessages.fullName}
               value={regFullName}
               onChange={handleInputChange}
-              sx={{
-                flexGrow: 1,
-                [`& fieldset`]: {
-                  borderRadius: 1,
-                  borderTopStyle: "none",
-                  borderLeftStyle: "none",
-                  borderRightStyle: "none",
-                  borderBottomColor: "secondary.light",
-                },
-              }}
+              sx={inputSx}
             />
           </Grid>
           <Grid
@@ -201,7 +249,9 @@ function RegisterForm() {
             alignItems={"center"}
             columnGap={1}
           >
-            <DriveFileRenameOutlineRoundedIcon sx={{ color: "primary.dark" }} />
+            <DriveFileRenameOutlineRoundedIcon
+              sx={{ color: "rgba(166, 147, 205, 1)" }}
+            />
             <TextField
               type="text"
               name="reguser"
@@ -210,16 +260,7 @@ function RegisterForm() {
               helperText={errorMessages.username}
               value={regUsername}
               onChange={handleInputChange}
-              sx={{
-                flexGrow: 1,
-                [`& fieldset`]: {
-                  borderRadius: 1,
-                  borderTopStyle: "none",
-                  borderLeftStyle: "none",
-                  borderRightStyle: "none",
-                  borderBottomColor: "secondary.light",
-                },
-              }}
+              sx={inputSx}
             />
           </Grid>
         </Grid>
@@ -233,7 +274,7 @@ function RegisterForm() {
             alignItems={"center"}
             columnGap={1}
           >
-            <MarkunreadRoundedIcon sx={{ color: "primary.dark" }} />
+            <MarkunreadRoundedIcon sx={{ color: "rgba(166, 147, 205, 1)" }} />
             <TextField
               type="text"
               name="regemail"
@@ -243,16 +284,7 @@ function RegisterForm() {
               helperText={errorMessages.email}
               value={regEmail}
               onChange={handleInputChange}
-              sx={{
-                [`& fieldset`]: {
-                  borderRadius: 1,
-                  borderTopStyle: "none",
-                  borderLeftStyle: "none",
-                  borderRightStyle: "none",
-                  borderBottomColor: "secondary.light",
-                },
-                flexGrow: 1,
-              }}
+              sx={inputSx}
             />
           </Grid>
           <Grid
@@ -263,7 +295,7 @@ function RegisterForm() {
             alignItems={"center"}
             columnGap={1}
           >
-            <VpnKeyRoundedIcon sx={{ color: "primary.dark" }} />
+            <VpnKeyRoundedIcon sx={{ color: "rgba(166, 147, 205, 1)" }} />
 
             <TextField
               type="password"
@@ -273,16 +305,7 @@ function RegisterForm() {
               helperText={errorMessages.password}
               value={regPassword}
               onChange={handleInputChange}
-              sx={{
-                [`& fieldset`]: {
-                  borderRadius: 1,
-                  borderTopStyle: "none",
-                  borderLeftStyle: "none",
-                  borderRightStyle: "none",
-                  borderBottomColor: "secondary.light",
-                },
-                flexGrow: 1,
-              }}
+              sx={inputSx}
             />
           </Grid>
         </Grid>
@@ -296,7 +319,7 @@ function RegisterForm() {
             alignItems={"center"}
             columnGap={1}
           >
-            <CheckRoundedIcon sx={{ color: "primary.dark" }} />
+            <CheckRoundedIcon sx={{ color: "rgba(166, 147, 205, 1)" }} />
 
             <TextField
               type="password"
@@ -306,16 +329,7 @@ function RegisterForm() {
               helperText={errorMessages.confirmPassword}
               value={regConfirmPass}
               onChange={handleInputChange}
-              sx={{
-                [`& fieldset`]: {
-                  borderRadius: 1,
-                  borderTopStyle: "none",
-                  borderLeftStyle: "none",
-                  borderRightStyle: "none",
-                  borderBottomColor: "secondary.light",
-                },
-                flexGrow: 1,
-              }}
+              sx={inputSx}
             />
           </Grid>
         </Grid>
@@ -325,23 +339,21 @@ function RegisterForm() {
             variant="contained"
             disabled={disableRegister}
             color="primary"
-            sx={{
-              fontSize: "1.1rem",
-              width: "100%",
-              paddingY: "0.7rem",
-              borderRadius: 3,
-              boxShadow: 0,
-              textTransform: "none",
-              ["&:hover"]: {
-                color: "primary.dark",
-                boxShadow: 0,
-                backgroundColor: "secondary.main",
-              },
-            }}
+            sx={buttonSx}
             onClick={handleRegister}
           >
             Register
           </Button>
+        </Grid>
+        <Grid item xs sx={{ color: "white" }}>
+          Already a regular?{" "}
+          <span
+            style={{ fontWeight: "bold", cursor: "pointer" }}
+            // onClick={routeChange}
+            onClick={onLogin}
+          >
+            Login
+          </span>{" "}
         </Grid>
       </Grid>
     </Box>

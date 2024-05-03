@@ -1,12 +1,16 @@
 // LoginPopup.js
+import { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./LoginPopUp.css";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 
 interface LoginPopupProps {
   onClose: () => void;
 }
 
 function LoginPopup({ onClose }: LoginPopupProps) {
+  const [variant, setVariant] = useState("login");
+
   return (
     <div
       className="loginForm"
@@ -33,7 +37,12 @@ function LoginPopup({ onClose }: LoginPopupProps) {
             />
           </svg>
         </span> */}
-        <LoginForm onClose={onClose} />
+        {variant == "login" && (
+          <LoginForm onRegister={() => setVariant("register")} />
+        )}
+        {variant == "register" && (
+          <RegisterForm onLogin={() => setVariant("login")} />
+        )}
       </div>
     </div>
   );
