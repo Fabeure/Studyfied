@@ -1,0 +1,62 @@
+.light-background {
+  background-color: rgba(47, 5, 73, 0.3);
+  box-shadow: 0px 0px 100px rgba(47, 5, 73, 0.6);
+}
+
+.feature-container {
+  /* top right bottom left */
+  padding: 80px 100px 150px 100px;
+
+  @media (max-width: 768px) {
+    padding: 50px 70px 70px 70px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 30px 40px 40px 40px;
+  }
+}
+
+.screenshot-img {
+  box-shadow: 0px 0px 50px rgba(166, 0, 255, 0.6);
+}
+
+.tryIt {
+  border-radius: 20px;
+  background: linear-gradient(
+    to left,
+    rgba(250, 6, 156, 0.1) 40%,
+    rgba(115, 0, 186, 0.1),
+    rgba(36, 5, 130, 0.1)
+  ) !important;
+  color: white;
+  font-weight: lighter;
+  font-style: italic;
+  border: 1px solid hsla(276, 74%, 21%, 0.125);
+}
+
+.tryIt:hover {
+  color: #f7dbff;
+  border: 1px solid rgba(201, 120, 255, 0.1);
+  box-shadow: 0px 0px 20px rgba(6, 0, 8, 0.3);
+}
+
+.tryIt:hover::after {
+  content: "";
+  height: 0.7px;
+  width: 100%;
+  background-color: rgb(235, 201, 255);
+  display: block;
+}
+
+.tryIt::after {
+  content: "";
+  height: 0.7px;
+  width: 0%;
+  background-color: rgb(235, 201, 255);
+  display: block;
+  transition: 0.4s ease-in-out;
+}
+
+.tryIt:focus {
+  outline: none;
+}

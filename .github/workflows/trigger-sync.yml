@@ -1,20 +1,18 @@
 name: Trigger fork sync
 
 on:
-    push:
-        branches:
-            dev
+  push:
+    branches: dev
 
 jobs:
   merge-develop-to-main:
     name: Trigger remote sync workflow
     runs-on: ubuntu-latest
-    
-    steps:
-        - name : trigger fork sync
-          uses: peter-evans/repository-dispatch@v3
-          with:
-            token: ${{ secrets.PAT }}
-            repository: Saber-Azouzi/Studyfied
-            event-type: sync
 
+    steps:
+      - name: trigger fork sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: Saber-Azouzi/Studyfied
+          event-type: sync
