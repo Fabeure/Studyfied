@@ -33,14 +33,15 @@ const inputSx: SxProps<Theme> = {
     // borderRightStyle: "none",
     borderColor: "#A693CD",
     borderWidth: "0px",
-    backgroundColor: "rgba(29, 22, 45, 0.15)",
+    backgroundColor: "rgba(66, 11, 67, 0.4)",
   },
   [`& label`]: {
     color: "rgba(255,255,255,0.7)",
   },
   [`& input`]: {
     color: "white",
-    backdropFilter: "blur(8px)",
+    backdropFilter: "blur(4px)",
+    borderRadius: "2em",
   },
 };
 
@@ -178,8 +179,8 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
       bgcolor={"rgba(29, 22, 45, 0.65)"}
       minWidth={"fit-content"}
       sx={{
-        backdropFilter: "blur(20px)",
-        boxShadow: "0 0 15px 5px rgba(170, 77, 178, 0.3)",
+        backdropFilter: "blur(28px)",
+        boxShadow: "0 0 25px 2px rgba(170, 77, 178, 0.3)",
       }}
     >
       <Grid container direction={"column"} rowGap={3} minWidth={"600px"}>

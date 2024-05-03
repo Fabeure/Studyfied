@@ -29,14 +29,15 @@ const inputSx: SxProps<Theme> = {
     borderRadius: "2em",
     borderColor: "#A693CD",
     borderWidth: "0px",
-    backgroundColor: "rgba(29, 22, 45, 0.15)",
+    backgroundColor: "rgba(66, 11, 67, 0.4)",
   },
   [`& label`]: {
     color: "white",
   },
   [`& input`]: {
     color: "white",
-    backdropFilter: "blur(8px)",
+    backdropFilter: "blur(4px)",
+    borderRadius: "2em",
   },
 };
 
@@ -122,11 +123,11 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
       bgcolor={"rgba(29, 22, 45, 0.65)"}
       minWidth={"fit-content"}
       sx={{
-        backdropFilter: "blur(20px)",
+        backdropFilter: "blur(28px)",
         // background:
         //   "linear-gradient(to right, rgba(29, 22, 45, 0.65) 37%, rgba(31, 18, 61, 0.65))",
         // boxShadow: "0 0 5px 10px rgba(29, 22, 45, 0.65)",
-        boxShadow: "0 0 15px 5px rgba(170, 77, 178, 0.3)",
+        boxShadow: "0 0 25px 2px rgba(170, 77, 178, 0.3)",
       }}
     >
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
