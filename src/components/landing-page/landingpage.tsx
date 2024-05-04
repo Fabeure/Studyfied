@@ -1,9 +1,10 @@
 import "./landingpage.css";
 import sparkles from "../../assets/sparkles.png";
 
-function landingpage() {
+// const landingpage:() => {
+   function Landingpage() {
   return (
-    <>
+    
       <div className="landing-page flex">
         <div className="right-container tracking-[0.1rem] flew flex-col  ">
           <div className="sparkles w-[60px] md:w-[80px] ">
@@ -37,7 +38,7 @@ function landingpage() {
           <div className="blob"></div>
         </div>
       </div>
-    </>
+    
   );
-}
-export default landingpage;
+};
+export default Landingpage;
