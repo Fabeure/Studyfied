@@ -1,13 +1,13 @@
 import "./Home.css";
 import Demo from "../../components/Demo/Demo";
-import LandingPage from "../../components/LandingPage/LandingPage";
+import Landingpage from "../../components/Landingpage/landingpage";
 function Home() {
   return (
     <>
       <div className="home-page ">
         <div className="cont ">
           <div id="landing-page" className="mt-[80px] ml-[50px]  ">
-            <LandingPage />
+            <Landingpage />
           </div>
           <div id="demo" className="mt-[200px]   ">
             <Demo />
