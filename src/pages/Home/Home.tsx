@@ -1,6 +1,6 @@
 import "./Home.css";
 import Demo from "../../components/Demo/Demo";
-import Landingpage from "../../components/Landingpage/landingpage";
+import landingpage from "../../components/landing-page/landingpage";
 function Home() {
   return (
     <>

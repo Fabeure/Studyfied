@@ -1,7 +1,7 @@
 import "./landingpage.css";
 import sparkles from "../../assets/sparkles.png";
 
-function Landingpage() {
+function landingpage() {
   return (
     <>
       <div className="landing-page flex">
@@ -40,4 +40,4 @@ function Landingpage() {
     </>
   );
 }
-export default Landingpage;
+export default landingpage;
