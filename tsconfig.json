@@ -12,6 +12,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    //allowing imports
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
 
     /* Linting */
     "strict": true,

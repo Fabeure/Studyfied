@@ -11,4 +11,5 @@ export default {
     "^@app/(.*)$": "<rootDir>/$1",
     "\\.(css)$": "identity-obj-proxy",
   },
+
 };
