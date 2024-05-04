@@ -10,12 +10,5 @@ export default {
       "jest-transform-stub",
     "^@app/(.*)$": "<rootDir>/$1",
     "\\.(css)$": "identity-obj-proxy",
-  },globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json', // Path to your tsconfig.json file
-      diagnostics: {
-        ignoreCodes: [151001], // Ignore TS151001 warning about import statements
-      },
-    },
   },
 };
