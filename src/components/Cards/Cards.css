@@ -1,144 +1,135 @@
-.page-content {
-    background-color: rgba(213, 232, 237, 0.5);
+.sets-container {
+  display: flex;
+  justify-content: center;
 }
-
 .card-content {
-    display: flex;
-    direction: row;
+  display: flex;
+  color: var(--tc-white);
+  direction: row;
 }
 
 .card-icon {
-    padding: 20px;
+  padding: 20px;
 }
 
 .card-topic {
-    padding-bottom: 10px;
-    font-size: 25px;
-    color: var(--color-light-blue);
+  padding-bottom: 10px;
+  font-size: 25px;
+  color: var(--tc-white);
 }
 
 .right-card-content {
-    width: 70%
+  width: 70%;
 }
 
 .left-card-content {
-    width: 30%;
-    height: 30px;
+  width: 30%;
+  height: 30px;
 }
 
 .learn-more {
-    outline: none !important;
-    background: #f3f2f2;
-    font-size: 'small';
-    border: none;
-    border-radius: 20px;
-    transition: 0.4s;
-    margin-left: 10px;
+  outline: none !important;
+  background: #f3f2f2;
+  font-size: "small";
+  border: none;
+  border-radius: 20px;
+  transition: 0.4s;
+  margin-left: 10px;
 }
 
 .learn-more:hover {
-    background-color: rgb(211, 211, 211);
+  background-color: rgb(211, 211, 211);
 }
 
 .learnmore-container {
-    display: flex;
+  display: flex;
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .card {
-    overflow: hidden;
-    margin-top: 10px;
-    height: 200px;
-    display: flex;
+  overflow: hidden;
+  margin-top: 10px;
+  height: 200px;
+  display: flex;
+  background: rgb(55, 8, 114);
+  background: linear-gradient(
+    90deg,
+    rgba(55, 8, 114, 0.5) 2%,
+    rgba(55, 8, 114, 0.5) 6%,
+    rgba(84, 11, 131, 0.5) 27%,
+    rgba(108, 13, 145, 0.5) 35%,
+    rgba(113, 13, 148, 0.5) 52%,
+    rgba(119, 14, 151, 0.5) 61%,
+    rgba(74, 31, 144, 0.5) 81%,
+    rgba(44, 42, 139, 0.5) 90%,
+    rgba(19, 51, 135, 0.5) 100%
+  );
 }
 
 .navigation-buttons {
-    @media (min-width: 1200px) {
-        margin-top: 175px;
-        width: 75%;
-    }
+  @media (min-width: 1200px) {
+    margin-top: 175px;
+    width: 75%;
+  }
 
-    @media (min-width: 600px) and (max-width: 1199px) {
-        margin-top: 175px;
-        width: 78%;
-    }
+  @media (min-width: 600px) and (max-width: 1199px) {
+    margin-top: 175px;
+    width: 78%;
+  }
 
-    @media (max-width: 599px) and (min-width: 400px) {
-        margin-top: 165px;
-        width: 90%;
-    }
+  @media (max-width: 599px) and (min-width: 400px) {
+    margin-top: 165px;
+    width: 90%;
+  }
 
-    @media (max-width: 399px) {
-        margin-top: 160px;
-        width: 100%;
-    }
-
-    margin-left: 10vw;
-    border-radius: 20px;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  @media (max-width: 399px) {
+    margin-top: 160px;
+    width: 100%;
+  }
 }
 
 .Scroll-Btn {
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    color: var(--color-yellow);
-    width: 70px;
-    height: 70px;
-    border: 0px;
-    outline: none !important;
+  background-color: transparent;
+  color: var(--color-yellow);
+  border: 0px;
+  outline: none !important;
 }
 
 .arrow-icon {
-    font-size: 50px !important;
-}
-
-.Scroll-Btn:enabled:hover {
-    background-color: rgb(244, 243, 243);
-    transition: 0.4s;
-}
-
-.Next-Btn {
-    justify-self: end;
-    align-self: center;
+  font-size: 50px !important;
 }
 
 .fade-in {
+  opacity: 0;
+  animation: fadeIn ease-in-out 0.5s forwards;
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut ease-in-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: fadeIn ease-in-out 0.5s forwards;
   }
-  
-  .fade-out {
+  to {
     opacity: 1;
-    animation: fadeOut ease-in-out 0.5s forwards;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
   }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+  to {
+    opacity: 0;
   }
+}

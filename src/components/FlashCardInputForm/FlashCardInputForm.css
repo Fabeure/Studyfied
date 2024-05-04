@@ -1,0 +1,47 @@
+.flashcard-input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; /* Center the form horizontally and vertically */
+  padding: 5%;
+}
+
+.header {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; /* Add space between form elements */
+  text-align: center; /* Center elements within the form container */
+}
+
+.test {
+  color: white;
+}

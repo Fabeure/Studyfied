@@ -9,9 +9,7 @@ import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRena
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 
-const registerEndpoint = `${
-  process.env.VITE_BACKEND_API
-}/api/v1/authenticate/register`;
+const registerEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/register`;
 
 function RegisterForm() {
   // input states
@@ -47,7 +45,7 @@ function RegisterForm() {
       fullName: setRegFullName,
       username: setRegUsername,
       errorMessages: setErrorMessages,
-    }
+    },
   );
 
   useEffect(() => {
@@ -123,13 +121,9 @@ function RegisterForm() {
 
   return (
     <Box
-      border={"1px solid"}
-      borderRadius={"6px"}
-      borderColor={"var(--tc-light)"}
       paddingBottom={"2rem"}
       paddingTop={"1rem"}
       paddingX={"2rem"}
-      bgcolor={"white"}
       minWidth={"fit-content"}
     >
       <Grid container direction={"column"} rowGap={3}>

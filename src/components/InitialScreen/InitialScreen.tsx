@@ -7,9 +7,12 @@ function InitialScreen() {
   const handleDismiss = () => {
     setFadeInitialScreen(true);
   };
-  
+
   return (
-    <div className={`initial-screen ${fadeInitialScreen ? "fade-out" : ""}`} onClick={handleDismiss}>
+    <div
+      className={`initial-screen ${fadeInitialScreen ? "fade-out" : ""}`}
+      onClick={handleDismiss}
+    >
       <div className="text-to-animate">Studyfied</div>
       <div className="text-to-animate">
         <span>Learning made easy.</span>

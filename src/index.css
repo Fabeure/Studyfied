@@ -8,11 +8,10 @@
   font-weight: 400;
   --color-dark-blue: #005874;
 
+  --color-light-blue: #1c819e;
+  --color-grey: #e6e6d4;
 
-  --color-light-blue: #1C819E;
-  --color-grey: #E6E6D4;
-
-  --color-yellow: #FFBE00;
+  --color-yellow: #ffbe00;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -24,10 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* theme colors */
-  --tc-dark: #005874;
-  --tc-blue: #1c819e;
-  --tc-light: #e6e6d4;
-  --tc-gold: #ffbe00;
+  --tc-dark: #000000;
+  --tc-blue: #1f0a4e;
+  --tc-white: #9d93ad;
 }
 
 #root {
