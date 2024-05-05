@@ -1,0 +1,55 @@
+.right-container {
+    flex-grow: 2;
+    width: 40%;
+  }
+  
+  .left-container {
+    flex-grow: 1;
+  }
+  
+  .tryBtn {
+    border-radius: 30px !important;
+    background: linear-gradient(
+      to left,
+      rgba(250, 6, 156, 0.45) 40%,
+      rgba(115, 0, 186, 0.31),
+      rgba(36, 5, 130, 0.1)
+    ) !important;
+    color: white;
+    border: none;
+    transform: scale(1);
+    transition: transform 0.4s ease-in-out !important; /* Transition for background change */
+  }
+  
+  .tryBtn:hover {
+    transform: scale(1.07);
+  }
+  
+  .tryBtn:focus {
+    outline: none;
+  }
+  
+  .blob {
+    background-image: url("../../assets/brain.jpg");
+    width: 380px;
+    height: 380px;
+    background-size: cover;
+    -webkit-background-position: center;
+    background-position: center center;
+    margin: 20px;
+    box-shadow: 0 10px 50px 5px rgba(230, 0, 255, 0.258);
+    animation: animate 5s ease-in-out infinite;
+    transition: all 1s ease-in-out;
+  }
+  
+  @keyframes animate {
+    0%,
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+  
+    50% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+  }
+  

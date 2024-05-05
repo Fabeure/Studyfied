@@ -1,6 +1,4 @@
 import "./NavBar.css";
-// import { useEffect } from "react";
-
 import logoLeaf from "../../assets/leafLogo.png";
 import LoginPopup from "../LoginPopup/LoginPopUp";
 import { useState } from "react";
