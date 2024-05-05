@@ -7,12 +7,12 @@ import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+// import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 
 const registerEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/register`;
 
 interface RegisterFormProps {
-  onLogin: () => void;
+  onLogin?: () => void;
 }
 
 const inputSx: SxProps<Theme> = {
@@ -169,6 +169,10 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
         setRegisterDenied(true);
       });
   };
+
+  const handleAlreadyMember = () => {
+    if (onLogin) onLogin()
+  }
 
   return (
     <Box
@@ -351,7 +355,7 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
           <span
             style={{ fontWeight: "bold", cursor: "pointer" }}
             // onClick={routeChange}
-            onClick={onLogin}
+            onClick={handleAlreadyMember}
           >
             Login
           </span>{" "}
