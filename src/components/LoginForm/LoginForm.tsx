@@ -123,11 +123,11 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
       bgcolor={"rgba(29, 22, 45, 0.65)"}
       minWidth={"fit-content"}
       sx={{
-        backdropFilter: "blur(28px)",
+        backdropFilter: "blur(36px)",
         // background:
         //   "linear-gradient(to right, rgba(29, 22, 45, 0.65) 37%, rgba(31, 18, 61, 0.65))",
         // boxShadow: "0 0 5px 10px rgba(29, 22, 45, 0.65)",
-        boxShadow: "0 0 25px 2px rgba(170, 77, 178, 0.3)",
+        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
       }}
     >
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>

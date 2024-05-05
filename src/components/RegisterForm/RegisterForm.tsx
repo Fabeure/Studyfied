@@ -179,8 +179,8 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
       bgcolor={"rgba(29, 22, 45, 0.65)"}
       minWidth={"fit-content"}
       sx={{
-        backdropFilter: "blur(28px)",
-        boxShadow: "0 0 25px 2px rgba(170, 77, 178, 0.3)",
+        backdropFilter: "blur(36px)",
+        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
       }}
     >
       <Grid container direction={"column"} rowGap={3} minWidth={"600px"}>
@@ -193,10 +193,10 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
           justifyContent={"center"}
           direction={"row"}
         >
-          <AutoAwesomeRoundedIcon
+          {/* <AutoAwesomeRoundedIcon
             sx={{ color: "rgba(166, 147, 205, 1)" }}
             fontSize="large"
-          />
+          /> */}
           <h1 className="registerForm-title">I'm new here</h1>
         </Grid>
 

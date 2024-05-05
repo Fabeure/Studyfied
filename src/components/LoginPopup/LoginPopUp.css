@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   z-index: 999; /* ensure the popup is on top */
+  backdrop-filter: blur(4px);
 }
 
 .close {
