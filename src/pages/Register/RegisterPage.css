@@ -15,10 +15,11 @@
 .loginForm-title {
   /* background-color: red; */
   font-size: 2rem;
-  font-weight: bold;
-  color: var(--tc-dark);
+  font-weight: normal;
+  /* color: var(--tc-dark); */
+  color: white;
   margin-bottom: 1rem;
-  font-style: italic;
+  /* font-style: italic; */
   width: max-content;
   margin: 0;
 }
