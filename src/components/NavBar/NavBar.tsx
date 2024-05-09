@@ -1,18 +1,21 @@
 import "./NavBar.css";
 import logoLeaf from "../../assets/leafLogo.png";
 import LoginPopup from "../LoginPopup/LoginPopUp";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function NavBar() {
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  // const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const { promptLogin, setPromptLogin } = useAuth();
 
   const handleLoginClick = () => {
-    setShowLoginPopup(true);
+    // setShowLoginPopup(true);
+    setPromptLogin(true);
   };
 
   const handleCloseLoginPopup = () => {
-    setShowLoginPopup(false);
+    // setShowLoginPopup(false);
+    setPromptLogin(false);
   };
 
   const navigate = useNavigate();
@@ -60,8 +63,8 @@ function NavBar() {
           </button>
         </div>
       </nav>
-      {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
-      {showLoginPopup && <div className="blur-background"></div>}
+      {promptLogin && <LoginPopup onClose={handleCloseLoginPopup} />}
+      {promptLogin && <div className="blur-background"></div>}
     </>
   );
 }

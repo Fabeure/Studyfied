@@ -15,6 +15,8 @@ type User = {
 interface UserContextType {
   user: User;
   setUser: Dispatch<SetStateAction<User>>;
+  promptLogin: boolean;
+  setPromptLogin: Dispatch<SetStateAction<boolean>>;
 }
 
 const defaultUserState = {
@@ -25,6 +27,9 @@ const defaultUserState = {
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setUser: (_user: User) => {},
+  promptLogin: false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  setPromptLogin: (_prompt: boolean) => {},
 } as UserContextType;
 
 const AuthContext = createContext(defaultUserState);
@@ -35,9 +40,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     email: "",
     userId: "",
   });
+  const [promptLogin, setPromptLogin] = useState(false);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider
+      value={{ user, setUser, promptLogin, setPromptLogin }}
+    >
       {children}
     </AuthContext.Provider>
   );
