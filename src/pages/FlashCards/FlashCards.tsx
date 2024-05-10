@@ -1,6 +1,6 @@
 import FlashCardInputForm from "../../components/FlashCardInputForm/FlashCardInputForm";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
-import flashCards from "../../assets/illustrations/flashCards.png";
+import flashCards from "../../assets/demo/flashcard.png";
 
 function FlashCardsPage() {
   return (

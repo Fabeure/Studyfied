@@ -1,10 +1,11 @@
 import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 // import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
@@ -63,6 +64,12 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
+  let a=useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+console.log("a:",a);
+  }, [a]);
 
   // const navigate = useNavigate();
 
@@ -103,7 +110,9 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
         const email = res.data?.email;
         const userId = res.data?.userId;
         setUser({ accessToken, email, userId });
-        window.location.href = `/Studyfied/welcome?accessToken=${accessToken}&email=${email}&userId=${userId}`;
+        // let a=useAuth();
+        // console.log("a:",a);
+        navigate("/Studyfied/welcome");
       })
       .catch((err) => {
         console.log(err);

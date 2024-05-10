@@ -1,47 +1,34 @@
-.flashcard-input-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto; /* Center the form horizontally and vertically */
-  padding: 5%;
+.form_field{
+    margin-top: 30px;
+}
+.form_field {
+  outline: none;
+  background-color: rgba(81, 18, 110, 0.236);
+  box-shadow:inset 0 0 5px rgba(183, 0, 255, 0.716);
+}
+.form_field:focus {
+  box-shadow:inset 0 0 5px rgba(183, 0, 255, 1);
 }
 
-.header {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
+
+
+
+.submit-btn{
+  margin-top: 25px;
+  border: none;
+  font-weight: 400;
+  height: 30px;
+  background: linear-gradient(
+    to left,
+    rgba(36, 5, 130, 0.3),
+    rgba(250, 6, 173, 0.32),
+    rgba(36, 5, 130, 0.3)
+  );  box-shadow:inset 0 0 5px rgba(183, 0, 255, 0.716);
+  outline: none;
 }
-
-.form__field {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid gray;
-  outline: 0;
-  font-size: 1.3rem;
-  color: white;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
-  }
+.submit-btn:hover {
+  box-shadow:inset 0 0 5px rgb(205, 79, 255);
 }
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem; /* Add space between form elements */
-  text-align: center; /* Center elements within the form container */
-}
-
-.test {
-  color: white;
+.submit-btn:focus {
+  outline: none;
 }

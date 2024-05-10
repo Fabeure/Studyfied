@@ -27,9 +27,15 @@ const defaultUserState = {
   setUser: (_user: User) => {},
 } as UserContextType;
 
+
+
+
+
+
 const AuthContext = createContext(defaultUserState);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  console.log("inside the AuthProvider");
   const [user, setUser] = useState<User>({
     accessToken: "",
     email: "",
