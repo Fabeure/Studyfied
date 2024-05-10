@@ -25,6 +25,7 @@ function FlashcardsList() {
       // Handle error (e.g., show a message to the user)
     }
   };
+  fetchFlashCards();
   return (
     <div className=" flex justify-center flex-wrap flex-row cards-container  ">
       {flashcards.map((flashcard: flashcardModel) => {

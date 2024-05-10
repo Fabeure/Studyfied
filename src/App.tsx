@@ -14,18 +14,6 @@ import Welcome from "./pages/Welcome/Welcome";
 // default url
 const baseURL = "/Studyfied";
 
-// pages
-const pageRoutes = [
-  { name: "Home", path: baseURL, element: <Home /> },
-  { name: "Login", path: `${baseURL}/login`, element: <Login /> },
-  { name: "Profile", path: `${baseURL}/profile`, element: <ProfilePage /> },
-  {
-    name: "Flashcards",
-    path: `${baseURL}/flashcards`,
-    element: <FlashCardsPage />,
-  },
-  { name: "Welcome", path: `${baseURL}/welcome`, element: <Welcome /> },
-];
 
 function App() {
   return (
