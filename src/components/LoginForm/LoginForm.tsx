@@ -98,12 +98,12 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
       .post(loginEndpoint, loginData)
       .then((res) => {
         console.log(res.data);
-        alert("welcome");
+       // alert("welcome");
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
         setUser({ accessToken, email, userId });
-        window.location.href = "/Studyfied/profile";
+        window.location.href = `/Studyfied/welcome?accessToken=${accessToken}&email=${email}&userId=${userId}`;
       })
       .catch((err) => {
         console.log(err);

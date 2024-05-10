@@ -1,25 +1,52 @@
-import  { useState } from "react";
+import { useState } from "react";
 import "./FlashCardInputForm.css"; // Import your CSS file
+import axios from "axios";
+//import flashcard from "../../pages/FlashCards/Flashcard";
+interface FlashCardDto {
+  topic: String;
+}
+
+const getFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`;
 
 function FlashCardInputForm() {
   const [topic, setTopic] = useState("");
   const [title, setTitle] = useState("");
 
-  const handleTopicInputChange = (event:any) => {
+ const  flashcardDto: FlashCardDto={
+    topic: topic
+  }
+  const getFlashCards = async () => {
+    axios
+      .post(getFlashCardsEndpoint, {topic})
+      .then((res) => {
+        console.log("inside the axios flashcard post request");
+        console.log(res);
+        console.log(res.data);
+        // const accessToken = res.data?.accessToken;
+        // const email = res.data?.email;
+        // const userId = res.data?.userId;
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(" | check console");
+      });
+  };
+  const handleTopicInputChange = (event: any) => {
     setTopic(event.target.value);
   };
 
-  const handleTitleChange = (event:any) => {
+  const handleTitleChange = (event: any) => {
     setTitle(event.target.value);
   };
 
-  const handleTopicSubmit = (event:any) => {
+  const handleTopicSubmit = (event: any) => {
     event.preventDefault();
 
     try {
       // Additional logic for handling successful submission (optional)
       console.log("Title:", title);
       console.log("Topic:", topic);
+      getFlashCards();
     } catch (error) {
       console.error("Error handling form submission:", error);
       // Handle error gracefully, e.g., display an error message to the user

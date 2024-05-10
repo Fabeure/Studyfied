@@ -42,16 +42,13 @@ function WelcomeCard() {
       <div className="container">
         <div className=" flex  flex-wrap justify-center  cards-container">
           {cardsData.map((card) => (
-            <>
+            <div className="fragment-like" key={card.id}>
               <Tilt
                 className="card-container cursor-pointer items-center m-[20px] flex justify-center flex-col  "
                 options={{ max: 20, scale: 1.05, speed: 45 }}
                 style={{ transition: "transform 0.1s ease-in-out" }}
               >
-                <div
-                  key={card.id}
-                  className=" card w-full h-full flex justify-center flex-col "
-                >
+                <div className=" card w-full h-full flex justify-center flex-col ">
                   <div className="card-image h-[40%] flex justify-center">
                     <img
                       className="icon "
@@ -74,7 +71,7 @@ function WelcomeCard() {
                   </div>
                 </div>
               </Tilt>
-            </>
+            </div>
           ))}
         </div>
       </div>

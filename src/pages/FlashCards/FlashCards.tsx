@@ -20,6 +20,7 @@ function FlashCardsPage() {
         ]}
       />
       <FlashCardInputForm />
+      
     </div>
   );
 }
