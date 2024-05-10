@@ -45,8 +45,8 @@ function WelcomeCard() {
             <>
               <Tilt
                 className="card-container cursor-pointer items-center m-[20px] flex justify-center flex-col  "
-                options={{ max: 20, scale: 1.05, speed: 450 }}
-                style={{ transition: "transform 0.2s ease-in-out" }}
+                options={{ max: 20, scale: 1.05, speed: 45 }}
+                style={{ transition: "transform 0.1s ease-in-out" }}
               >
                 <div
                   key={card.id}
