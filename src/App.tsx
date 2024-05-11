@@ -9,6 +9,7 @@ import FlashCardsPage from "./pages/FlashCards/FlashCards";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import QuizPage from "./pages/Quiz/QuizPage";
+import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
 
 // default url
 const baseURL = "/Studyfied";
@@ -26,6 +27,7 @@ function App() {
             ////// these routes should also be protected ⬇
             <Route path="flashCards" element={<FlashCardsPage />} />
             <Route path="quiz" element={<QuizPage />} />
+            <Route path="quiz/play" element={<QuizPlayPage />} />
             /////// Protected routes :
             <Route element={<RequireAuth />}>
               <Route path="profile" element={<ProfilePage />} />

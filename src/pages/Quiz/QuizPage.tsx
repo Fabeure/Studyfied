@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import checkMarks from "../../assets/illustrations/quizChecks.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // const inputSx: SxProps<Theme> = {
 //   flexGrow: 1,
@@ -29,7 +30,7 @@ const inputStyle: React.CSSProperties = {
   flexGrow: 1,
   borderRadius: "0.8em",
   color: "white",
-  paddingLeft: "1.5em",
+  paddingLeft: "1.2em",
   backgroundColor: "#1B1A29",
   width: "100%",
   height: "60px",
@@ -52,14 +53,18 @@ const genButtonSx: SxProps<Theme> = {
 export default function QuizPage() {
   const [quizTopic, setQuizTopic] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const handleGenQuiz = () => {
     alert(quizTopic);
+    navigate("/Studyfied/quiz/play");
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setQuizTopic(value);
   };
+
   return (
     <Box
       paddingBottom={"2rem"}

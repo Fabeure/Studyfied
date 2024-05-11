@@ -97,8 +97,8 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
     axios
       .post(loginEndpoint, loginData)
       .then((res) => {
-        console.log(res.data);
-        alert("welcome");
+        // console.log(res.data);
+        // alert("welcome");
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
