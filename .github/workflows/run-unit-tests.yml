@@ -1,14 +1,13 @@
 name: Run Front-End Unit Tests
 
-on:
-  workflow_dispatch
+on: workflow_dispatch
 
 jobs:
   RunUnitTests:
     name: Run unit tests
     runs-on: ubuntu-latest
 
-    steps:      
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 

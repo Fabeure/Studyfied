@@ -1,25 +1,10 @@
-import { NavLink } from "react-router-dom";
-import { Button, Grid } from "@mui/material";
-import logo from "../../assets/studyfast.svg";
 import "./NavBar.css";
-import useAuth from "../../hooks/useAuth";
-import LoginPopup from "../../pages/Login/LoginPopUp";
+import logoLeaf from "../../assets/leafLogo.png";
+import LoginPopup from "../LoginPopup/LoginPopUp";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-interface LinkType {
-  name: string;
-  path: string;
-  element: React.ReactNode;
-}
-
-interface NavBarProps {
-  links: LinkType[];
-}
-
-const NavBar: React.FC<NavBarProps> = ({links}) => {
-  const loginPath = links.find(({ name }) => name === "Login")?.path;
-  const { user, setUser } = useAuth();
-  
+function NavBar() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   const handleLoginClick = () => {
@@ -29,79 +14,56 @@ const NavBar: React.FC<NavBarProps> = ({links}) => {
   const handleCloseLoginPopup = () => {
     setShowLoginPopup(false);
   };
+
+  const navigate = useNavigate();
+
+  const scrollDemo = () => {
+    const targetElement = document.getElementById("demo");
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <>
-      <nav className="navbar">
-        <ul className="linkGroup">
-          <div className="logo routeName">
-            <img className="logoImage" src={logo} alt="My Photo" />
+      <nav className="navbar flex flex-end w-full">
+        <div className="left-container flex items-center w-full mr-[20px] md:ml-[40px]  xl:ml-[60px]  h-[4rem]">
+          <div className="logo-name sm:px-[10px]  md:px-[30px] xl:px-[60px] h-[3rem] flex flex-row items-center   ">
+            <div className="logo ml-[10px] ">
+              <img
+                className="logoImage"
+                src={logoLeaf}
+                alt="studyfluxLOGO"
+                onClick={() => navigate("/Studyfied")}
+              />
+            </div>
+            <div
+              className="name font-semibold"
+              onClick={() => navigate("/Studyfied")}
+            >
+              STUDYFLUX
+            </div>
           </div>
-          {links
-            .filter((route) => route.name !== "Login")
-            .map((route, key) => (
-              <li className="linkWrapper" key={key}>
-                <NavLink
-                  to={route.path}
-                  end
-                  className={({ isActive }) =>
-                    `routeName ${isActive ? "active" : "inactive"}`
-                  }
-                >
-                  {route.name}
-                </NavLink>
-              </li>
-            ))}
-        </ul>
-
-        {user.accessToken !== "" && (
-          <Grid
-            container
-            direction="row"
-            justifyContent="end"
-            alignItems="center"
-            columnGap={3}
+        </div>
+        <div className="left-container flex items-center row-reverse mr-[20px] md:mr-[100px] xl:mr-[150px] ">
+          <button
+            className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase"
+            onClick={handleLoginClick}
           >
-            <Grid item>Hello : {user.email}</Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setUser({ accessToken: "", email: "", userId: "" });
-                }}
-                sx={{
-                  fontSize: "1rem",
-                  padding: "0.7rem",
-                  borderRadius: "1.5rem",
-                  width: "7rem",
-                  boxShadow: 0,
-                  backgroundColor: "black",
-                  color: "secondary.light",
-                  textTransform: "none",
-                  "&:hover": {
-                    color: "secondary.light",
-                    boxShadow: 0,
-                    backgroundColor: "#3a3a3a",
-                  },
-                }}
-              >
-                Log out
-              </Button>
-            </Grid>
-          </Grid>
-        )}
-
-        {loginPath && user.accessToken === "" && (
-          <Button variant="contained" onClick={handleLoginClick}>
-            Login
-          </Button>
-        )}
-
-      {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
-      {showLoginPopup && <div className="blur-background"></div>}      
+            sign in
+          </button>
+          <button
+            onClick={scrollDemo}
+            className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase"
+          >
+            get a demo
+          </button>
+        </div>
       </nav>
-      <div className="separator"></div>
+      {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
+      {showLoginPopup && <div className="blur-background"></div>}
     </>
   );
-};
+}
 
 export default NavBar;

@@ -1,19 +1,20 @@
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import Cards from "../../components/Cards/Cards";
-import MainBanner from "../../components/MainBanner/MainBanner";
-import InitialScreen from "../../components/InitialScreen/InitialScreen";
-
+import "./Home.css";
+import Demo from "../../components/Demo/Demo";
+import Landingpage from "../../components/landing-page/landingpage";
 function Home() {
-
-
-  return (  
-    <div className="page-content ">
-      <InitialScreen />
-      <ToastContainer />
-      <MainBanner />
-      <Cards/>
-    </div>
+  return (
+    <>
+      <div className="home-page ">
+        <div className="cont ">
+          <div id="landing-page" className="mt-[80px] ml-[50px]  ">
+            <Landingpage/>
+          </div>
+          <div id="demo" className="mt-[200px]   ">
+            <Demo />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 export default Home;

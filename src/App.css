@@ -3,6 +3,7 @@
   margin: 0 0;
   padding: 0.5rem;
   text-align: center;
+  background-color: #10002b;
 }
 /* 
 .logo {
@@ -41,14 +42,8 @@
   color: #888;
 } */
 
-
-
-.page-content{
-  /* background-color: gray; */
-  /* height: 80vh; */
+.page-content {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* align-items: center; */
-  /* margin: 0.5rem; */
 }
