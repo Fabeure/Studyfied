@@ -1,24 +1,9 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionReveal from "../../components/Quiz/QuestionReveal";
-import QuestionTransition from "../../components/Quiz/QuestionTransition";
-
-const quiz = {
-  question1: [
-    { answer: "fsef", status: false },
-    { answer: "fsef", status: false },
-    { answer: "fsef", status: false },
-    { answer: "fsef", status: true },
-  ],
-  question2: [
-    { answer: "dff", status: true },
-    { answer: "fsef", status: false },
-  ],
-  question3: [
-    { answer: "dzdqzdqzd", status: false },
-    { answer: "dff", status: true },
-  ],
-};
+// import QuestionTransition from "../../components/Quiz/QuestionTransition";
+import QuizResult from "../../components/Quiz/QuizResult";
+import { useLocation } from "react-router-dom";
 
 const getQuestion = (index: number, quiz: object) => {
   const entries = Object.entries(quiz);
@@ -31,23 +16,39 @@ const getQuestion = (index: number, quiz: object) => {
 };
 
 const quizLength = (quiz: object) => {
-  return Object.entries(quiz).length - 1;
+  return Object.entries(quiz).length;
 };
 
 export default function QuizPlayPage() {
   const [phase, setPhase] = useState<"transition" | "reveal" | "end">("reveal");
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const location = useLocation();
+  const { quiz } = location.state;
 
-  const handleAnswerSubmit = () => {
-    setPhase("transition");
-  };
+  useEffect(() => {
+    if (!quiz) {
+      alert("quiz wasnt generated");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleTransition = () => {
-    if (currentQuestion < quizLength(quiz)) {
-      setPhase("reveal");
+  const handleAnswerSubmit = (answerStatus: boolean) => {
+    // setPhase("transition");
+    if (answerStatus) setCorrectAnswers((answers) => answers + 1);
+
+    if (currentQuestion < quizLength(quiz) - 1) {
+      // setPhase("reveal");
       setCurrentQuestion((previous) => previous + 1);
     } else setPhase("end");
   };
+
+  // const handleTransition = () => {
+  //   if (currentQuestion < quizLength(quiz)) {
+  //     setPhase("reveal");
+  //     setCurrentQuestion((previous) => previous + 1);
+  //   } else setPhase("end");
+  // };
 
   return (
     <Box paddingTop={"1rem"} paddingX={"2rem"} minWidth={"fit-content"}>
@@ -57,10 +58,15 @@ export default function QuizPlayPage() {
           onSubmit={handleAnswerSubmit}
         />
       )}
-      {phase == "transition" && (
+      {/* {phase == "transition" && (
         <QuestionTransition onTransit={handleTransition} />
+      )} */}
+      {phase == "end" && (
+        <QuizResult
+          totalQuestions={quizLength(quiz)}
+          correctAnswers={correctAnswers}
+        />
       )}
-      {phase == "end" && <div>lol done</div>}
     </Box>
   );
 }

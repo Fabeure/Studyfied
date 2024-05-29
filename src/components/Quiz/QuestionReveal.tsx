@@ -1,9 +1,9 @@
 import { Grid, LinearProgress } from "@mui/material";
-import { QuizChoice, QuizQuestion } from "../../entities/QuizModel";
-import { useEffect, useState } from "react";
+import { QuizChoice, QuizQuestion } from "../../models/QuizModel";
+import { useEffect, useRef, useState } from "react";
 
 interface QuestionRevealProps {
-  onSubmit: () => void;
+  onSubmit: (answerStatus: boolean) => void;
   question: QuizQuestion;
 }
 
@@ -87,25 +87,35 @@ export default function QuestionReveal({
 }: QuestionRevealProps) {
   const [revealAnswer, setRevealAnswer] = useState(false);
   const [progress, setProgress] = useState(0);
+  const hasSubmittedRef = useRef(false);
+  const [answerStatus, setAnswerStatus] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (revealAnswer)
+    if (revealAnswer) {
+      const timer = setInterval(() => {
         setProgress((oldProgress) => {
           if (oldProgress === 100) {
-            onSubmit();
-            // return 0;
+            if (!hasSubmittedRef.current) {
+              hasSubmittedRef.current = true;
+              onSubmit(answerStatus);
+            }
           }
           return Math.min(oldProgress + 5, 100);
         });
-    }, 200);
-    return () => {
-      clearInterval(timer);
-    };
+      }, 200);
+      return () => {
+        clearInterval(timer);
+        hasSubmittedRef.current = false;
+        setRevealAnswer(false);
+        setProgress(0);
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onSubmit, revealAnswer]);
 
-  const handleAnswerClick = () => {
+  const handleAnswerClick = (answerStatus: boolean) => {
     setRevealAnswer(true);
+    setAnswerStatus(answerStatus);
   };
 
   return (
@@ -127,7 +137,7 @@ export default function QuestionReveal({
             choice={choice}
             key={key}
             reveal={revealAnswer}
-            onClick={handleAnswerClick}
+            onClick={() => handleAnswerClick(choice.status)}
           />
         ))}
       </Grid>

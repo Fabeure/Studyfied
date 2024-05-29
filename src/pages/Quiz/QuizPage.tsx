@@ -8,6 +8,7 @@ import {
 import checkMarks from "../../assets/illustrations/quizChecks.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fakeQuiz } from "../../models/QuizModel";
 
 // const inputSx: SxProps<Theme> = {
 //   flexGrow: 1,
@@ -52,12 +53,17 @@ const genButtonSx: SxProps<Theme> = {
 
 export default function QuizPage() {
   const [quizTopic, setQuizTopic] = useState<string>("");
-
   const navigate = useNavigate();
 
-  const handleGenQuiz = () => {
+  const fetchQuiz = () => {
     alert(quizTopic);
-    navigate("/Studyfied/quiz/play");
+    return fakeQuiz;
+  };
+
+  const handleGenQuiz = () => {
+    const quiz = fetchQuiz();
+    if (quiz == null || quiz == undefined) return alert("Try again");
+    navigate("/Studyfied/quiz/play", { state: { quiz } });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
