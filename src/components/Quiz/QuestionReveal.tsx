@@ -12,21 +12,16 @@ const answerTextStyle: React.CSSProperties = {
 };
 
 const answerStyle: React.CSSProperties = {
-  // backgroundColor: "#212036",
   height: "100%",
   width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  // borderStyle: "solid",
-  // borderWidth: "3px",
   borderRadius: "2em",
-  // borderColor: "transparent",
 };
 
 const promptStyle: React.CSSProperties = {
   fontSize: "2em",
-  // backgroundColor: "green",
   textAlign: "left",
   paddingLeft: "1em",
   fontWeight: "600",
@@ -61,7 +56,6 @@ const Answer = ({
         padding: "3px",
         borderRadius: "2em",
         ["&:hover"]: {
-          // borderColor: "yellow",
           background: !reveal
             ? "linear-gradient(to right, rgb(187, 87, 254), rgb(112, 216, 222))"
             : null,
@@ -73,6 +67,7 @@ const Answer = ({
         style={{
           ...answerStyle,
           backgroundColor: answerBg(),
+          cursor: reveal ? "unset" : "pointer",
         }}
       >
         <span style={answerTextStyle}>{choice.answer}</span>
@@ -129,7 +124,6 @@ export default function QuestionReveal({
         direction={"row"}
         columnGap={2}
         rowGap={2}
-        // bgcolor={"red"}
         justifyContent={"center"}
       >
         {question.choices.map((choice, key) => (

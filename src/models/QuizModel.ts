@@ -27,6 +27,6 @@ export const fakeQuiz = {
   ],
   "Good luck": [
     { answer: "i'm right", status: true },
-    { answer: "the other is right", status: true },
+    { answer: "the other is right", status: false },
   ],
 };
