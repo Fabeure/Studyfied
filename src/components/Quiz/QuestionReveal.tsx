@@ -1,10 +1,10 @@
 import { Grid, LinearProgress } from "@mui/material";
-import { QuizChoice, QuizQuestion } from "../../models/QuizModel";
+import { QuizChoice, QuizQuestionFormatted } from "../../models/QuizModel";
 import { useEffect, useRef, useState } from "react";
 
 interface QuestionRevealProps {
   onSubmit: (answerStatus: boolean) => void;
-  question: QuizQuestion;
+  question: QuizQuestionFormatted;
 }
 
 const answerTextStyle: React.CSSProperties = {
@@ -34,7 +34,7 @@ const Answer = ({
   onClick,
 }: {
   choice: QuizChoice;
-  key: number;
+  key: React.Key;
   reveal: boolean;
   onClick: () => void;
 }) => {
@@ -70,7 +70,7 @@ const Answer = ({
           cursor: reveal ? "unset" : "pointer",
         }}
       >
-        <span style={answerTextStyle}>{choice.answer}</span>
+        <span style={answerTextStyle}>{choice.content}</span>
       </div>
     </Grid>
   );

@@ -6,9 +6,10 @@ import {
   /*TextField,*/ Theme,
 } from "@mui/material";
 import checkMarks from "../../assets/illustrations/quizChecks.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fakeQuiz } from "../../models/QuizModel";
+import { Quiz } from "../../models/QuizModel";
+import axios from "axios";
 
 // const inputSx: SxProps<Theme> = {
 //   flexGrow: 1,
@@ -51,19 +52,54 @@ const genButtonSx: SxProps<Theme> = {
   color: "white",
 };
 
+// const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
+const quizEndpoint = `https://localhost:7001/api/Quiz/getQuiz`;
+
 export default function QuizPage() {
   const [quizTopic, setQuizTopic] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [generatedQuiz, setGeneratedQuiz] = useState(null);
   const navigate = useNavigate();
 
-  const fetchQuiz = () => {
-    alert(quizTopic);
-    return fakeQuiz;
+  useEffect(() => {
+    console.log("genQuiz change : ");
+    console.log(generatedQuiz);
+
+    if (generatedQuiz)
+      navigate("/Studyfied/quiz/play", {
+        state: { quiz: generatedQuiz as Quiz },
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [generatedQuiz]);
+
+  const fetchQuiz = async () => {
+    const params = {
+      topic: quizTopic || "the%20roman%20empire",
+      difficulty: "medium",
+      numberOfQuestion: 3,
+    };
+    try {
+      const response = await axios.post(quizEndpoint, {}, { params });
+      if (response.data.isSuccess) {
+        const { resultItem } = response.data;
+        console.log("got response :");
+        console.log(response.data);
+        setGeneratedQuiz(resultItem);
+      } else {
+        alert("Try again");
+        console.log(response.data);
+      }
+    } catch (err) {
+      alert("An error occured");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGenQuiz = () => {
-    const quiz = fetchQuiz();
-    if (quiz == null || quiz == undefined) return alert("Try again");
-    navigate("/Studyfied/quiz/play", { state: { quiz } });
+    setLoading(true);
+    fetchQuiz();
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,6 +184,7 @@ export default function QuizPage() {
                 variant="contained"
                 onClick={handleGenQuiz}
                 sx={genButtonSx}
+                disabled={loading}
               >
                 Generate Quiz
               </Button>

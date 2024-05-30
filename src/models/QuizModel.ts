@@ -1,32 +1,112 @@
 export interface QuizChoice {
-  answer: string;
+  content: string;
   status: boolean;
 }
 
-export interface QuizQuestion {
+export interface QuizQuestionFormatted {
   prompt: string;
   choices: QuizChoice[];
 }
 
-export interface Quiz {
-  [key: string]: QuizQuestion;
+export interface QuizQAPairs {
+  [key: string]: QuizChoice[];
 }
 
-export const fakeQuiz = {
-  "what's 9+10": [
-    { answer: "19", status: false },
-    { answer: "21", status: true },
-    { answer: "8", status: false },
-    { answer: "73", status: false },
-  ],
-  "what's the average amount of hands a human has": [
-    { answer: "<2", status: true },
-    { answer: "3", status: false },
-    { answer: "2", status: false },
-    { answer: "1", status: false },
-  ],
-  "Good luck": [
-    { answer: "i'm right", status: true },
-    { answer: "the other is right", status: false },
-  ],
+export interface Quiz {
+  id: string | null;
+  userId: string;
+  topic: string;
+  difficulty: string;
+  numberOfQuestion: number;
+  questionAnswerPairs: QuizQAPairs;
+}
+
+export const exampleQuiz = {
+  resultItem: {
+    id: null,
+    userId: "NA",
+    topic: "cars",
+    difficulty: "medium",
+    numberOfQuestion: 4,
+    questionAnswerPairs: {
+      "1. Which car manufacturer is known for its luxury sedans and SUVs?": [
+        {
+          answer: "BMW",
+          status: true,
+        },
+        {
+          answer: "Mercedes-Benz",
+          status: true,
+        },
+        {
+          answer: "Ford",
+          status: false,
+        },
+        {
+          answer: "Toyota",
+          status: false,
+        },
+      ],
+      "\n2. What type of car is characterized by its high performance and sporty design?":
+        [
+          {
+            answer: "Sports car",
+            status: true,
+          },
+          {
+            answer: "SUV",
+            status: false,
+          },
+          {
+            answer: "Sedan",
+            status: false,
+          },
+          {
+            answer: "Hatchback",
+            status: false,
+          },
+        ],
+      "\n3. Which car brand is known for its reliability and fuel efficiency?":
+        [
+          {
+            answer: "Toyota",
+            status: true,
+          },
+          {
+            answer: "Honda",
+            status: true,
+          },
+          {
+            answer: "BMW",
+            status: false,
+          },
+          {
+            answer: "Mercedes-Benz",
+            status: false,
+          },
+        ],
+      "\n4. What is the name of the iconic muscle car produced by Dodge?": [
+        {
+          answer: "Challenger",
+          status: true,
+        },
+        {
+          answer: "Charger",
+          status: true,
+        },
+        {
+          answer: "Viper",
+          status: true,
+        },
+        {
+          answer: "Dakota",
+          status: false,
+        },
+      ],
+    },
+  },
+  resultCode: 0,
+  userMessage: "Succesfully generated quiz",
+  isSuccess: true,
+  isFailed: false,
 };

@@ -4,19 +4,12 @@ import QuestionReveal from "../../components/Quiz/QuestionReveal";
 // import QuestionTransition from "../../components/Quiz/QuestionTransition";
 import QuizResult from "../../components/Quiz/QuizResult";
 import { useLocation } from "react-router-dom";
+import { Quiz } from "../../models/QuizModel";
 
-const getQuestion = (index: number, quiz: object) => {
-  const entries = Object.entries(quiz);
-  const question = {
-    prompt: entries[index][0],
-    choices: entries[index][1],
-  };
-  console.log(question);
-  return question;
-};
-
-const quizLength = (quiz: object) => {
-  return Object.entries(quiz).length;
+const getQuestion = (index: number, quiz: Quiz) => {
+  const prompt = Object.keys(quiz.questionAnswerPairs)[index];
+  const choices = Object.values(quiz.questionAnswerPairs)[index];
+  return { prompt, choices };
 };
 
 export default function QuizPlayPage() {
@@ -24,7 +17,7 @@ export default function QuizPlayPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const location = useLocation();
-  const { quiz } = location.state;
+  const quiz = location.state.quiz as Quiz;
 
   useEffect(() => {
     if (!quiz) {
@@ -37,7 +30,7 @@ export default function QuizPlayPage() {
     // setPhase("transition");
     if (answerStatus) setCorrectAnswers((answers) => answers + 1);
 
-    if (currentQuestion < quizLength(quiz) - 1) {
+    if (currentQuestion < quiz.numberOfQuestion - 1) {
       // setPhase("reveal");
       setCurrentQuestion((previous) => previous + 1);
     } else setPhase("end");
@@ -63,7 +56,7 @@ export default function QuizPlayPage() {
       )} */}
       {phase == "end" && (
         <QuizResult
-          totalQuestions={quizLength(quiz)}
+          totalQuestions={quiz.numberOfQuestion}
           correctAnswers={correctAnswers}
         />
       )}
