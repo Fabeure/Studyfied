@@ -1,4 +1,11 @@
-import { Box, Button, Grid, SxProps, Theme } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  SxProps,
+  Theme,
+} from "@mui/material";
 import checkMarks from "../../assets/illustrations/quizChecks.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +69,7 @@ export default function QuizPage() {
           const { resultItem } = response.data;
           setGeneratedQuiz(resultItem);
         } else {
-          alert("Request failed");
+          alert(response.data.userMessage);
           console.error(response.data);
         }
       })
@@ -204,7 +211,10 @@ export default function QuizPage() {
                 sx={genButtonSx}
                 disabled={loading}
               >
-                Generate Quiz
+                {!loading && "Generate Quiz"}
+                {loading && (
+                  <CircularProgress sx={{ color: "rgba(255,255,255,0.7)" }} />
+                )}
               </Button>
             </Grid>
           </Grid>
