@@ -156,18 +156,7 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
   };
 
   return (
-    <Box
-      borderRadius={"3em"}
-      paddingBottom={"2.5rem"}
-      paddingTop={"2.5rem"}
-      paddingX={"3rem"}
-      bgcolor={"rgba(29, 22, 45, 0.65)"}
-      minWidth={"fit-content"}
-      sx={{
-        backdropFilter: "blur(36px)",
-        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
-      }}
-    >
+    <Box>
       <Grid container direction={"column"} rowGap={3} minWidth={"600px"}>
         <Grid
           item

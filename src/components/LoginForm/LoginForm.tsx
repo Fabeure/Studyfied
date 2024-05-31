@@ -40,7 +40,6 @@ const buttonSx: SxProps<Theme> = {
   fontWeight: "bold",
   color: "white",
   ["&:hover"]: {
-    // color: "primary.dark",
     boxShadow: 0,
     backgroundColor: "#AA4DB2",
   },
@@ -91,18 +90,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
   };
 
   return (
-    <Box
-      borderRadius={"3em"}
-      paddingBottom={"2.5rem"}
-      paddingTop={"2.5rem"}
-      paddingX={"3rem"}
-      bgcolor={"rgba(40, 30, 64, 0.65)"}
-      minWidth={"fit-content"}
-      sx={{
-        backdropFilter: "blur(36px)",
-        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
-      }}
-    >
+    <Box>
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
         <Grid
           item

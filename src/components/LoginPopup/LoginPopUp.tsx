@@ -16,7 +16,7 @@ function LoginPopup({ onClose }: LoginPopupProps) {
   };
 
   return (
-    <div className="loginForm" onClick={onClose}>
+    <div className="loginPopUp" onClick={onClose}>
       <div className="popup-content" onClick={handlePopupClick}>
         {variant == "login" && (
           <LoginForm onRegister={() => setVariant("register")} />
