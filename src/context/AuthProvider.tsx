@@ -38,10 +38,7 @@ const AuthContext = createContext(defaultUserState);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   console.log("inside the AuthProvider");
-  const [user, setUser] = useState<User>({
-    accessToken: "",
-    email: "",
-    userId: "",
+  
   const [user, setUser] = useState<User>(() => {
     // Check for user data in localStorage on component mount
     const localStorageUser = localStorage.getItem("user");
