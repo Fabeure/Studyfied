@@ -24,7 +24,7 @@ console.log("a:",a);
           {user.email && <h1>Welcome {user.email}</h1>}
       <div className="">
         <div className="welcome-text font-light lg:text-[18px] text-[15px] text-left  mt-[30px] lg:ml-[10%] ml-[5%]   ">
-          <span className="font-semibold">Welcome back usename! {email}</span>
+          <span className="font-semibold">Welcome back  {user.email}! {email}</span>
           <br />
           We're thrilled to have you here again. Let's make today another step
           towards your goals.

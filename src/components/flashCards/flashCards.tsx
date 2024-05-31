@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./flashCards.css";
 interface FlashCard {
   question: string;
   answer: string;
 }
 interface Props {
-  flashCards: FlashCard[];
+  flashCardsProp: FlashCard[];
 }
-const FlashCards: React.FC<Props> = ({ flashCards }) => {
-  const initialFlipState = Array.from({ length: flashCards.length }).fill(
-    false
+const FlashCards: React.FC<Props> = ({ flashCardsProp }) => {
+  const [flip, setFlip] = useState(
+    Array.from({ length: flashCardsProp.length }).fill(false)
   );
-  const [flip, setFlip] = useState(initialFlipState);
+  useEffect(() => {
+    setFlip(Array.from({ length: flashCardsProp.length }, () => false));
+  }, [flashCardsProp]);
   return (
     <div>
-      <div className="fragment-like flex flex-wrap mt-[20px]   ">
-        {flashCards.map((card, index) => (
+      <div className="fragment-like flex flex-wrap mt-[20px]    ">
+        {flashCardsProp.map((card, index) => (
           <div
             key={index}
             className="lg:w-[420px]  md:w-[300px] w-[200px]  m-[30px] lg:text-[16px] text-[13px] text-white"
@@ -30,8 +32,10 @@ const FlashCards: React.FC<Props> = ({ flashCards }) => {
                 ]);
               }}
             >
-              {flip[index] == false && <div>{card.question}</div>}
-              {flip[index] == true && <div>{card.answer}</div>}
+              <div className="mx-[10px] text-white">
+                {flip[index] == false && <div>{card.question}</div>}
+                {flip[index] == true && <div>{card.answer} </div>}
+              </div>
             </div>
           </div>
         ))}

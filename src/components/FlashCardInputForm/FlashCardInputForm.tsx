@@ -4,45 +4,60 @@ import axios from "axios";
 import AuthContext from "../../context/AuthProvider";
 import FlashCards from "../flashCards/flashCards";
 //import flashcard from "../../pages/FlashCards/Flashcard";
-interface FlashCardDto {
-  topic: String;
-  numberOfCards?: number;
-}
-const flashCards = [
-  { question: "Question 1", answer: "Answer 1" },
-  { question: "Question 2", answer: "Answer 2" },
-  { question: "Question 2", answer: "Answer 2" },
-  { question: "Question 2", answer: "Answer 2" },
-  { question: "Question 2", answer: "Answer 2" },
-];
-const getFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`;
 
+const getFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`;
+const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/saveFlashCard`;
 function FlashCardInputForm() {
   const [topic, setTopic] = useState("");
   const [numberOfCards, setNumberOfCards] = useState(0);
   const [cards, setCards] = useState([]);
   const { user } = useContext(AuthContext);
-
-  const flashcardDto: FlashCardDto = {
-    topic: topic,
-    numberOfCards: numberOfCards,
+  //var numbercards=0;
+  const saveFlashCardDto: any = {
+    id: "",
+    userId: "",
+    items: [],
   };
   const getFlashCards = async () => {
+    const path = "https://localhost:7001/api/FlashCards/getFlashCard?topic=";
+    const requestappend = path + topic + "&numberOfFlashCards=" + numberOfCards;
     axios
-      .post(getFlashCardsEndpoint, { topic })
+      .post(requestappend)
       .then((res) => {
-        console.log(user);
-        console.log("inside the axios flashcard post request");
-        console.log(res);
-        console.log(res.data);
+        let flashcardstest: any = [];
+        flashcardstest = Object.entries(res.data.resultItem.items).map(
+          ([question, answer]) => ({
+            question,
+            answer,
+          })
+        );
+        console.log("flashcardstest: ", flashcardstest);
+        setCards(flashcardstest);
+
         // const accessToken = res.data?.accessToken;
-       
       })
       .catch((err) => {
         console.log(err);
         alert(" | check console");
       });
   };
+
+  const saveFlashCards = async () => {
+    axios
+      .post(saveFlashCardsEndpoint, saveFlashCardDto)
+      .then((res) => {
+        console.log(user);
+        console.log("inside the axios flashcard post request");
+        console.log(res);
+        console.log(res.data);
+        // const accessToken = res.data?.accessToken;
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(" | check console");
+      });
+  };
+
   const handleTopicChange = (event: any) => {
     setTopic(event.target.value);
   };
@@ -51,12 +66,12 @@ function FlashCardInputForm() {
     setNumberOfCards(event.target.value);
   };
 
-  const handleTopicSubmit = (event: any) => {
+  const handleGnenerate = (event: any) => {
     event.preventDefault();
 
     try {
       // Additional logic for handling successful submission (optional)
-      console.log("Title:", numberOfCards);
+      console.log("number:", numberOfCards);
       console.log("Topic:", topic);
       getFlashCards();
     } catch (error) {
@@ -69,14 +84,11 @@ function FlashCardInputForm() {
     <>
       <div className="flashcard-input-form text-left mt-[20px] md:text-[17px] text-[14px]  ">
         <div className="ml-[30px] text-white ">
-          Give it a catchy title, and tell us how many cards you'd like to whip
+          Give it a catchy topic, and tell us how many cards you'd like to whip
           up!
         </div>
         <div className="form ">
-          <form
-            onSubmit={handleTopicSubmit}
-            className="form-container text-white   flex justify-around "
-          >
+          <form className="form-container text-white   flex justify-around ">
             <input
               type="text"
               id="topic-input"
@@ -85,7 +97,7 @@ function FlashCardInputForm() {
               onChange={handleTopicChange}
               required
               placeholder="enter your topic"
-              className=" form_field w-[50%] rounded-[7px] placeholder-white   "
+              className=" form_field w-[50%] rounded-[17px] px-[10px] placeholder-white   "
             />
             <input
               type="number"
@@ -94,17 +106,26 @@ function FlashCardInputForm() {
               value={numberOfCards}
               onChange={handleNumberChange}
               required
-              className=" form_field rounded-[7px]  input-white  w-[10%] "
+              className=" form_field rounded-[17px] px-[10px] input-white  w-[10%] "
             />
-            <button className="submit-btn text-white flex items-center w-[12%] justify-center ">
+            <button
+              onClick={handleGnenerate}
+              className="submit-btn text-white flex items-center rounded-[17px]  w-[12%] justify-center "
+            >
               generate
+            </button>
+            <button
+              onClick={saveFlashCards}
+              className="save-btn text-white flex items-center rounded-[17px]  w-[12%] justify-center "
+            >
+              save
             </button>
           </form>
         </div>
       </div>
-      {flashCards.length > 0 ? (
+      {cards.length > 0 ? (
         <div>
-          <FlashCards flashCards={flashCards} />
+          <FlashCards flashCardsProp={cards} />
         </div>
       ) : null}
     </>

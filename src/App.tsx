@@ -14,7 +14,6 @@ import Welcome from "./pages/Welcome/Welcome";
 // default url
 const baseURL = "/Studyfied";
 
-
 function App() {
   return (
     <ThemeProvider theme={AppTheme}>
@@ -26,9 +25,12 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="flashCards" element={<FlashCardsPage />} />
-            <Route path="welcome" element={<Welcome />} />
+            <Route path="profile" element={<ProfilePage />} />
+
             /////// Protected routes :
             <Route element={<RequireAuth />}>
+              <Route path="welcome" element={<Welcome />} />
+
               <Route path="profile" element={<ProfilePage />} />
               <Route path="welcome" element={<Welcome />} />
             </Route>

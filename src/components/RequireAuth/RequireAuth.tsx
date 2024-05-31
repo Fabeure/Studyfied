@@ -7,6 +7,6 @@ export default function RequireAuth() {
   return user.accessToken != "" ? (
     <Outlet />
   ) : (
-    <Navigate to="/Studyfied/login" state={{ from: location }} replace />
+    <Navigate to="/Studyfied/" state={{ from: location }} replace />
   );
 }

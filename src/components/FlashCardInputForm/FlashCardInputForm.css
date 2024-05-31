@@ -32,3 +32,26 @@
 .submit-btn:focus {
   outline: none;
 }
+
+
+
+.save-btn{
+  margin-top: 25px;
+  border: none;
+  font-weight: 400;
+  height: 30px;
+  background: linear-gradient(
+    to left,
+    rgba(250, 6, 173, 0.32),
+    rgba(36, 5, 130, 0.3),
+    rgba(250, 6, 173, 0.32)
+
+  );  box-shadow:inset 0 0 5px rgba(183, 0, 255, 0.716);
+  outline: none;
+}
+.save-btn:hover {
+  box-shadow:inset 0 0 5px rgb(205, 79, 255);
+}
+.save-btn:focus {
+  outline: none;
+}

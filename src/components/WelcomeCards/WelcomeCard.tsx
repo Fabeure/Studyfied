@@ -5,36 +5,7 @@ import summary from "../../assets/demo/summary.png";
 import quiz from "../../assets/demo/quiz.png";
 import arrow from "../../assets/arrow.png";
 import { Tilt } from "react-tilt";
-
-interface CardData {
-  id: number;
-  description: string;
-  image: string; // Assuming image paths are correctly imported or provided
-}
-
-const cardsData: CardData[] = [
-  {
-    id: 1,
-    description: "My flashcards",
-    image: "flashcard",
-  },
-  {
-    id: 2,
-    description: "study buddy",
-    image: "chatbot",
-  },
-
-  {
-    id: 4,
-    description: "My quizzes",
-    image: "quiz",
-  },
-  {
-    id: 3,
-    description: "My summaries",
-    image: "summary",
-  },
-];
+import { cardsData } from "../../constants/welcomeCardData";
 
 function WelcomeCard() {
   return (

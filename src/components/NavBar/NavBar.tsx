@@ -6,10 +6,12 @@ import logoLeaf from "../../assets/leafLogo.png";
 import LoginPopup from "../LoginPopup/LoginPopUp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function NavBar() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-
+  const { user } = useAuth();
+console.log("user:",user);
   const handleLoginClick = () => {
     setShowLoginPopup(true);
   };
@@ -17,7 +19,9 @@ function NavBar() {
   const handleCloseLoginPopup = () => {
     setShowLoginPopup(false);
   };
-
+const navigateToProfile=()=>{
+  navigate("/Studyfied/profile");
+}
   const navigate = useNavigate();
 
   const scrollDemo = () => {
@@ -27,6 +31,14 @@ function NavBar() {
       targetElement.scrollIntoView({ behavior: "smooth" });
     }
   };
+const handleStudyFluxClick=()=>{
+  if(user.email==='')// unidentified user
+  navigate("/Studyfied");
+  else
+  navigate("/Studyfied/welcome");
+}
+
+
   return (
     <>
       <nav className="navbar flex flex-end w-full">
@@ -40,12 +52,12 @@ function NavBar() {
                 onClick={() => navigate("/Studyfied")}
               />
             </div>
-            <div className="name " onClick={() => navigate("/Studyfied")}>
+            <div className="name " onClick={handleStudyFluxClick}>
               STUDYFLUX
             </div>
           </div>
         </div>
-        {0 ? ( //unauthorized user
+        {user.email==='' ? ( //unidentified user
           <div className="left-container flex items-center row-reverse mr-[20px] md:mr-[100px] xl:mr-[150px] ">
             <button
               className="button  flex  justify-center items-center h-[29px] w-[100px] md:w-[110px] lg:w-[120px]  xl:w-[130px] mr-[10px] text-[10px] md:text-[12px]  text-uppercase"
@@ -65,9 +77,9 @@ function NavBar() {
           <div className="left-container flex items-center row-reverse mr-[20px] md:mr-[50px] xl:mr-[60px] ">
             <button
               className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[17px] "
-              onClick={handleLoginClick}
+              onClick={navigateToProfile}
             >
-              username
+              {user.email}
               <span className="w-[50%]">
                 <img className="profile-icon" src={profile} alt="logout" />
               </span>{" "}
