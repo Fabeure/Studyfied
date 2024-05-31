@@ -49,27 +49,30 @@ export default function QuizPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [generatedQuiz]);
 
-  const fetchQuiz = async () => {
+  const fetchQuiz = () => {
     const params = {
       topic: encodeURIComponent(quizTopic || "the roman empire"),
       difficulty: quizDifficulty,
       numberOfQuestion: quizLength,
     };
-    try {
-      const response = await axios.post(quizEndpoint, {}, { params });
-      if (response.data.isSuccess) {
-        const { resultItem } = response.data;
-        setGeneratedQuiz(resultItem);
-      } else {
-        alert("Request failed");
-        console.error(response.data);
-      }
-    } catch (err) {
-      alert("An error occured");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    axios
+      .post(quizEndpoint, {}, { params })
+      .then((response) => {
+        if (response.data.isSuccess) {
+          const { resultItem } = response.data;
+          setGeneratedQuiz(resultItem);
+        } else {
+          alert("Request failed");
+          console.error(response.data);
+        }
+      })
+      .catch((err) => {
+        alert("An error occured");
+        console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const handleGenQuiz = () => {
