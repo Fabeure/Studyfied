@@ -1,32 +1,10 @@
-import {
-  Box,
-  Button,
-  Grid,
-  SxProps,
-  /*TextField,*/ Theme,
-} from "@mui/material";
+import { Box, Button, Grid, SxProps, Theme } from "@mui/material";
 import checkMarks from "../../assets/illustrations/quizChecks.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../models/QuizModel";
 import axios from "axios";
-
-// const inputSx: SxProps<Theme> = {
-//   flexGrow: 1,
-//   [`& fieldset`]: {
-//     borderRadius: "1em",
-//     color: "white",
-//     backgroundColor: "#1B1A29",
-//   },
-//   [`& label`]: {
-//     // color: "rgba(255,255,255,1)",
-//   },
-//   [`& input`]: {
-//     color: "white",
-//     // backdropFilter: "blur(4px)",
-//     borderRadius: "2em",
-//   },
-// };
+import QuizSelection from "../../components/Quiz/QuizSelection";
 
 const inputStyle: React.CSSProperties = {
   flexGrow: 1,
@@ -57,14 +35,13 @@ const quizEndpoint = `https://localhost:7001/api/Quiz/getQuiz`;
 
 export default function QuizPage() {
   const [quizTopic, setQuizTopic] = useState<string>("");
+  const [quizLength, setQuizLength] = useState(4);
+  const [quizDifficulty, setQuizDifficulty] = useState("medium");
   const [loading, setLoading] = useState(false);
   const [generatedQuiz, setGeneratedQuiz] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("genQuiz change : ");
-    console.log(generatedQuiz);
-
     if (generatedQuiz)
       navigate("/Studyfied/quiz/play", {
         state: { quiz: generatedQuiz as Quiz },
@@ -74,20 +51,18 @@ export default function QuizPage() {
 
   const fetchQuiz = async () => {
     const params = {
-      topic: quizTopic || "the%20roman%20empire",
-      difficulty: "medium",
-      numberOfQuestion: 3,
+      topic: encodeURIComponent(quizTopic || "the roman empire"),
+      difficulty: quizDifficulty,
+      numberOfQuestion: quizLength,
     };
     try {
       const response = await axios.post(quizEndpoint, {}, { params });
       if (response.data.isSuccess) {
         const { resultItem } = response.data;
-        console.log("got response :");
-        console.log(response.data);
         setGeneratedQuiz(resultItem);
       } else {
-        alert("Try again");
-        console.log(response.data);
+        alert("Request failed");
+        console.error(response.data);
       }
     } catch (err) {
       alert("An error occured");
@@ -105,6 +80,14 @@ export default function QuizPage() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setQuizTopic(value);
+  };
+
+  const handleLengthChange = (length: number | string) => {
+    setQuizLength(length as number);
+  };
+
+  const handleDifficultyChange = (diff: number | string) => {
+    setQuizDifficulty(diff as string);
   };
 
   return (
@@ -165,17 +148,49 @@ export default function QuizPage() {
                   borderRadius: "1em",
                 }}
               >
-                {/* <TextField
-                  fullWidth
-                  placeholder="The roman empire"
-                  sx={inputSx}
-                /> */}
                 <input
                   type="text"
                   placeholder="the roman empire"
                   style={inputStyle}
                   onChange={handleInputChange}
+                  value={quizTopic}
                 />
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            container
+            columnGap={2}
+            alignItems={"center"}
+            direction={"row"}
+          >
+            <Grid item xs>
+              <QuizSelection
+                options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                defaultValue={4}
+                onChange={handleLengthChange}
+              />
+            </Grid>
+            <Grid item xs>
+              <QuizSelection
+                options={["easy", "medium", "hard"]}
+                defaultValue={"medium"}
+                onChange={handleDifficultyChange}
+              />
+            </Grid>
+            <Grid item xs>
+              <Box sx={{ textAlign: "left", fontSize: "1.3rem" }}>
+                <h1
+                  style={{
+                    width: "fit-content",
+                    fontSize: "2rem",
+                    fontWeight: "100",
+                    fontStyle: "italic",
+                  }}
+                >
+                  questions.
+                </h1>
               </Box>
             </Grid>
             <Grid item xs={3} minWidth={"max-content"}>

@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import QuestionReveal from "../../components/Quiz/QuestionReveal";
-// import QuestionTransition from "../../components/Quiz/QuestionTransition";
 import QuizResult from "../../components/Quiz/QuizResult";
 import { useLocation } from "react-router-dom";
 import { Quiz } from "../../models/QuizModel";
@@ -27,21 +26,12 @@ export default function QuizPlayPage() {
   }, []);
 
   const handleAnswerSubmit = (answerStatus: boolean) => {
-    // setPhase("transition");
     if (answerStatus) setCorrectAnswers((answers) => answers + 1);
 
     if (currentQuestion < quiz.numberOfQuestion - 1) {
-      // setPhase("reveal");
       setCurrentQuestion((previous) => previous + 1);
     } else setPhase("end");
   };
-
-  // const handleTransition = () => {
-  //   if (currentQuestion < quizLength(quiz)) {
-  //     setPhase("reveal");
-  //     setCurrentQuestion((previous) => previous + 1);
-  //   } else setPhase("end");
-  // };
 
   return (
     <Box paddingTop={"1rem"} paddingX={"2rem"} minWidth={"fit-content"}>
@@ -51,9 +41,7 @@ export default function QuizPlayPage() {
           onSubmit={handleAnswerSubmit}
         />
       )}
-      {/* {phase == "transition" && (
-        <QuestionTransition onTransit={handleTransition} />
-      )} */}
+
       {phase == "end" && (
         <QuizResult
           totalQuestions={quiz.numberOfQuestion}
