@@ -11,6 +11,7 @@ type User = {
   accessToken: string;
   email: string;
   userId: string;
+  name: string;
 };
 
 interface UserContextType {
@@ -26,6 +27,7 @@ const defaultUserState = {
     accessToken: "",
     email: "",
     userId: "",
+    name: "",
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setUser: (_user: User) => {},
@@ -33,6 +35,7 @@ const defaultUserState = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setPromptLogin: (_prompt: boolean) => {},
   handleLogout: () => {},
+
 } as UserContextType;
 
 const fetchLocalUser = (): User => {
@@ -60,7 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(fetchLocalUser());
 
   const handleLogout = () => {
-    setUser({ accessToken: "", email: "", userId: "" });
+    setUser({ accessToken: "", email: "", userId: "", name: "" });
     localStorage.removeItem("user");
   };
 
