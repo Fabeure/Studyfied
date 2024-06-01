@@ -24,7 +24,7 @@ function App() {
             /////// Protected routes :
             <Route element={<RequireAuth />}>
               <Route path="welcome" element={<Welcome />} />
-              <Route path="quiz/play" element={<QuizPlayPage />} />
+              <Route path="quizPlay" element={<QuizPlayPage />} />
               <Route path="quiz" element={<QuizPage />} />
               <Route path="flashCards" element={<FlashCardsPage />} />
               <Route path="profile" element={<ProfilePage />} />

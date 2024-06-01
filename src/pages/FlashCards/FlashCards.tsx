@@ -1,10 +1,8 @@
 import FlashCardInputForm from "../../components/FlashCardInputForm/FlashCardInputForm";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
 import flashCards from "../../assets/demo/flashcard.png";
-import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 function FlashCardsPage() {
-  const { user } = useAuth();
   const [firstTime, setFirstTime] = useState(false);
   //check if it's the first time the user use the app
   //if it's the first time, show the how it works component

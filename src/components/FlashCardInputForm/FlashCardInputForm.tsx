@@ -5,23 +5,30 @@ import AuthContext from "../../context/AuthProvider";
 import FlashCard from "../flashCard/flashCard";
 //import flashcard from "../../pages/FlashCards/Flashcard";
 
-const getFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`;
-const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/saveFlashCard`;
+
+interface FlashCardDto {
+  id: string,
+  userId: string,
+  items: Array<any>
+}
+const generateFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/generateFlashCard?`;
+const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/persistFlashCard?`;
+
 function FlashCardInputForm() {
   const [topic, setTopic] = useState("");
   const [numberOfCards, setNumberOfCards] = useState(0);
   const [cards, setCards] = useState([]);
   const { user } = useContext(AuthContext);
   //var numbercards=0;
-  const saveFlashCardDto: any = {
+  const saveFlashCardDto: FlashCardDto = {
     id: "",
     userId: "",
     items: [],
   };
   const getFlashCards = async () => {
     console.log("inside the getFlashCards function user:",user);
-    const path = "https://localhost:7001/api/FlashCards/generateFlashCard?topic=";
-    const requestappend = path + topic + "&numberOfFlashCards=" + numberOfCards;
+    const path = generateFlashCardsEndpoint;
+    const requestappend = path + "topic=" + topic + "&numberOfFlashCards=" + numberOfCards;
     axios
       .post(requestappend)
       .then((res) => {

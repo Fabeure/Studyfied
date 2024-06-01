@@ -41,7 +41,7 @@ export default function QuizResult({
   const navigate = useNavigate();
 
   const handleReturn = () => {
-    navigate("/Studyfied/quiz");
+    navigate("/quiz");
   };
 
   useEffect(() => {

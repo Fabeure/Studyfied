@@ -1,27 +1,15 @@
 import "./Welcome.css";
 import WelcomeCard from "../../components/WelcomeCards/WelcomeCard";
 import { useParams } from 'react-router-dom';
-import AuthContext from "../../context/AuthProvider";
-import { useContext, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 
 function Welcome() {
   const {  email } = useParams<{ accessToken: string|undefined, email: string|undefined, userId: string|undefined }>();
   const { user } = useAuth();
 
-  console.log("user:",user);
-  
-  let a=useAuth();
-
-  useEffect(() => {
-console.log("a:",a);
-  }, [a]);
-
 
   return (
     <>
-      aaaaaaaaaaaaaaa
-          {user.email && <h1>Welcome {user.email}</h1>}
       <div className="">
         <div className="welcome-text font-light lg:text-[18px] text-[15px] text-left  mt-[30px] lg:ml-[10%] ml-[5%]   ">
           <span className="font-semibold">Welcome back  {user.email}! {email}</span>

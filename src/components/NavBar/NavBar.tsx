@@ -22,7 +22,7 @@ function NavBar() {
     setPromptLogin(false);
   };
 const navigateToProfile=()=>{
-  navigate("/Studyfied/profile");
+  navigate("/profile");
 }
   const navigate = useNavigate();
 

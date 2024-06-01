@@ -38,7 +38,7 @@ const genButtonSx: SxProps<Theme> = {
 };
 
 // const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
-const quizEndpoint = `https://localhost:7001/api/Quiz/getQuiz`;
+const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
 
 export default function QuizPage() {
   const [quizTopic, setQuizTopic] = useState<string>("");
@@ -50,7 +50,7 @@ export default function QuizPage() {
 
   useEffect(() => {
     if (generatedQuiz)
-      navigate("/Studyfied/quiz/play", {
+      navigate("/quizPlay", {
         state: { quiz: generatedQuiz as Quiz },
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -16,7 +16,7 @@ function WelcomeCard() {
       <div className="container">
         <div className=" flex  flex-wrap justify-center  cards-container">
           {cardsData.map((card) => (
-            <div className="fragment-like" key={card.id} onClick={()=>navigate(`/Studyfied${card.path}`)
+            <div className="fragment-like" key={card.id} onClick={()=>navigate(`${card.path}`)
           } >
               <Tilt
                 className="welcomeCard-container cursor-pointer items-center m-[20px] flex justify-center flex-col  "
