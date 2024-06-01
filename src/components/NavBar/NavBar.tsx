@@ -42,7 +42,7 @@ function NavBar() {
             </div>
             <div
               className="name font-semibold"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("")}
             >
               STUDYFLUX
             </div>
