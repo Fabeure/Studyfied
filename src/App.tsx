@@ -12,7 +12,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./pages/Welcome/Welcome";
 // default url
-const baseURL = "/Studyfied";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path={baseURL}>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="flashCards" element={<FlashCardsPage />} />
@@ -34,7 +32,6 @@ function App() {
               <Route path="profile" element={<ProfilePage />} />
               <Route path="welcome" element={<Welcome />} />
             </Route>
-          </Route>
         </Routes>
       </Router>
     </ThemeProvider>
