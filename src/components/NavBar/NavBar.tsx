@@ -1,5 +1,4 @@
 import "./NavBar.css";
-import { useEffect } from "react";
 import profile from "../../assets/navbar/profile.png";
 import logout from "../../assets/navbar/logout.png";
 import logoLeaf from "../../assets/leafLogo.png";
@@ -33,9 +32,9 @@ const navigateToProfile=()=>{
   };
 const handleStudyFluxClick=()=>{
   if(user.email==='')// unidentified user
-  navigate("/Studyfied");
+  navigate("");
   else
-  navigate("/Studyfied/welcome");
+  navigate("welcome");
 }
 
 

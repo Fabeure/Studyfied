@@ -1,5 +1,5 @@
 import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 // import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
@@ -17,15 +17,6 @@ interface LoginFormProps {
 
 const inputSx: SxProps<Theme> = {
   flexGrow: 1,
-  // [`& fieldset legend`]: {
-  //   color: "lime",
-  //   borderColor: "white", // Change background color on hover
-  //   borderWidth: "3px",
-  //   borderStyle: "solid",
-  //   [`&:hover`]: {
-  //     borderColor: "red",
-  //   },
-  // },
   [`& fieldset`]: {
     borderRadius: "2em",
     borderColor: "#A693CD",
@@ -64,20 +55,8 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
-  let a=useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-console.log("a:",a);
-  }, [a]);
-
-  // const navigate = useNavigate();
-
-  // const routeChange = () => {
-  //   onClose();
-  //   const path = "/Studyfied/login";
-  //   navigate(path);
-  // };
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,14 +84,11 @@ console.log("a:",a);
       .post(loginEndpoint, loginData)
       .then((res) => {
         console.log(res.data);
-       // alert("welcome");
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
         setUser({ accessToken, email, userId });
-        // let a=useAuth();
-        // console.log("a:",a);
-        navigate("/Studyfied/welcome");
+        navigate("welcome");
       })
       .catch((err) => {
         console.log(err);
@@ -133,9 +109,6 @@ console.log("a:",a);
       minWidth={"fit-content"}
       sx={{
         backdropFilter: "blur(36px)",
-        // background:
-        //   "linear-gradient(to right, rgba(29, 22, 45, 0.65) 37%, rgba(31, 18, 61, 0.65))",
-        // boxShadow: "0 0 5px 10px rgba(29, 22, 45, 0.65)",
         boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
       }}
     >
@@ -148,11 +121,7 @@ console.log("a:",a);
           justifyContent={"center"}
           columnGap={1}
         >
-          {/* <Groups2RoundedIcon
-            fontSize="large"
-            sx={{ color: "rgba(166, 147, 205, 1)" }}
-          /> */}
-          <h1 className="loginForm-title">Welcome back</h1>
+        <h1 className="loginForm-title">Welcome back</h1>
         </Grid>
         {loginDenied && (
           <Grid item xs>
