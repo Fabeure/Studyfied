@@ -22,11 +22,11 @@ function App() {
         <NavBar />
         <Routes>
           <Route path={baseURL}>
-            <Route path="" element={<Home />} />
+            <Route path="home" element={<Home />} />
             <Route path="login" element={<Login />} />
             ////// these routes should also be protected ⬇
             <Route path="flashCards" element={<FlashCardsPage />} />
-            <Route path="quiz" element={<QuizPage />} />
+            <Route path="" element={<QuizPage />} />
             <Route path="quiz/play" element={<QuizPlayPage />} />
             /////// Protected routes :
             <Route element={<RequireAuth />}>
