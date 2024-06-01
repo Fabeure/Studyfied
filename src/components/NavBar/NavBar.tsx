@@ -37,12 +37,12 @@ function NavBar() {
                 className="logoImage"
                 src={logoLeaf}
                 alt="studyfluxLOGO"
-                onClick={() => navigate("/Studyfied")}
+                onClick={() => navigate("/")}
               />
             </div>
             <div
               className="name font-semibold"
-              onClick={() => navigate("/Studyfied")}
+              onClick={() => navigate("/")}
             >
               STUDYFLUX
             </div>

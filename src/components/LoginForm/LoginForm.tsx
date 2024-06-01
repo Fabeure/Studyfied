@@ -4,9 +4,9 @@ import axios from "axios";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
-
 interface LoginFormProps {
   onRegister: () => void;
 }
@@ -46,6 +46,7 @@ const buttonSx: SxProps<Theme> = {
 };
 
 function LoginForm({ onRegister }: LoginFormProps) {
+  const navigate = useNavigate();
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
@@ -81,7 +82,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
         const userId = res.data?.userId;
         const name = res.data?.name;
         setUser({ accessToken, email, userId, name });
-        window.location.href = "/Studyfied/profile";
+        navigate("profile")
       })
       .catch((err) => {
         console.log(err);

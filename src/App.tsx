@@ -11,8 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import QuizPage from "./pages/Quiz/QuizPage";
 import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
 
-// default url
-const baseURL = "/Studyfied";
 
 function App() {
   return (
@@ -21,7 +19,6 @@ function App() {
       <HashRouter>
         <NavBar />
         <Routes>
-          <Route path={baseURL}>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
             ////// these routes should also be protected ⬇
@@ -32,7 +29,6 @@ function App() {
             <Route element={<RequireAuth />}>
               <Route path="profile" element={<ProfilePage />} />
             </Route>
-          </Route>
         </Routes>
   </HashRouter>,
     </>
