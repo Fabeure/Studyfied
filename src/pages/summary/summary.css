@@ -1,0 +1,52 @@
+.summaryContainer {
+    border-radius: 20px;
+    border-width: 0px !important;
+    border-color: rgb(255, 255, 255) !important;
+    background-color: rgba(240, 248, 255, 0.144) !important;
+    height: 600px;
+    overflow: auto;
+    /* Enable both horizontal and vertical scrolling */
+}
+
+.upload-btn {
+    border-radius: 20px;
+    width:200px;
+    height: 30px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0px 20px 5px rgba(230, 0, 255, 0.3);
+    
+}
+
+.upload-btn:hover {
+    scale: 1.05;
+    box-shadow: 0 0px 20px 5px rgba(230, 0, 255, 0.4);
+
+}
+
+.upload-btn:focus {
+    outline: none;
+}
+
+
+/* Style the scrollbar */
+.summaryContainer::-webkit-scrollbar {
+    width: 12px;
+    /* Width of the scrollbar */
+}
+
+.summaryContainer::-webkit-scrollbar-track {
+    background: #00000023;
+    /* Color of the scrollbar track */
+}
+
+.summaryContainer::-webkit-scrollbar-thumb {
+    background: #f8e9ff;
+    /* Color of the scrollbar handle */
+    border-radius: 6px;
+    /* Rounded corners */
+}
+
+.summaryContainer::-webkit-scrollbar-thumb:hover {
+    background: #dfbfff;
+    /* Color when hovering over the scrollbar handle */
+}
