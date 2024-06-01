@@ -7,7 +7,6 @@ import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRenameOutlineRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-// import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 
 const registerEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/register`;
 
@@ -17,20 +16,8 @@ interface RegisterFormProps {
 
 const inputSx: SxProps<Theme> = {
   flexGrow: 1,
-  // [`& fieldset legend`]: {
-  //   color: "lime",
-  //   borderColor: "white", // Change background color on hover
-  //   borderWidth: "3px",
-  //   borderStyle: "solid",
-  //   [`&:hover`]: {
-  //     borderColor: "red",
-  //   },
-  // },
   [`& fieldset`]: {
     borderRadius: "2em",
-    // borderTopStyle: "none",
-    // borderLeftStyle: "none",
-    // borderRightStyle: "none",
     borderColor: "#A693CD",
     borderWidth: "0px",
     backgroundColor: "rgba(66, 11, 67, 0.4)",
@@ -56,7 +43,6 @@ const buttonSx: SxProps<Theme> = {
   fontWeight: "bold",
   color: "white",
   ["&:hover"]: {
-    // color: "primary.dark",
     boxShadow: 0,
     backgroundColor: "#AA4DB2",
   },
@@ -113,18 +99,14 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
         ] != ""
       ) {
         invalid = invalid || true;
-        // break;
       }
     });
     setDisableRegister(invalid);
-    console.log(errorMessages);
-    console.log("form is valid " + !invalid);
   }, [errorMessages]);
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    // setChangedField(name);
     switch (name) {
       case "regemail":
         setRegEmail(value);
@@ -156,7 +138,6 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
       Password: regPassword,
       ConfirmPassword: regConfirmPass,
     };
-    console.log(registerData);
     axios
       .post(registerEndpoint, registerData)
       .then((res) => {
@@ -171,22 +152,11 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
   };
 
   const handleAlreadyMember = () => {
-    if (onLogin) onLogin()
-  }
+    if (onLogin) onLogin();
+  };
 
   return (
-    <Box
-      borderRadius={"3em"}
-      paddingBottom={"2.5rem"}
-      paddingTop={"2.5rem"}
-      paddingX={"3rem"}
-      bgcolor={"rgba(29, 22, 45, 0.65)"}
-      minWidth={"fit-content"}
-      sx={{
-        backdropFilter: "blur(36px)",
-        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
-      }}
-    >
+    <Box>
       <Grid container direction={"column"} rowGap={3} minWidth={"600px"}>
         <Grid
           item
@@ -197,10 +167,6 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
           justifyContent={"center"}
           direction={"row"}
         >
-          {/* <AutoAwesomeRoundedIcon
-            sx={{ color: "rgba(166, 147, 205, 1)" }}
-            fontSize="large"
-          /> */}
           <h1 className="registerForm-title">I'm new here</h1>
         </Grid>
 
@@ -354,11 +320,10 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
           Already a regular?{" "}
           <span
             style={{ fontWeight: "bold", cursor: "pointer" }}
-            // onClick={routeChange}
             onClick={handleAlreadyMember}
           >
             Login
-          </span>{" "}
+          </span>
         </Grid>
       </Grid>
     </Box>

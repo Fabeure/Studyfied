@@ -2,11 +2,12 @@ import useAuth from "../../hooks/useAuth";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 export default function RequireAuth() {
-  const { user } = useAuth();
+  const { user, setPromptLogin, promptLogin } = useAuth();
   const location = useLocation();
-  return user.accessToken != "" ? (
-    <Outlet />
+  if (user.accessToken == "") setPromptLogin(true);
+  return promptLogin ? (
+    <Navigate to="/Studyfied/" state={{ from: location }} replace />
   ) : (
-    <Navigate to="/Studyfied/login" state={{ from: location }} replace />
+    <Outlet />
   );
 }

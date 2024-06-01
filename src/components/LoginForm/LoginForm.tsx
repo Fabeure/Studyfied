@@ -1,30 +1,18 @@
 import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-// import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
-// import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
 
 interface LoginFormProps {
-  // onClose: () => void;
   onRegister: () => void;
 }
 
 const inputSx: SxProps<Theme> = {
   flexGrow: 1,
-  // [`& fieldset legend`]: {
-  //   color: "lime",
-  //   borderColor: "white", // Change background color on hover
-  //   borderWidth: "3px",
-  //   borderStyle: "solid",
-  //   [`&:hover`]: {
-  //     borderColor: "red",
-  //   },
-  // },
   [`& fieldset`]: {
     borderRadius: "2em",
     borderColor: "#A693CD",
@@ -52,25 +40,16 @@ const buttonSx: SxProps<Theme> = {
   fontWeight: "bold",
   color: "white",
   ["&:hover"]: {
-    // color: "primary.dark",
     boxShadow: 0,
     backgroundColor: "#AA4DB2",
   },
 };
 
-function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
+function LoginForm({ onRegister }: LoginFormProps) {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
-
-  // const navigate = useNavigate();
-
-  // const routeChange = () => {
-  //   onClose();
-  //   const path = "/Studyfied/login";
-  //   navigate(path);
-  // };
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,9 +76,6 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
     axios
       .post(loginEndpoint, loginData)
       .then((res) => {
-        console.log(res.data);
-        alert("welcome");
-        console.log(res.data)
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
@@ -115,23 +91,7 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
   };
 
   return (
-    <Box
-      // border={"3px solid"}
-      borderRadius={"3em"}
-      // borderColor="#AA4DB2"
-      paddingBottom={"2.5rem"}
-      paddingTop={"2.5rem"}
-      paddingX={"3rem"}
-      bgcolor={"rgba(29, 22, 45, 0.65)"}
-      minWidth={"fit-content"}
-      sx={{
-        backdropFilter: "blur(36px)",
-        // background:
-        //   "linear-gradient(to right, rgba(29, 22, 45, 0.65) 37%, rgba(31, 18, 61, 0.65))",
-        // boxShadow: "0 0 5px 10px rgba(29, 22, 45, 0.65)",
-        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
-      }}
-    >
+    <Box>
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
         <Grid
           item
@@ -141,10 +101,6 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
           justifyContent={"center"}
           columnGap={1}
         >
-          {/* <Groups2RoundedIcon
-            fontSize="large"
-            sx={{ color: "rgba(166, 147, 205, 1)" }}
-          /> */}
           <h1 className="loginForm-title">Welcome back</h1>
         </Grid>
         {loginDenied && (
@@ -213,7 +169,6 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
           don't have an account?{" "}
           <span
             style={{ fontWeight: "bold", cursor: "pointer" }}
-            // onClick={routeChange}
             onClick={onRegister}
           >
             Register here
