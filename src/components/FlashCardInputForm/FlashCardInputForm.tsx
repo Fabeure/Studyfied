@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import "./FlashCardInputForm.css"; // Import your CSS file
 import axios from "axios";
 import AuthContext from "../../context/AuthProvider";
-import FlashCards from "../flashCards/flashCards";
+import FlashCard from "../flashCard/flashCard";
 //import flashcard from "../../pages/FlashCards/Flashcard";
 
 const getFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCard`;
@@ -19,7 +19,8 @@ function FlashCardInputForm() {
     items: [],
   };
   const getFlashCards = async () => {
-    const path = "https://localhost:7001/api/FlashCards/getFlashCard?topic=";
+    console.log("inside the getFlashCards function user:",user);
+    const path = "https://localhost:7001/api/FlashCards/generateFlashCard?topic=";
     const requestappend = path + topic + "&numberOfFlashCards=" + numberOfCards;
     axios
       .post(requestappend)
@@ -125,7 +126,7 @@ function FlashCardInputForm() {
       </div>
       {cards.length > 0 ? (
         <div>
-          <FlashCards flashCardsProp={cards} />
+          <FlashCard flashCardsProp={cards} />
         </div>
       ) : null}
     </>

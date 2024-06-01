@@ -6,16 +6,20 @@ import quiz from "../../assets/demo/quiz.png";
 import arrow from "../../assets/arrow.png";
 import { Tilt } from "react-tilt";
 import { cardsData } from "../../constants/welcomeCardData";
+import { useNavigate } from "react-router-dom";
 
 function WelcomeCard() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="container">
         <div className=" flex  flex-wrap justify-center  cards-container">
           {cardsData.map((card) => (
-            <div className="fragment-like" key={card.id}>
+            <div className="fragment-like" key={card.id} onClick={()=>navigate(`/Studyfied${card.path}`)
+          } >
               <Tilt
-                className="card-container cursor-pointer items-center m-[20px] flex justify-center flex-col  "
+                className="welcomeCard-container cursor-pointer items-center m-[20px] flex justify-center flex-col  "
                 options={{ max: 20, scale: 1.05, speed: 45 }}
                 style={{ transition: "transform 0.1s ease-in-out" }}
               >
