@@ -11,6 +11,7 @@ type User = {
   accessToken: string;
   email: string;
   userId: string;
+  name: string;
 };
 
 interface UserContextType {
@@ -24,14 +25,19 @@ const defaultUserState = {
     accessToken: "",
     email: "",
     userId: "",
+    name: "",
   },
+
   setUser: () => {},
+
   handleLogout: () => {},
+
 } as UserContextType;
 
 const AuthContext = createContext(defaultUserState);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+
   const [user, setUser] = useState<User>(() => {
     // Check for user data in localStorage on component mount
     const localStorageUser = localStorage.getItem("user");
@@ -39,6 +45,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       try {
         // Parse and validate user data (optional)
         const parsedUser = JSON.parse(localStorageUser);
+
         // You can add validation logic here if needed (e.g., check for required fields)
         return parsedUser;
       } catch (error) {
@@ -55,7 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const handleLogout = () => {
-    setUser({ accessToken: "", email: "", userId: "" });
+    setUser({ accessToken: "", email: "", userId: "", name: "" });
     localStorage.removeItem("user");
   };
 

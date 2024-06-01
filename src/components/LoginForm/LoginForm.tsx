@@ -99,10 +99,12 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
       .then((res) => {
         console.log(res.data);
         alert("welcome");
+        console.log(res.data)
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
-        setUser({ accessToken, email, userId });
+        const name = res.data?.name;
+        setUser({ accessToken, email, userId, name });
         window.location.href = "/Studyfied/profile";
       })
       .catch((err) => {
