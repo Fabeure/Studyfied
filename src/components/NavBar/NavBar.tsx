@@ -3,20 +3,23 @@ import profile from "../../assets/navbar/profile.png";
 import logout from "../../assets/navbar/logout.png";
 import logoLeaf from "../../assets/leafLogo.png";
 import LoginPopup from "../LoginPopup/LoginPopUp";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 function NavBar() {
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
   const { user } = useAuth();
-console.log("user:",user);
+  console.log("user:",user);
+  // const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const { promptLogin, setPromptLogin } = useAuth();
+
   const handleLoginClick = () => {
-    setShowLoginPopup(true);
+    // setShowLoginPopup(true);
+    setPromptLogin(true);
   };
 
   const handleCloseLoginPopup = () => {
-    setShowLoginPopup(false);
+    // setShowLoginPopup(false);
+    setPromptLogin(false);
   };
 const navigateToProfile=()=>{
   navigate("/Studyfied/profile");
@@ -48,7 +51,7 @@ const handleStudyFluxClick=()=>{
                 className="logoImage"
                 src={logoLeaf}
                 alt="studyfluxLOGO"
-                onClick={() => navigate("/Studyfied")}
+                onClick={() => navigate("/")}
               />
             </div>
             <div className="name " onClick={handleStudyFluxClick}>
@@ -95,8 +98,8 @@ const handleStudyFluxClick=()=>{
           </div>
         )}
       </nav>
-      {showLoginPopup && <LoginPopup onClose={handleCloseLoginPopup} />}
-      {showLoginPopup && <div className="blur-background"></div>}
+      {promptLogin && <LoginPopup onClose={handleCloseLoginPopup} />}
+      {promptLogin && <div className="blur-background"></div>}
     </>
   );
 }

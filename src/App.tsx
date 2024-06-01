@@ -1,40 +1,37 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Register/ResgisterPage";
 import Home from "./pages/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
-import { ThemeProvider } from "@mui/material";
-import { AppTheme } from "./styles/AppTheme";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import FlashCardsPage from "./pages/FlashCards/FlashCards";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./pages/Welcome/Welcome";
-// default url
+import QuizPage from "./pages/Quiz/QuizPage";
+import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
 
 function App() {
   return (
-    <ThemeProvider theme={AppTheme}>
+    <>
       <ToastContainer />
-      <Router>
+      <HashRouter>
         <NavBar />
         <Routes>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
-            <Route path="flashCards" element={<FlashCardsPage />} />
-            <Route path="profile" element={<ProfilePage />} />
-
             /////// Protected routes :
             <Route element={<RequireAuth />}>
               <Route path="welcome" element={<Welcome />} />
-
+              <Route path="quiz/play" element={<QuizPlayPage />} />
+              <Route path="quiz" element={<QuizPage />} />
+              <Route path="flashCards" element={<FlashCardsPage />} />
               <Route path="profile" element={<ProfilePage />} />
-              <Route path="welcome" element={<Welcome />} />
             </Route>
         </Routes>
-      </Router>
-    </ThemeProvider>
+  </HashRouter>,
+    </>
   );
 }
 

@@ -1,17 +1,13 @@
 import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-// import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
-
 interface LoginFormProps {
-  // onClose: () => void;
   onRegister: () => void;
 }
 
@@ -44,19 +40,17 @@ const buttonSx: SxProps<Theme> = {
   fontWeight: "bold",
   color: "white",
   ["&:hover"]: {
-    // color: "primary.dark",
     boxShadow: 0,
     backgroundColor: "#AA4DB2",
   },
 };
 
-function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
+function LoginForm({ onRegister }: LoginFormProps) {
+  const navigate = useNavigate();
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
-  const navigate = useNavigate();
-
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -189,7 +183,6 @@ function LoginForm({ /*onClose,*/ onRegister }: LoginFormProps) {
           don't have an account?{" "}
           <span
             style={{ fontWeight: "bold", cursor: "pointer" }}
-            // onClick={routeChange}
             onClick={onRegister}
           >
             Register here

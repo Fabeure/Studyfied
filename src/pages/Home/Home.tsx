@@ -9,7 +9,7 @@ function Home() {
           <div id="landing-page" className="mt-[80px] ml-[50px]  ">
             <Landingpage />
           </div>
-          <div id="demo" className="mt-[200px]   ">
+          <div id="demo" className="mt-[120px]   ">
             <Demo />
           </div>
         </div>
