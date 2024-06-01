@@ -5,6 +5,7 @@ import {
   createContext,
   useState,
   useEffect,
+  
 } from "react";
 
 type User = {
@@ -67,11 +68,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("user");
   };
 
-  // Update localStorage when user changes
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
-  
   // Update localStorage when user changes
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));

@@ -39,22 +39,25 @@ const handleStudyFluxClick=()=>{
   else
   navigate("welcome");
 }
-
+const handleLogout=()=>{
+  localStorage.removeItem("user");
+  window.location.reload();
+}
 
   return (
     <>
       <nav className="navbar flex flex-end w-full">
         <div className="left-container flex items-center w-full mr-[20px] md:ml-[40px]  xl:ml-[60px]  h-[4rem]">
-          <div className="logo-name cursor-pointer sm:px-[10px]  md:px-[30px] xl:px-[60px] h-[3rem] flex flex-row items-center   ">
+          <div  onClick={handleStudyFluxClick} className="logo-name cursor-pointer sm:px-[10px]  md:px-[30px] xl:px-[60px] h-[3rem] flex flex-row items-center   ">
             <div className="logo  ml-[10px] ">
               <img
                 className="logoImage"
                 src={logoLeaf}
                 alt="studyfluxLOGO"
-                onClick={() => navigate("/")}
+                
               />
             </div>
-            <div className="name " onClick={handleStudyFluxClick}>
+            <div className="name ">
               STUDYFLUX
             </div>
           </div>
@@ -81,13 +84,13 @@ const handleStudyFluxClick=()=>{
               className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[17px] "
               onClick={navigateToProfile}
             >
-              {user.email}
+              {user.name}
               <span className="w-[50%]">
                 <img className="profile-icon" src={profile} alt="logout" />
               </span>{" "}
             </button>
             <button
-              onClick={scrollDemo}
+              onClick={handleLogout}
               className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[17px]"
             >
               logout

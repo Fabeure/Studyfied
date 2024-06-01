@@ -50,8 +50,8 @@ function LoginForm({ onRegister }: LoginFormProps) {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
-  const { setUser } = useAuth();
-
+  const {setUser} = useAuth();
+ 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -81,7 +81,8 @@ function LoginForm({ onRegister }: LoginFormProps) {
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
-        setUser({ accessToken, email, userId });
+        const name = res.data?.name;
+        setUser({ accessToken, email, userId,name });
         navigate("welcome");
       })
       .catch((err) => {

@@ -11,7 +11,7 @@ function ProfilePage() {
         <div className="upper-part">
           <div className="text w-[80%]">
             <div className="first-text font-[500] text-[25px] text-white text-left">
-              👤 Hello {user.email}!
+              👤 Hello {user.name}!
             </div>
             <div className="second-text mt-[20px] text-white text-left">
               This is your profile page. you can see the progress you’ve made
@@ -48,7 +48,7 @@ function ProfilePage() {
             ))}
           </div>
         </div>
-
+        {/* this section is about the edit profile */}
         {/* <section className="edit-profile text-left mt-[50px]">
         <hr className="border-t-0.5 border-white my-4" />
 
@@ -68,8 +68,6 @@ function ProfilePage() {
         </section> */}
       </div>
     </div>
-
-    
   );
 }
 

@@ -12,9 +12,6 @@
   box-shadow: inset 0 0 5px rgba(183, 0, 255, 1);
 }
 
-
-
-
 .submit-btn {
   margin-top: 25px;
   border: none;
@@ -30,15 +27,12 @@
 }
 
 .submit-btn:hover {
-
   scale: 1.05;
 }
 
 .submit-btn:focus {
   outline: none;
 }
-
-
 
 .save-btn {
   margin-top: 25px;
@@ -47,8 +41,8 @@
   height: 30px;
   background: linear-gradient(to left,
       rgba(250, 6, 173, 0.32),
-      rgba(36, 5, 130, 0.2),
-      rgba(36, 5, 130, 0.2),
+      rgba(59, 5, 130, 0.15),
+      rgba(59, 5, 130, 0.15),
       rgba(250, 6, 173, 0.32));
   box-shadow: inset 0 0 10px rgba(63, 5, 130, 0.5);
   outline: none;

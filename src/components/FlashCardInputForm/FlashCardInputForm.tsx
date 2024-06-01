@@ -5,33 +5,36 @@ import AuthContext from "../../context/AuthProvider";
 import FlashCard from "../flashCard/flashCard";
 //import flashcard from "../../pages/FlashCards/Flashcard";
 
-
 interface FlashCardDto {
-  id: string,
-  userId: string,
-  items: Array<any>
+  id: string;
+  userId: string;
+  items: Array<any>;
 }
-const generateFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/generateFlashCard?`;
-const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/persistFlashCard?`;
+const generateFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/generateFlashCard`;
+const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/persistFlashCard`;
 
 function FlashCardInputForm() {
   const [topic, setTopic] = useState("");
-  const [numberOfCards, setNumberOfCards] = useState(0);
+  const [numberOfCards, setNumberOfCards] = useState(5);
   const [cards, setCards] = useState([]);
   const { user } = useContext(AuthContext);
+  const [flashcardsItems, setFlashcardsItems] = useState([]);
   //var numbercards=0;
   const saveFlashCardDto: FlashCardDto = {
     id: "",
     userId: "",
     items: [],
   };
+
   const getFlashCards = async () => {
-    console.log("inside the getFlashCards function user:",user);
-    const path = generateFlashCardsEndpoint;
-    const requestappend = path + "topic=" + topic + "&numberOfFlashCards=" + numberOfCards;
+    const params = {
+      topic: encodeURIComponent(topic || "the roman empire"),
+      numberOfFlashCards: numberOfCards || 5,
+    };
     axios
-      .post(requestappend)
+      .post(generateFlashCardsEndpoint, {}, { params })
       .then((res) => {
+        setFlashcardsItems(res.data.resultItem.items);
         let flashcardstest: any = [];
         flashcardstest = Object.entries(res.data.resultItem.items).map(
           ([question, answer]) => ({
@@ -39,30 +42,27 @@ function FlashCardInputForm() {
             answer,
           })
         );
-        console.log("flashcardstest: ", flashcardstest);
         setCards(flashcardstest);
-
-        // const accessToken = res.data?.accessToken;
       })
       .catch((err) => {
         console.log(err);
-        alert(" | check console");
+        alert(" error generating flash cards | check console");
       });
   };
 
   const saveFlashCards = async () => {
+    saveFlashCardDto.items = flashcardsItems;
+    saveFlashCardDto.userId = user?.userId || ""; 
     axios
       .post(saveFlashCardsEndpoint, saveFlashCardDto)
       .then((res) => {
-        console.log(user);
-        console.log("inside the axios flashcard post request");
         console.log(res);
         console.log(res.data);
         // const accessToken = res.data?.accessToken;
       })
       .catch((err) => {
         console.log(err);
-        alert(" | check console");
+        alert("error saving flash cards | check console");
       });
   };
 
@@ -104,7 +104,7 @@ function FlashCardInputForm() {
               value={topic}
               onChange={handleTopicChange}
               required
-              placeholder="enter your topic"
+              placeholder="the roman empire"
               className=" form_field w-[50%] rounded-[17px] px-[10px] placeholder-white   "
             />
             <input
@@ -112,6 +112,7 @@ function FlashCardInputForm() {
               id="number-input"
               name="number-input"
               value={numberOfCards}
+              placeholder="5"
               onChange={handleNumberChange}
               required
               className=" form_field rounded-[17px] px-[10px] input-white  w-[10%] "
