@@ -6,13 +6,13 @@ interface CardData {
 export const savedcardsData: CardData[] = [
   {
     id: 1,
-    description: "My saved flashcards",
+    description: "Flashcards",
     image: "flashcard",
   },
 
   {
     id: 2,
-    description: "My saved quizzes",
+    description: "Quizzes",
     image: "quiz",
   },
 ];

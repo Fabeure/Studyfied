@@ -77,12 +77,11 @@ function LoginForm({ onRegister }: LoginFormProps) {
     axios
       .post(loginEndpoint, loginData)
       .then((res) => {
-        console.log(res.data);
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
         const name = res.data?.name;
-        setUser({ accessToken, email, userId,name });
+        setUser({ accessToken, email, userId, name });
         navigate("welcome");
       })
       .catch((err) => {

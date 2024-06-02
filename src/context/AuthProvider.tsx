@@ -5,7 +5,6 @@ import {
   createContext,
   useState,
   useEffect,
-  
 } from "react";
 
 type User = {

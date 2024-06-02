@@ -8,7 +8,6 @@ import useAuth from "../../hooks/useAuth";
 
 function NavBar() {
   const { user } = useAuth();
-  console.log("user:",user);
   // const [showLoginPopup, setShowLoginPopup] = useState(false);
   const { promptLogin, setPromptLogin } = useAuth();
 

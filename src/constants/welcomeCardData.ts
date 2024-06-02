@@ -22,7 +22,7 @@ export const cardsData: CardData[] = [
       id: 4,
       description: "My quizzes",
       image: "quiz",
-      path: "/quizzes",
+      path: "/quiz",
     },
     {
       id: 3,
