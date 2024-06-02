@@ -21,6 +21,7 @@ function HowItWorks({ image, steps }: HowItWorksProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(true); // State to control component visibility
 
+
   const handleRightArrowClick = () => {
     setCurrentStep((prevStep) => {
       const nextStep = prevStep < steps.length - 1 ? prevStep + 1 : prevStep;
