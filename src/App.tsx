@@ -8,9 +8,9 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import FlashCardsPage from "./pages/FlashCards/FlashCards";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Welcome from "./pages/Welcome/Welcome";
 import QuizPage from "./pages/Quiz/QuizPage";
 import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
-
 
 function App() {
   return (
@@ -21,12 +21,12 @@ function App() {
         <Routes>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
-            ////// these routes should also be protected ⬇
-            <Route path="flashCards" element={<FlashCardsPage />} />
-            <Route path="quiz" element={<QuizPage />} />
-            <Route path="quiz/play" element={<QuizPlayPage />} />
             /////// Protected routes :
             <Route element={<RequireAuth />}>
+              <Route path="welcome" element={<Welcome />} />
+              <Route path="quizPlay" element={<QuizPlayPage />} />
+              <Route path="quiz" element={<QuizPage />} />
+              <Route path="flashCards" element={<FlashCardsPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
         </Routes>

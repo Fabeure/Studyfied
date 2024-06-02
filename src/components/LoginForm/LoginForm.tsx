@@ -50,8 +50,8 @@ function LoginForm({ onRegister }: LoginFormProps) {
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
-  const { setUser } = useAuth();
-
+  const {setUser} = useAuth();
+ 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -77,12 +77,13 @@ function LoginForm({ onRegister }: LoginFormProps) {
     axios
       .post(loginEndpoint, loginData)
       .then((res) => {
+        console.log(res.data);
         const accessToken = res.data?.accessToken;
         const email = res.data?.email;
         const userId = res.data?.userId;
         const name = res.data?.name;
-        setUser({ accessToken, email, userId, name });
-        navigate("profile")
+        setUser({ accessToken, email, userId,name });
+        navigate("welcome");
       })
       .catch((err) => {
         console.log(err);
@@ -92,7 +93,20 @@ function LoginForm({ onRegister }: LoginFormProps) {
   };
 
   return (
-    <Box>
+    <Box
+      // border={"3px solid"}
+      borderRadius={"3em"}
+      // borderColor="#AA4DB2"
+      paddingBottom={"2.5rem"}
+      paddingTop={"2.5rem"}
+      paddingX={"3rem"}
+      bgcolor={"rgba(29, 22, 45, 0.65)"}
+      minWidth={"fit-content"}
+      sx={{
+        backdropFilter: "blur(36px)",
+        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
+      }}
+    >
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
         <Grid
           item
@@ -102,7 +116,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
           justifyContent={"center"}
           columnGap={1}
         >
-          <h1 className="loginForm-title">Welcome back</h1>
+        <h1 className="loginForm-title">Welcome back</h1>
         </Grid>
         {loginDenied && (
           <Grid item xs>

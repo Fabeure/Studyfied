@@ -6,8 +6,9 @@ export default function RequireAuth() {
   const location = useLocation();
   if (user.accessToken == "") setPromptLogin(true);
   return promptLogin ? (
-    <Navigate to="/Studyfied/" state={{ from: location }} replace />
+
+    <Navigate to="/" state={{ from: location }} replace />
   ) : (
-    <Outlet />
-  );
+      <Outlet />
+      );
 }

@@ -17,7 +17,7 @@ const Feature = ({ id }: { id: number }) => {
   return (
     <>
       <div
-        className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row light-background " : "flex-row-reverse"} `}
+        className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row " : "flex-row-reverse  light-background"} `}
       >
         <div className="description-container w-[50%]">
           <div className={`positioning  ${!(id % 2) ? null : "ml-[5%] "} `}>
