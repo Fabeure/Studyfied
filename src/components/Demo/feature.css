@@ -24,10 +24,10 @@
   border-radius: 20px;
   background: linear-gradient(
     to left,
-    rgba(250, 6, 156, 0.1) 40%,
+    rgba(155, 1, 96, 0.1) 40%,
     rgba(115, 0, 186, 0.1),
     rgba(36, 5, 130, 0.1)
-  ) !important;
+  );
   color: white;
   font-weight: lighter;
   font-style: italic;
@@ -35,6 +35,12 @@
 }
 
 .tryIt:hover {
+  background: linear-gradient(
+    to left,
+    rgba(155, 1, 96, 0.15) 40%,
+    rgba(115, 0, 186, 0.15),
+    rgba(36, 5, 130, 0.15)
+  );
   color: #f7dbff;
   border: 1px solid rgba(201, 120, 255, 0.1);
   box-shadow: 0px 0px 20px rgba(6, 0, 8, 0.3);

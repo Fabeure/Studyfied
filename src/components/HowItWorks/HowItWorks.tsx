@@ -65,7 +65,7 @@ function HowItWorks({ image, steps }: HowItWorksProps) {
   // Render button if it's the last step
   const renderButton = () => {
     if (showButton) {
-      return <button onClick={handleButtonClick}>Got It!</button>;
+      return <button className=" submitBtn rounded-[20px] h-[40px] flex justify-center items-center w-[150px]" onClick={handleButtonClick}>Got It!</button>;
     }
   };
   if (!isVisible) {
