@@ -1,8 +1,13 @@
 import FlashCardInputForm from "../../components/FlashCardInputForm/FlashCardInputForm";
+import { FlashcardModel } from "../../models/flashcardModel";
+import { useLocation } from "react-router-dom";
 /* import HowItWorks from "../../components/HowItWorks/HowItWorks";
 import flashCards from "../../assets/demo/flashcard.png";
 import { useState } from "react"; */
 function FlashCardsPage() {
+  const location = useLocation();
+  const flashCard = location.state?.savedFlashCard as FlashcardModel;
+
   //check if it's the first time the user use the app
   //if it's the first time, show the how it works component
 /*   { ? (
@@ -23,7 +28,7 @@ function FlashCardsPage() {
   ) : null} */
   return (
     <div>
-      <FlashCardInputForm />
+      <FlashCardInputForm userId={flashCard ? flashCard.userId : ""} items={flashCard ? flashCard.items : []} />
     </div>
   );
 }

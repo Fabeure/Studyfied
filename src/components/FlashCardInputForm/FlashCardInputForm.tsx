@@ -1,31 +1,39 @@
-import { useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./FlashCardInputForm.css"; // Import your CSS file
 import axios from "axios";
 import AuthContext from "../../context/AuthProvider";
 import FlashCard from "../flashCard/flashCard";
-//import flashcard from "../../pages/FlashCards/Flashcard";
+import { CircularProgress } from "@mui/material";
+import { FlashcardItem, FlashcardModel } from "../../models/flashcardModel";
 
-interface FlashCardDto {
-  id: string;
-  userId: string;
-  items: Array<any>;
-}
 const generateFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/generateFlashCard`;
 const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/persistFlashCard`;
 
-function FlashCardInputForm() {
+function FlashCardInputForm(existingFlashCard: FlashcardModel) {
   const [topic, setTopic] = useState("");
   const [numberOfCards, setNumberOfCards] = useState(5);
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<Array<FlashcardItem>>([]);
   const { user } = useContext(AuthContext);
-  const [flashcardsItems, setFlashcardsItems] = useState([]);
-  //var numbercards=0;
-  const saveFlashCardDto: FlashCardDto = {
-    id: "",
-    userId: "",
-    items: [],
-  };
+  const [loading, setLoading] = useState(false);
+  const [hasSaved, setHasSaved] = useState(true);
+  const [flashcardsItems, setFlashcardsItems] = useState<Array<FlashcardItem>>([]);
 
+
+  useEffect(() => {
+    console.log("here");
+    if (existingFlashCard?.userId !== "") {
+        setTopic("");
+        const existingFlashCards: FlashcardItem[] = Object.entries(existingFlashCard.items as unknown as Items).map(
+            ([question, answer]): FlashcardItem => ({ question, answer })
+        );
+        setCards(existingFlashCards);
+    }
+}, [existingFlashCard]);
+
+  interface Items {
+    [key: string]: string;
+  }
+  
   const getFlashCards = async () => {
     const params = {
       topic: encodeURIComponent(topic || "the roman empire"),
@@ -34,31 +42,33 @@ function FlashCardInputForm() {
     axios
       .post(generateFlashCardsEndpoint, {}, { params })
       .then((res) => {
-        setFlashcardsItems(res.data.resultItem.items);
-        let flashcardstest: any = [];
-        flashcardstest = Object.entries(res.data.resultItem.items).map(
-          ([question, answer]) => ({
-            question,
-            answer,
-          })
+        setFlashcardsItems(res.data.resultItem.items as Array<FlashcardItem>);
+        let flashcardstest: Array<FlashcardItem> = [];
+
+        flashcardstest = Object.entries(res.data.resultItem.items as Items).map(
+          ([question, answer]): FlashcardItem => ({ question, answer })
         );
         setCards(flashcardstest);
       })
       .catch((err) => {
         console.log(err);
         alert(" error generating flash cards | check console");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   const saveFlashCards = async () => {
-    saveFlashCardDto.items = flashcardsItems;
-    saveFlashCardDto.userId = user?.userId || ""; 
+    setHasSaved(true);
+
+    const flashCardToSave : FlashcardModel = {
+      userId: user?.userId || "NA",
+      items: flashcardsItems,
+    }
     axios
-      .post(saveFlashCardsEndpoint, saveFlashCardDto)
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        // const accessToken = res.data?.accessToken;
+      .post(saveFlashCardsEndpoint, flashCardToSave)
+      .then(() => {
       })
       .catch((err) => {
         console.log(err);
@@ -66,15 +76,20 @@ function FlashCardInputForm() {
       });
   };
 
-  const handleTopicChange = (event: any) => {
-    setTopic(event.target.value);
+  const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {value} = event.target
+    setTopic(value);
   };
 
-  const handleNumberChange = (event: any) => {
-    setNumberOfCards(event.target.value);
+  const handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+     const {value} = event.target
+     const valueInt = parseInt(value);
+    setNumberOfCards(valueInt);
   };
 
-  const handleGnenerate = (event: any) => {
+  const handleGenerate = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setLoading(true);
+    setHasSaved(false);
     event.preventDefault();
 
     try {
@@ -104,7 +119,7 @@ function FlashCardInputForm() {
               value={topic}
               onChange={handleTopicChange}
               required
-              placeholder="the roman empire"
+              placeholder={existingFlashCard.userId != "" ? "":"the roman empire"}
               className=" form_field w-[50%] rounded-[17px] px-[10px] placeholder-white   "
             />
             <input
@@ -118,17 +133,21 @@ function FlashCardInputForm() {
               className=" form_field rounded-[17px] px-[10px] input-white  w-[10%] "
             />
             <button
-              onClick={handleGnenerate}
+              onClick={handleGenerate}
               className="submit-btn text-white flex items-center rounded-[17px]  w-[12%] justify-center "
+              disabled={loading}
             >
-              generate
+            { !loading && "Generate"}
+              {loading && (
+                  <CircularProgress sx={{ color: "rgba(255,255,255,0.7)" }} />
+                  )}
             </button>
-            <button
+            {   !hasSaved && !loading  &&       <button
               onClick={saveFlashCards}
               className="save-btn text-white flex items-center rounded-[17px]  w-[12%] justify-center "
             >
-              save
-            </button>
+              Save
+            </button>}
           </form>
         </div>
       </div>

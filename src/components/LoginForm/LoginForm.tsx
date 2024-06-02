@@ -92,20 +92,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
   };
 
   return (
-    <Box
-      // border={"3px solid"}
-      borderRadius={"3em"}
-      // borderColor="#AA4DB2"
-      paddingBottom={"2.5rem"}
-      paddingTop={"2.5rem"}
-      paddingX={"3rem"}
-      bgcolor={"rgba(29, 22, 45, 0.65)"}
-      minWidth={"fit-content"}
-      sx={{
-        backdropFilter: "blur(36px)",
-        boxShadow: "0 0 12px 4px rgba(170, 77, 178, 0.3)",
-      }}
-    >
+    <Box>
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
         <Grid
           item

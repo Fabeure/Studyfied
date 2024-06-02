@@ -126,6 +126,7 @@ export default function QuizPage() {
                 fontWeight: "bold",
                 textAlign: "left",
                 lineHeight: "1",
+                color: "white"
               }}
             >
               Test your knowledge <br />
@@ -135,6 +136,7 @@ export default function QuizPage() {
                   fontSize: "3rem",
                   fontWeight: "100",
                   fontStyle: "italic",
+                  color: "white"
                 }}
               >
                 What's the topic ?
@@ -197,6 +199,7 @@ export default function QuizPage() {
                     fontSize: "2rem",
                     fontWeight: "100",
                     fontStyle: "italic",
+                    color: "white"
                   }}
                 >
                   questions.
@@ -227,7 +230,7 @@ export default function QuizPage() {
           direction={"column"}
           alignItems={"center"}
           justifyContent={"end"}
-          height={"520px"}
+          height={"320px"}
           minWidth={"fit-content"}
         >
           <Grid item>

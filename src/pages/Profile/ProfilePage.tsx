@@ -3,8 +3,11 @@ import { savedcardsData } from "../../constants/savedCardsData";
 import { Tilt } from "react-tilt";
 import flashcard from "../../assets/demo/flashcard.png";
 import quiz from "../../assets/demo/quiz.png";
+import { useNavigate } from "react-router-dom";
 function ProfilePage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-center">
       <div className="profile-container w-[80%] mt-[7%] ">
@@ -26,18 +29,19 @@ function ProfilePage() {
         <div className="container cards mt-[50px]">
           <div className="flex flex-wrap justify-center cards-container">
             {savedcardsData.map((card) => (
-              <div className="fragment-like" key={card.id}>
+              <div className="fragment-like" key={card.id} >
                 <Tilt
                   className="card-container cursor-pointer items-center m-[20px] flex justify-center flex-col"
                   options={{ max: 20, scale: 1.05, speed: 45 }}
                   style={{ transition: "transform 0.1s ease-in-out" }}
                 >
-                  <div className="card w-full h-full flex justify-center flex-col">
+                  <div className="card w-full h-full flex justify-center flex-col"
+                  onClick={() => {navigate(card.url)}}>
                     <div className="card-image h-[40%] flex justify-center">
                       <img
                         className="icon"
                         src={card.image === "flashcard" ? flashcard : quiz}
-                      />
+                      />.
                     </div>
                     <div className="card-description font-light lg:text-[25px] md:text-[20px] mt-[20px] text-white flex flex-row justify-center items-center">
                       {card.description}

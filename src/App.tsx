@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./pages/Welcome/Welcome";
 import QuizPage from "./pages/Quiz/QuizPage";
 import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
+import SavedFlashCards from "./pages/SavedFlashCards/SavedFlashCards";
 
 function App() {
   return (
@@ -28,9 +29,10 @@ function App() {
               <Route path="quiz" element={<QuizPage />} />
               <Route path="flashCards" element={<FlashCardsPage />} />
               <Route path="profile" element={<ProfilePage />} />
+              <Route path="myFlashCards" element={<SavedFlashCards />} />
             </Route>
         </Routes>
-  </HashRouter>,
+  </HashRouter>
     </>
   );
 }
