@@ -81,7 +81,7 @@ const handleLogout=()=>{
           //authorized user
           <div className="left-container flex items-center row-reverse mr-[20px] md:mr-[50px] xl:mr-[60px] ">
             <button
-              className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[17px] "
+              className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[15px] "
               onClick={navigateToProfile}
             >
               {user.name}
@@ -91,7 +91,7 @@ const handleLogout=()=>{
             </button>
             <button
               onClick={handleLogout}
-              className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[17px]"
+              className="button-auth  flex  justify-center items-center h-[29px] w-[110px] md:w-[120px] lg:w-[140px]  xl:w-[150px] mr-[10px] text-[10px] md:text-[12px] lg:text-[15px]"
             >
               logout
               <span>
