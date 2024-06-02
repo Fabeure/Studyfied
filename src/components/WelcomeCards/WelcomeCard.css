@@ -1,0 +1,20 @@
+.welcomeCard-container {
+  height: 200px;
+  width: 40%;
+  border-radius: 50px;
+  background-color: rgba(48, 7, 62, 0.192);
+  box-shadow: 0px 0px 15px rgba(77, 14, 100, 0.7);
+}
+.welcomeCard-container:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 20px rgba(77, 14, 100, 1);
+}
+
+@media (max-width: 768px) {
+  .card {
+    height: 150px;
+  }
+}
+.fragment-like {
+  display: contents; /* This makes the div behave as if it's not there in terms of layout */
+}

@@ -1,10 +1,10 @@
-export class flashcardModel {
-  // constructor(question, answer) {
-  //     this.question = question;
-  //     this.answer = answer;
-  // }
-  question: string = "";
-  answer: string = "";
-  id: string = "";
+export interface FlashcardModel {
+  id?: string;
+  userId: string;
+  items: Array<FlashcardItem>;
 }
-export default flashcardModel;
+
+export interface FlashcardItem {
+  question: string,
+  answer: string
+}
