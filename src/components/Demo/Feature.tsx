@@ -6,14 +6,18 @@ import { Tilt } from "react-tilt";
 import summary from "../../assets/demo/summary.png";
 import quiz from "../../assets/demo/quiz.png";
 import screenshot from "../../assets/screenshot.png";
+import { useNavigate } from "react-router-dom";
 
 const Feature = ({ id }: { id: number }) => {
   const data = demoData[id - 1];
-
+  const navigate = useNavigate();
+  const handleClick = (topic: string) => {
+    navigate(topic);
+  };
   return (
     <>
       <div
-        className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row light-background " : "flex-row-reverse"} `}
+        className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row " : "flex-row-reverse  light-background"} `}
       >
         <div className="description-container w-[50%]">
           <div className={`positioning  ${!(id % 2) ? null : "ml-[5%] "} `}>
@@ -65,6 +69,7 @@ const Feature = ({ id }: { id: number }) => {
           <div className=" w-full">
             <button
               className={` ${id % 2 ? " ml-[5%]" : " ml-[60%] lg:ml-[70%] "} mt-[25px] lg:text-[16px] md:text-[13px] text-[10px] tryIt tracking-[0.09rem]`}
+              onClick={() => handleClick(data.topic)}
             >
               Try it now!
             </button>
