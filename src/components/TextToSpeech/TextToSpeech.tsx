@@ -1,51 +1,37 @@
 import { FormEvent, useContext, useState, useEffect } from "react";
 import { AppContext } from "../../context/IsPlayingContext";
+import axios from 'axios';
 
 const TextToSpeech = () => {
   const [userText, setUserText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { isPlaying, setIsPlaying } = useContext(AppContext);
-const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [audioUrl, setAudioUrl] = useState("");
 
-useEffect(() => {
-    if (typeof window !== "undefined") {
-        const synth = window.speechSynthesis;
-        setVoices(synth.getVoices());
+  const generateSpeech = async (textToSpeak: string) => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/generate-speech', {
+        text: textToSpeak,
+        voice: "s3://voice-cloning-zero-shot/801a663f-efd0-4254-98d0-5c175514c3e8/jennifer/manifest.json"
+      }, { responseType: 'arraybuffer' });
+
+      const blob = new Blob([response.data], { type: 'audio/mpeg' });
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      console.error('Error generating speech:', error);
+      throw new Error('Failed to generate speech');
     }
-}, []);
-
-console.log(voices);
-
-  const streamingOptions = {
-    voiceEngine: "PlayHT2.0-turbo",
-    voiceId: "s3://voice-cloning-zero-shot/d9ff78ba-d016-47f6-b0ef-dd630f59414e/female-cs/manifest.json",
-    sampleRate: 44100,
-    outputFormat: 'mp3',
-    speed: 1,
   };
 
-  const selectedVoice = voices.find((voice) => voice.name === "Tessa");
-
-const speak = async (textToSpeak: string | undefined) => {
-    // Here you can add your TTS logic using PlayHT or the Web Speech API
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.rate = 0.8;
-    utterance.voice = selectedVoice || null;
-
-    window.speechSynthesis.speak(utterance);
-    setIsPlaying(true);
-    utterance.onend = () => {
-        setIsPlaying(false);
-    };
-};
-
-  async function handleUserText(event: { preventDefault: () => void; }) {
+  const handleUserText = async (event: FormEvent) => {
     event.preventDefault();
     if (userText === "") return alert("Please enter text");
     setIsLoading(true);
     try {
-      const message = "hello there human" 
-      speak(message);
+      const userText = "Hello, I am a virtual assistant. How can I help you? GOOD job your a good developer.";
+      const audioUrl = await generateSpeech(userText);
+      setAudioUrl(audioUrl);
+      setIsPlaying(true);
     } catch (error) {
       let message = "";
       if (error instanceof Error) message = error.message;
@@ -54,7 +40,17 @@ const speak = async (textToSpeak: string | undefined) => {
       setIsLoading(false);
       setUserText("");
     }
-  }
+  };
+
+  useEffect(() => {
+    if (audioUrl && isPlaying) {
+      const audio = new Audio(audioUrl);
+      audio.play();
+      audio.onended = () => {
+        setIsPlaying(false);
+      };
+    }
+  }, [audioUrl, isPlaying]);
 
   return (
     <div className="relative top-0 z-50 ">
@@ -77,8 +73,8 @@ const speak = async (textToSpeak: string | undefined) => {
         </button>
       </form>
       <div className="absolute top-3 right-3">
-        <a target="_blank"  rel="noopener noreferrer">
-          <img  alt="yt" height={50} width={50} />
+        <a target="_blank" rel="noopener noreferrer">
+          <img alt="yt" height={50} width={50} />
         </a>
         <div className="absolute top-0 bg-black/60" />
       </div>
