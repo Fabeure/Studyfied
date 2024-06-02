@@ -8,7 +8,7 @@ function FlashCardsPage() {
   const location = useLocation();
   const flashCard = location.state?.savedFlashCard as FlashcardModel;
 
-  const [firstTime, setFirstTime] = useState(() => {
+  const [firstTime] = useState(() => {
     const first = localStorage.getItem("firstTime");
     return first !== "false";
   });
@@ -18,6 +18,7 @@ function FlashCardsPage() {
     if (firstTime) {
       localStorage.setItem("firstTime", "false");
     }
+  
   }, [firstTime]);
 
 
