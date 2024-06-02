@@ -7,15 +7,8 @@ interface CardData {
 export const savedcardsData: CardData[] = [
   {
     id: 1,
-    description: "Flashcards",
+    description: "Browser My Flashcards",
     image: "flashcard",
     url: "/myFlashCards"
-  },
-
-  {
-    id: 2,
-    description: "Quizzes",
-    image: "quiz",
-    url: "myQuiz"
   },
 ];
