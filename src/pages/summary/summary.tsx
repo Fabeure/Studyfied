@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { IsPlayingProvider } from "../../context/IsPlayingContext";
 import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
 import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
+import HowItWorks from "../../components/HowItWorks/HowItWorks";
+import summaries from "../../assets/demo/summary.png";
 
 function Summary() {
   const summaryEndpoint =
@@ -14,6 +16,22 @@ function Summary() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [base64Files, setBase64Files] = useState<string[]>([]);
   const [requestSent, setrequestSent] = useState<boolean>(false);
+
+  const  [isFirstVisit] = useState(() => {
+    const visitKey = `visited_sum`;
+    const first = localStorage.getItem(visitKey);
+
+    return first !== "false";
+
+    });
+
+    useEffect(() => {
+   
+      if (isFirstVisit) {
+        localStorage.setItem("visited_sum", "false");
+      }
+    
+    }, [isFirstVisit]);
 
   const scriptedTexts = [
     `Welcome to your Summary Page! This is where you can get a quick overview of your accomplishments and key highlights. Let's review your achievements together!`,
@@ -116,6 +134,23 @@ function Summary() {
         Hello. enter the pictures or screenshots of the course you want to
         summarize and click summarize!
       </div>
+      {isFirstVisit && (
+        <HowItWorks
+          image={{ url:summaries }}
+          steps={[
+            {
+              text: " Choose the pictures or screenshots of the course material you want to summarize. You can upload multiple files at once for comprehensive coverage.",
+            },
+            {
+              text: "Once your files are uploaded, simply click the 'Summarize' button. Our tool will process the content and generate a concise summary for you.",
+            },
+            {
+              text: "In moments, you'll have a clear and concise summary of your uploaded material. Use this to quickly grasp key concepts and important information.",
+            }
+           
+          ]}
+        />
+      )}
       <br />
 
       <div className="input text-left flex flex-col">
