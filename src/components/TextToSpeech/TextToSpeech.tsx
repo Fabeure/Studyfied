@@ -1,8 +1,9 @@
-import { FormEvent, useContext, useState, useEffect} from "react";
+import { FormEvent, useContext, useState, useEffect } from "react";
 import { AppContext } from "../../context/IsPlayingContext";
 import axios from "axios";
 import { Button, CircularProgress, SxProps, Theme } from "@mui/material";
 import ChatMessage from "./ChatMessage";
+import useAuth from "../../hooks/useAuth";
 interface Message {
   sender: "user" | "bot";
   text: string;
@@ -10,20 +11,20 @@ interface Message {
 
 const chatBotApiEndpoint = `${process.env.VITE_BACKEND_API}/api/ChatBot/generateResponse`;
 
-
 const generatePromptFromtMessages = (messages: Message[]) => {
-  let prompt = '';
+  let prompt = "";
   messages.map((message) => {
-    prompt += message.sender + ': ' + message.text.trim() + '\n';
+    prompt += message.sender + ": " + message.text.trim() + "\n";
   });
   return prompt.trim();
 };
-const TextToSpeech = ()=> {
+const TextToSpeech = () => {
   const [userText, setUserText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { isPlaying, setIsPlaying } = useContext(AppContext);
   const [audioUrl, setAudioUrl] = useState("");
   const [conversation, setConversation] = useState<Message[]>([]);
+  const { user } = useAuth();
   const generateSpeech = async (textToSpeak: string) => {
     try {
       const response = await axios.post(
@@ -45,11 +46,15 @@ const TextToSpeech = ()=> {
   };
 
   const getReply = (): void => {
-    const newConversation = [...conversation, { sender: "user", text: userText } as Message ]
+    const newConversation = [
+      ...conversation,
+      { sender: "user", text: userText } as Message,
+    ];
     setConversation(newConversation);
     const conversationToSend = generatePromptFromtMessages(newConversation);
     const params = {
       conversation: encodeURIComponent(conversationToSend),
+      token: user.accessToken,
     };
 
     axios
@@ -65,21 +70,21 @@ const TextToSpeech = ()=> {
             text: res.data.resultItem,
           },
         ]);
-        console.log("reply has been set", res.data.resultItem)
+        console.log("reply has been set", res.data.resultItem);
       })
       .catch((err) => {
         console.log(err);
         alert(" error getting bot reply | check console");
-      })
+      });
   };
 
   const handleUserText = async (event: FormEvent) => {
     event.preventDefault();
     if (userText === "") return alert("Please enter text");
     setIsLoading(true);
-      getReply();
-      setIsLoading(false);
-      setUserText("");
+    getReply();
+    setIsLoading(false);
+    setUserText("");
   };
 
   useEffect(() => {

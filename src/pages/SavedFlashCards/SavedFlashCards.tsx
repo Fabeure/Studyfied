@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from "react";
-import AuthContext from "../../context/AuthProvider";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SavedFlashCards.css";
 import axios from "axios";
 import { FlashcardModel } from "../../models/flashcardModel";
+import useAuth from "../../hooks/useAuth";
 
 const getSavedFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/getFlashCardsByUserId`;
 
 function SavedFlashCards() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [savedSets, setSavedSets] = useState<FlashcardModel[]>([]);
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ function SavedFlashCards() {
       try {
         const params = {
           userId: encodeURIComponent(user?.userId),
+          token: user.accessToken,
         };
 
         const response = await axios.get(getSavedFlashCardsEndpoint, {

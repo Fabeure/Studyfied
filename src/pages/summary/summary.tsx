@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 import { IsPlayingProvider } from "../../context/IsPlayingContext";
 import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
 import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
+import useAuth from "../../hooks/useAuth";
 import HowItWorks from "../../components/HowItWorks/HowItWorks";
 import summaries from "../../assets/demo/summary.png";
-
 function Summary() {
   const summaryEndpoint =
     process.env.VITE_BACKEND_API + "/api/Resumes/getResume";
@@ -16,6 +16,15 @@ function Summary() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [base64Files, setBase64Files] = useState<string[]>([]);
   const [requestSent, setrequestSent] = useState<boolean>(false);
+  const { user } = useAuth();
+  const scriptedTexts = [
+    `Welcome to your Summary Page! This is where you can get a quick overview of your accomplishments and key highlights. Let's review your achievements together!`,
+    `Excited to see your summary? Let's dive in! Your accomplishments are worth celebrating.`,
+    `First time on the Summary Page? Get ready to reflect on your journey and see how far you've come.`,
+    `Welcome back to your Summary Page! Ready to update your highlights and reflect on your progress?`,
+    `Great to see you again! Let's review your summary and ensure it reflects your current achievements and goals.`,
+    `You're back for more! Consistency is key to success. Let's review and refine your summary for maximum impact!`,
+  ];
 
   const  [isFirstVisit] = useState(() => {
     const visitKey = `visited_sum`;
@@ -32,15 +41,6 @@ function Summary() {
       }
     
     }, [isFirstVisit]);
-
-  const scriptedTexts = [
-    `Welcome to your Summary Page! This is where you can get a quick overview of your accomplishments and key highlights. Let's review your achievements together!`,
-    `Excited to see your summary? Let's dive in! Your accomplishments are worth celebrating.`,
-    `First time on the Summary Page? Get ready to reflect on your journey and see how far you've come.`,
-    `Welcome back to your Summary Page! Ready to update your highlights and reflect on your progress?`,
-    `Great to see you again! Let's review your summary and ensure it reflects your current achievements and goals.`,
-    `You're back for more! Consistency is key to success. Let's review and refine your summary for maximum impact!`
-  ];
 
   useEffect(() => {
     if (loading) {
@@ -98,7 +98,10 @@ function Summary() {
       return;
     }
     try {
-      const response = await axios.post(summaryEndpoint, base64Files);
+      const params = { token: user.accessToken };
+      const response = await axios.post(summaryEndpoint, base64Files, {
+        params,
+      });
       setLoading(false);
       const data = response.data;
       setResume(data.resultItem.resumeContents);
@@ -205,11 +208,10 @@ function Summary() {
         </div>
       ) : null}
       <IsPlayingProvider>
-        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={'summary'}/>
+        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={"summary"} />
         <ChatBotCanvas />
       </IsPlayingProvider>
     </div>
-    
   );
 }
 export default Summary;
