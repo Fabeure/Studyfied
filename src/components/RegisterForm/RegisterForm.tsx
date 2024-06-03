@@ -1,6 +1,14 @@
-import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  SxProps,
+  TextField,
+  Theme,
+} from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRegisterValidation } from "../../hooks/useRegisterValidation";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
@@ -39,12 +47,14 @@ const buttonSx: SxProps<Theme> = {
   borderRadius: "3em",
   boxShadow: 0,
   textTransform: "none",
-  backgroundColor: "#A693CD",
+  background:
+    "linear-gradient(318deg, rgba(240,177,255,0.8) 0%, rgba(115,66,238,0.5) 100%)",
   fontWeight: "bold",
   color: "white",
   ["&:hover"]: {
     boxShadow: 0,
-    backgroundColor: "#AA4DB2",
+    background:
+      "linear-gradient(318deg, rgba(240,177,255,1) 0%, rgba(115,66,238,1) 100%)",
   },
 };
 
@@ -64,6 +74,8 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
   });
   const [disableRegister, setDisableRegister] = useState(true);
   const [registerDenied, setRegisterDenied] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const hasChangedForm = useRef(false);
 
   //  custom hook
   useRegisterValidation(
@@ -75,14 +87,7 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
       fullName: regFullName,
       errorMessages: errorMessages,
     },
-    {
-      email: setRegEmail,
-      password: setRegPassword,
-      confirmPassword: setRegConfirmPass,
-      fullName: setRegFullName,
-      username: setRegUsername,
-      errorMessages: setErrorMessages,
-    }
+    setErrorMessages
   );
 
   useEffect(() => {
@@ -106,6 +111,7 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    hasChangedForm.current = true;
     const { name, value } = event.target;
     switch (name) {
       case "regemail":
@@ -138,16 +144,21 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
       Password: regPassword,
       ConfirmPassword: regConfirmPass,
     };
+    setLoading(true);
     axios
       .post(registerEndpoint, registerData)
       .then((res) => {
         console.log(res.data);
         alert("account created");
+        if (onLogin) onLogin();
       })
       .catch((err) => {
         console.log(err);
         alert("check console");
         setRegisterDenied(true);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -308,12 +319,13 @@ function RegisterForm({ onLogin }: RegisterFormProps) {
         <Grid item xs={12}>
           <Button
             variant="contained"
-            disabled={disableRegister}
+            disabled={disableRegister || loading || !hasChangedForm.current}
             color="primary"
             sx={buttonSx}
             onClick={handleRegister}
           >
-            Register
+            {!loading && "Register"}
+            {loading && <CircularProgress sx={{ color: "rgb(240,177,255)" }} />}
           </Button>
         </Grid>
         <Grid item xs sx={{ color: "white" }}>
