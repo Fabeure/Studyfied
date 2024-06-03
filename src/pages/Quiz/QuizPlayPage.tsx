@@ -34,7 +34,7 @@ export default function QuizPlayPage() {
   };
 
   return (
-    <Box paddingTop={"1rem"} paddingX={"2rem"} minWidth={"fit-content"}>
+    <Box component="div" paddingTop={"1rem"} paddingX={"2rem"} minWidth={"fit-content"}>
       {phase == "reveal" && (
         <QuestionReveal
           question={getQuestion(currentQuestion, quiz)}
