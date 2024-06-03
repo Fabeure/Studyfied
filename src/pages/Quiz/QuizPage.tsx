@@ -101,7 +101,8 @@ export default function QuizPage() {
   };
 
   return (
-    <Box component="div"
+    <Box
+      component="div"
       paddingBottom={"2rem"}
       paddingTop={"1rem"}
       paddingX={"2rem"}
@@ -126,7 +127,7 @@ export default function QuizPage() {
                 fontWeight: "bold",
                 textAlign: "left",
                 lineHeight: "1",
-                color: "white"
+                color: "white",
               }}
             >
               Test your knowledge <br />
@@ -136,7 +137,7 @@ export default function QuizPage() {
                   fontSize: "3rem",
                   fontWeight: "100",
                   fontStyle: "italic",
-                  color: "white"
+                  color: "white",
                 }}
               >
                 What's the topic ?
@@ -152,7 +153,8 @@ export default function QuizPage() {
             direction={"row"}
           >
             <Grid item xs minWidth={"500px"}>
-              <Box component="div"
+              <Box
+                component="div"
                 sx={{
                   background:
                     "linear-gradient(to right, rgb(187, 87, 254), rgb(112, 216, 222))",
@@ -179,7 +181,7 @@ export default function QuizPage() {
           >
             <Grid item xs>
               <QuizSelection
-                options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                options={[1, 2, 3, 4]}
                 defaultValue={4}
                 onChange={handleLengthChange}
               />
@@ -192,14 +194,17 @@ export default function QuizPage() {
               />
             </Grid>
             <Grid item xs>
-              <Box component="div" sx={{ textAlign: "left", fontSize: "1.3rem" }}>
+              <Box
+                component="div"
+                sx={{ textAlign: "left", fontSize: "1.3rem" }}
+              >
                 <h1
                   style={{
                     width: "fit-content",
                     fontSize: "2rem",
                     fontWeight: "100",
                     fontStyle: "italic",
-                    color: "white"
+                    color: "white",
                   }}
                 >
                   questions.
