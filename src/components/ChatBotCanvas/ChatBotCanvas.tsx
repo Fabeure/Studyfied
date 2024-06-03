@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppContext } from "../../context/IsPlayingContext";
 import {
 	Environment,
@@ -36,6 +35,11 @@ const Head = () => {
 			}, 500);
 		}
 	}, [isPlaying, action]);
+
+	console.log(depthBuffer)
+	console.log(setIsPlaying)
+	console.log(Vector3)
+	console.log(useRef, useFrame, useThree,SpotLight, Environment)
 
 	useEffect(() => {
 		model.scene.rotation.copy(new Euler(0, Math.PI*1.5, 0)); // Rotate the model to face forward
