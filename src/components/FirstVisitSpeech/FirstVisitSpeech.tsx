@@ -40,7 +40,7 @@ function FirstVisitSpeech({ scriptedTexts, pageName }: { scriptedTexts: string[]
   
 
   useEffect(() => {
-    console.log(isFirstVisit);
+    console.log(isFirstVisit, isPlaying);
     const scriptedText = isFirstVisit ? scriptedTexts[Math.floor(Math.random() * 3)] : scriptedTexts[3 + Math.floor(Math.random() * 3)];
     localStorage.setItem(`visited_${pageName}`, "false");
     console.log("audio");
