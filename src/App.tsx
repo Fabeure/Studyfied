@@ -8,6 +8,7 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import FlashCardsPage from "./pages/FlashCards/FlashCards";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Summary from "./pages/summary/summary";
 import Welcome from "./pages/Welcome/Welcome";
 import QuizPage from "./pages/Quiz/QuizPage";
 import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
@@ -22,6 +23,8 @@ function App() {
         <Routes>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="flashCards" element={<FlashCardsPage />} />
+            <Route path="summary" element={<Summary/>} />
             /////// Protected routes :
             <Route element={<RequireAuth />}>
               <Route path="welcome" element={<Welcome />} />
