@@ -18,7 +18,7 @@ import { Euler } from "three";
 
 //Resource to Head : https://sketchfab.com/3d-models/blender-sushi-virtual-journal-16th-april-2020-634af2ae983f4fb8a9295e6b1b3d5c74
 const Head = () => {
-	const { isPlaying, setIsPlaying } = useContext(AppContext);
+	const { isPlaying } = useContext(AppContext);
 	const model = useGLTF("./head.glb");
 	const animations = useAnimations(model.animations, model.scene);
 	const action = animations.actions.Animation;
@@ -36,10 +36,7 @@ const Head = () => {
 		}
 	}, [isPlaying, action]);
 
-	console.log(depthBuffer)
-	console.log(setIsPlaying)
-	console.log(Vector3)
-	console.log(useRef, useFrame, useThree,SpotLight, Environment)
+
 
 	useEffect(() => {
 		model.scene.rotation.copy(new Euler(0, Math.PI*1.5, 0)); // Rotate the model to face forward

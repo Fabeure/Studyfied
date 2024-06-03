@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./summary.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { IsPlayingProvider } from "../../context/IsPlayingContext";
+import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
+import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
 
 function Summary() {
   const summaryEndpoint =
@@ -11,6 +14,15 @@ function Summary() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [base64Files, setBase64Files] = useState<string[]>([]);
   const [requestSent, setrequestSent] = useState<boolean>(false);
+
+  const scriptedTexts = [
+    `Welcome to your Summary Page! This is where you can get a quick overview of your accomplishments and key highlights. Let's review your achievements together!`,
+    `Excited to see your summary? Let's dive in! Your accomplishments are worth celebrating.`,
+    `First time on the Summary Page? Get ready to reflect on your journey and see how far you've come.`,
+    `Welcome back to your Summary Page! Ready to update your highlights and reflect on your progress?`,
+    `Great to see you again! Let's review your summary and ensure it reflects your current achievements and goals.`,
+    `You're back for more! Consistency is key to success. Let's review and refine your summary for maximum impact!`
+  ];
 
   useEffect(() => {
     if (loading) {
@@ -157,7 +169,12 @@ function Summary() {
           ))}
         </div>
       ) : null}
+      <IsPlayingProvider>
+        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={'summary'}/>
+        <ChatBotCanvas />
+      </IsPlayingProvider>
     </div>
+    
   );
 }
 export default Summary;

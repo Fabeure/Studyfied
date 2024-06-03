@@ -12,6 +12,9 @@ import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../models/QuizModel";
 import axios from "axios";
 import QuizSelection from "../../components/Quiz/QuizSelection";
+import { IsPlayingProvider } from "../../context/IsPlayingContext";
+import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
+import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
 
 const inputStyle: React.CSSProperties = {
   flexGrow: 1,
@@ -47,6 +50,19 @@ export default function QuizPage() {
   const [loading, setLoading] = useState(false);
   const [generatedQuiz, setGeneratedQuiz] = useState(null);
   const navigate = useNavigate();
+
+  const scriptedTexts = [
+    `Welcome to the Quiz Page! Excited to test your knowledge? Get ready to answer some questions on your chosen topic!`,
+    `Great to have you here! Let's see how much you know. Choose a topic, and let's get started with the quiz!`,
+    `First time on the Quiz Page? Awesome! Let's challenge your mind. Select a topic, and let the quiz begin!`,
+    `Welcome back to the Quiz Page! Ready to test your skills again? Choose a new topic, and let's see how much you've learned!`,
+    `You're back for more! Excellent! Let's dive into another round of questions. Choose a topic, and let's ace this quiz together!`,
+    `Exciting to see you again! Consistency is key to learning. Pick a topic, and let's continue our journey of knowledge with another quiz!`
+  ];
+  
+
+
+  
 
   useEffect(() => {
     if (generatedQuiz)
@@ -243,6 +259,10 @@ export default function QuizPage() {
           </Grid>
         </Grid>
       </Grid>
+      <IsPlayingProvider>
+        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={'quizes'}/>
+        <ChatBotCanvas />
+      </IsPlayingProvider>
     </Box>
   );
 }

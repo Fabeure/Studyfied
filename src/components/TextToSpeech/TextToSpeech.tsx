@@ -31,7 +31,7 @@ const TextToSpeech = ()=> {
         {
           text: textToSpeak,
           voice:
-            "s3://voice-cloning-zero-shot/801a663f-efd0-4254-98d0-5c175514c3e8/jennifer/manifest.json",
+            "s3://voice-cloning-zero-shot/44f32760-8f41-4dfb-b192-ca077fc501ea/original/manifest.json",
         },
         { responseType: "arraybuffer" }
       );

@@ -29,8 +29,8 @@ function App() {
         <Routes>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
-            <Route path="flashCards" element={<FlashCardsPage />} />
             <Route path="summary" element={<Summary/>} />
+            <Route path="flashCards" element={<FlashCardsPage />} />
             /////// Protected routes :
             <Route element={<RequireAuth />}>
               <Route path="welcome" element={<Welcome />} />
