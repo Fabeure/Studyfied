@@ -42,6 +42,7 @@ function FlashCardInputForm(existingFlashCard: FlashcardModel) {
     const params = {
       topic: encodeURIComponent(topic || "the roman empire"),
       numberOfFlashCards: numberOfCards || 5,
+      token: user.accessToken,
     };
     axios
       .post(generateFlashCardsEndpoint, {}, { params })
@@ -73,8 +74,9 @@ function FlashCardInputForm(existingFlashCard: FlashcardModel) {
       userId: user?.userId || "NA",
       items: flashcardsItems,
     };
+    const params = { token: user.accessToken };
     axios
-      .post(saveFlashCardsEndpoint, flashCardToSave)
+      .post(saveFlashCardsEndpoint, flashCardToSave, { params })
       .then((res) => {
         if (res.data.isSuccess) {
           setHasSaved(true);

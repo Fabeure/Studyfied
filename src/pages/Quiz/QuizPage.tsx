@@ -15,6 +15,7 @@ import QuizSelection from "../../components/Quiz/QuizSelection";
 import { IsPlayingProvider } from "../../context/IsPlayingContext";
 import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
 import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
+import useAuth from "../../hooks/useAuth";
 
 const inputStyle: React.CSSProperties = {
   flexGrow: 1,
@@ -40,7 +41,6 @@ const genButtonSx: SxProps<Theme> = {
   color: "white",
 };
 
-// const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
 const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
 
 export default function QuizPage() {
@@ -49,6 +49,7 @@ export default function QuizPage() {
   const [quizDifficulty, setQuizDifficulty] = useState("medium");
   const [loading, setLoading] = useState(false);
   const [generatedQuiz, setGeneratedQuiz] = useState(null);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const scriptedTexts = [
@@ -57,12 +58,8 @@ export default function QuizPage() {
     `First time on the Quiz Page? Awesome! Let's challenge your mind. Select a topic, and let the quiz begin!`,
     `Welcome back to the Quiz Page! Ready to test your skills again? Choose a new topic, and let's see how much you've learned!`,
     `You're back for more! Excellent! Let's dive into another round of questions. Choose a topic, and let's ace this quiz together!`,
-    `Exciting to see you again! Consistency is key to learning. Pick a topic, and let's continue our journey of knowledge with another quiz!`
+    `Exciting to see you again! Consistency is key to learning. Pick a topic, and let's continue our journey of knowledge with another quiz!`,
   ];
-  
-
-
-  
 
   useEffect(() => {
     if (generatedQuiz)
@@ -77,6 +74,7 @@ export default function QuizPage() {
       topic: encodeURIComponent(quizTopic || "the roman empire"),
       difficulty: quizDifficulty,
       numberOfQuestion: quizLength,
+      token: user.accessToken,
     };
     axios
       .post(quizEndpoint, {}, { params })
@@ -260,7 +258,7 @@ export default function QuizPage() {
         </Grid>
       </Grid>
       <IsPlayingProvider>
-        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={'quizes'}/>
+        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={"quizes"} />
         <ChatBotCanvas />
       </IsPlayingProvider>
     </Box>
