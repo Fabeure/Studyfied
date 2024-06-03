@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./summary.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 function Summary() {
   const summaryEndpoint =
@@ -11,6 +12,7 @@ function Summary() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [base64Files, setBase64Files] = useState<string[]>([]);
   const [requestSent, setrequestSent] = useState<boolean>(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (loading) {
@@ -68,7 +70,10 @@ function Summary() {
       return;
     }
     try {
-      const response = await axios.post(summaryEndpoint, base64Files);
+      const params = { token: user.accessToken };
+      const response = await axios.post(summaryEndpoint, base64Files, {
+        params,
+      });
       setLoading(false);
       const data = response.data;
       setResume(data.resultItem.resumeContents);

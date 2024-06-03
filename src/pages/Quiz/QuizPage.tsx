@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../models/QuizModel";
 import axios from "axios";
 import QuizSelection from "../../components/Quiz/QuizSelection";
+import useAuth from "../../hooks/useAuth";
 
 const inputStyle: React.CSSProperties = {
   flexGrow: 1,
@@ -37,7 +38,6 @@ const genButtonSx: SxProps<Theme> = {
   color: "white",
 };
 
-// const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
 const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
 
 export default function QuizPage() {
@@ -46,6 +46,7 @@ export default function QuizPage() {
   const [quizDifficulty, setQuizDifficulty] = useState("medium");
   const [loading, setLoading] = useState(false);
   const [generatedQuiz, setGeneratedQuiz] = useState(null);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +62,7 @@ export default function QuizPage() {
       topic: encodeURIComponent(quizTopic || "the roman empire"),
       difficulty: quizDifficulty,
       numberOfQuestion: quizLength,
+      token: user.accessToken,
     };
     axios
       .post(quizEndpoint, {}, { params })
