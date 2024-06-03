@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./summary.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { IsPlayingProvider } from "../../context/IsPlayingContext";
+import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
+import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
 import useAuth from "../../hooks/useAuth";
 
 function Summary() {
@@ -162,6 +165,10 @@ function Summary() {
           ))}
         </div>
       ) : null}
+      <IsPlayingProvider>
+        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={"summary"} />
+        <ChatBotCanvas />
+      </IsPlayingProvider>
     </div>
   );
 }

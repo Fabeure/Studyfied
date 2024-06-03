@@ -29,8 +29,6 @@ function App() {
         <Routes>
             <Route path="" element={<Home />} />
             <Route path="login" element={<Login />} />
-            <Route path="flashCards" element={<FlashCardsPage />} />
-            <Route path="summary" element={<Summary/>} />
             /////// Protected routes :
             <Route element={<RequireAuth />}>
               <Route path="welcome" element={<Welcome />} />
@@ -39,6 +37,7 @@ function App() {
               <Route path="chatbot" element={<ChatBot />} />
               <Route path="flashCards" element={<FlashCardsPage />} />
               <Route path="profile" element={<ProfilePage />} />
+              <Route path="summary" element={<Summary/>} />
               <Route path="myFlashCards" element={<SavedFlashCards />} />
             </Route>
         </Routes>
