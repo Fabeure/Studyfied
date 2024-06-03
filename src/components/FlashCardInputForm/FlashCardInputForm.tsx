@@ -5,6 +5,7 @@ import AuthContext from "../../context/AuthProvider";
 import FlashCard from "../flashCard/flashCard";
 import { CircularProgress } from "@mui/material";
 import { FlashcardItem, FlashcardModel } from "../../models/flashcardModel";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 
 const generateFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/generateFlashCard`;
 const saveFlashCardsEndpoint = `${process.env.VITE_BACKEND_API}/api/FlashCards/persistFlashCard`;
@@ -15,25 +16,28 @@ function FlashCardInputForm(existingFlashCard: FlashcardModel) {
   const [cards, setCards] = useState<Array<FlashcardItem>>([]);
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  const [hasSaved, setHasSaved] = useState(true);
-  const [flashcardsItems, setFlashcardsItems] = useState<Array<FlashcardItem>>([]);
-
+  const [loadSave, setLoadSave] = useState(false);
+  const [hasGenerated, setHasGenerated] = useState(false);
+  const [hasSaved, setHasSaved] = useState(false);
+  const [flashcardsItems, setFlashcardsItems] = useState<Array<FlashcardItem>>(
+    []
+  );
 
   useEffect(() => {
     console.log("here");
     if (existingFlashCard?.userId !== "") {
-        setTopic("");
-        const existingFlashCards: FlashcardItem[] = Object.entries(existingFlashCard.items as unknown as Items).map(
-            ([question, answer]): FlashcardItem => ({ question, answer })
-        );
-        setCards(existingFlashCards);
+      setTopic("");
+      const existingFlashCards: FlashcardItem[] = Object.entries(
+        existingFlashCard.items as unknown as Items
+      ).map(([question, answer]): FlashcardItem => ({ question, answer }));
+      setCards(existingFlashCards);
     }
-}, [existingFlashCard]);
+  }, [existingFlashCard]);
 
   interface Items {
     [key: string]: string;
   }
-  
+
   const getFlashCards = async () => {
     const params = {
       topic: encodeURIComponent(topic || "the roman empire"),
@@ -56,34 +60,44 @@ function FlashCardInputForm(existingFlashCard: FlashcardModel) {
       })
       .finally(() => {
         setLoading(false);
+        setHasGenerated(true);
+        setHasSaved(false);
       });
   };
 
-  const saveFlashCards = async () => {
-    setHasSaved(true);
+  const saveFlashCards = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setLoadSave(true);
 
-    const flashCardToSave : FlashcardModel = {
+    const flashCardToSave: FlashcardModel = {
       userId: user?.userId || "NA",
       items: flashcardsItems,
-    }
+    };
     axios
       .post(saveFlashCardsEndpoint, flashCardToSave)
-      .then(() => {
+      .then((res) => {
+        if (res.data.isSuccess) {
+          setHasSaved(true);
+          setHasGenerated(false);
+        } else alert(res.data.userMessage);
       })
       .catch((err) => {
         console.log(err);
         alert("error saving flash cards | check console");
+      })
+      .finally(() => {
+        setLoadSave(false);
       });
   };
 
   const handleTopicChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {value} = event.target
+    const { value } = event.target;
     setTopic(value);
   };
 
   const handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-     const {value} = event.target
-     const valueInt = parseInt(value);
+    const { value } = event.target;
+    const valueInt = parseInt(value);
     setNumberOfCards(valueInt);
   };
 
@@ -119,7 +133,9 @@ function FlashCardInputForm(existingFlashCard: FlashcardModel) {
               value={topic}
               onChange={handleTopicChange}
               required
-              placeholder={existingFlashCard.userId != "" ? "":"the roman empire"}
+              placeholder={
+                existingFlashCard.userId != "" ? "" : "the roman empire"
+              }
               className=" form_field w-[50%] rounded-[17px] px-[10px] placeholder-white   "
             />
             <input
@@ -135,19 +151,24 @@ function FlashCardInputForm(existingFlashCard: FlashcardModel) {
             <button
               onClick={handleGenerate}
               className="submit-btn text-white flex items-center rounded-[17px]  w-[12%] justify-center "
-              disabled={loading}
+              disabled={loading || loadSave}
             >
-            { !loading && "Generate"}
+              {!loading && "Generate"}
               {loading && (
-                  <CircularProgress sx={{ color: "rgba(255,255,255,0.7)" }} />
-                  )}
+                <CircularProgress sx={{ color: "rgba(255,255,255,0.7)" }} />
+              )}
             </button>
-            {   !hasSaved && !loading  &&       <button
+            <button
+              disabled={hasSaved || !hasGenerated || loadSave || loading}
               onClick={saveFlashCards}
-              className="save-btn text-white flex items-center rounded-[17px]  w-[12%] justify-center "
+              className={`save-btn ${hasSaved ? "saved-btn" : ""} ${hasGenerated || hasSaved ? "text-white" : "text-purple-700"}  flex items-center rounded-[17px]  w-[12%] justify-center `}
             >
-              Save
-            </button>}
+              {!loadSave && !hasSaved && "Save"}
+              {loadSave && (
+                <CircularProgress sx={{ color: "rgba(255,255,255,0.7)" }} />
+              )}
+              {!loadSave && hasSaved && <CheckRoundedIcon />}
+            </button>
           </form>
         </div>
       </div>
