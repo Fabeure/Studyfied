@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppContext } from "../../context/IsPlayingContext";
 import {
 	Environment,
@@ -54,7 +55,7 @@ export const ChatBotCanvas = () => {
 		<Canvas  camera={{
 			position: [0, 1, 3], // Adjust the initial camera position
 			fov: 50, // Field of view
-		  }}>
+		}}>
 			<OrbitControls
 				enableZoom={false}
 				enableDamping

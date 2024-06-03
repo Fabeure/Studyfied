@@ -3,7 +3,6 @@ import { AppContext } from "../../context/IsPlayingContext";
 import axios from "axios";
 import { Button, CircularProgress, SxProps, Theme } from "@mui/material";
 import ChatMessage from "./ChatMessage";
-
 interface Message {
   sender: "user" | "bot";
   text: string;
@@ -15,7 +14,7 @@ const chatBotApiEndpoint = `${process.env.VITE_BACKEND_API}/api/ChatBot/generate
 const generatePromptFromtMessages = (messages: Message[]) => {
   let prompt = '';
   messages.map((message) => {
-    prompt += message.sender + ': ' + message.text.trim() + ' ||| ';
+    prompt += message.sender + ': ' + message.text.trim() + '\n';
   });
   return prompt.trim();
 };
@@ -24,12 +23,11 @@ const TextToSpeech = ()=> {
   const [isLoading, setIsLoading] = useState(false);
   const { isPlaying, setIsPlaying } = useContext(AppContext);
   const [audioUrl, setAudioUrl] = useState("");
-  const [conversation, setConversation] = useState<Message[]>(fakeData);
-
+  const [conversation, setConversation] = useState<Message[]>([]);
   const generateSpeech = async (textToSpeak: string) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/generate-speech",
+        "https://texttospeech-api.onrender.com/api/generate-speech",
         {
           text: textToSpeak,
           voice:
@@ -47,19 +45,21 @@ const TextToSpeech = ()=> {
   };
 
   const getReply = (): void => {
-    const conversationToSend = generatePromptFromtMessages(conversation);
-    console.log(conversationToSend)
+    const newConversation = [...conversation, { sender: "user", text: userText } as Message ]
+    setConversation(newConversation);
+    const conversationToSend = generatePromptFromtMessages(newConversation);
     const params = {
       conversation: encodeURIComponent(conversationToSend),
     };
 
     axios
       .get(chatBotApiEndpoint, { params })
-      .then((res) => {
-        console.log("this is the reply: ", res.data.resultItem);
+      .then(async (res) => {
+        const audioUrl = await generateSpeech(res.data.resultItem);
+        setAudioUrl(audioUrl);
+        setIsPlaying(true);
         setConversation((prev) => [
           ...prev,
-          { sender: "user", text: userText },
           {
             sender: "bot",
             text: res.data.resultItem,
@@ -77,17 +77,9 @@ const TextToSpeech = ()=> {
     event.preventDefault();
     if (userText === "") return alert("Please enter text");
     setIsLoading(true);
-    try {
       getReply();
-      //const audioUrl = await generateSpeech(botReply);
-      //setAudioUrl(audioUrl);
-      //setIsPlaying(true);
-    } catch (error) {
-      alert("an error occured");
-    } finally {
       setIsLoading(false);
       setUserText("");
-    }
   };
 
   useEffect(() => {
@@ -189,13 +181,3 @@ const genButtonSx: SxProps<Theme> = {
   fontWeight: "bold",
   color: "white",
 };
-
-const fakeData: Message[] = [
-  { sender: "user", text: "Hi there!" },
-  { sender: "bot", text: "Hello! How can I assist you today?" },
-  { sender: "user", text: "Can you tell me a joke?" },
-  {
-    sender: "bot",
-    text: "Why did the scarecrow win an award? Because he was outstanding in his field!",
-  },
-];

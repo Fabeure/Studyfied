@@ -13,11 +13,16 @@ import Welcome from "./pages/Welcome/Welcome";
 import QuizPage from "./pages/Quiz/QuizPage";
 import QuizPlayPage from "./pages/Quiz/QuizPlayPage";
 import SavedFlashCards from "./pages/SavedFlashCards/SavedFlashCards";
+import { ChatBotCanvas } from "./components/ChatBotCanvas/ChatBotCanvas";
+import { IsPlayingProvider } from "./context/IsPlayingContext";
 
 function App() {
   return (
-    <>
+    <main className="h-full toClick">
       <ToastContainer />
+      <IsPlayingProvider>
+      <ChatBotCanvas />
+      </IsPlayingProvider>
       <HashRouter>
         <NavBar />
         <Routes>
@@ -35,7 +40,7 @@ function App() {
             </Route>
         </Routes>
   </HashRouter>
-    </>
+    </main>
   );
 }
 
