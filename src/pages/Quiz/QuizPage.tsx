@@ -101,7 +101,7 @@ export default function QuizPage() {
   };
 
   return (
-    <Box
+    <Box component="div"
       paddingBottom={"2rem"}
       paddingTop={"1rem"}
       paddingX={"2rem"}
@@ -152,7 +152,7 @@ export default function QuizPage() {
             direction={"row"}
           >
             <Grid item xs minWidth={"500px"}>
-              <Box
+              <Box component="div"
                 sx={{
                   background:
                     "linear-gradient(to right, rgb(187, 87, 254), rgb(112, 216, 222))",
@@ -192,7 +192,7 @@ export default function QuizPage() {
               />
             </Grid>
             <Grid item xs>
-              <Box sx={{ textAlign: "left", fontSize: "1.3rem" }}>
+              <Box component="div" sx={{ textAlign: "left", fontSize: "1.3rem" }}>
                 <h1
                   style={{
                     width: "fit-content",

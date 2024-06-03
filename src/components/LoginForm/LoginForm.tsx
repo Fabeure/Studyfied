@@ -92,7 +92,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
   };
 
   return (
-    <Box>
+    <Box component="div">
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
         <Grid
           item
