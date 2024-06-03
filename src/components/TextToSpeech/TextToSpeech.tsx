@@ -1,7 +1,6 @@
-import { FormEvent, useContext, useState, useEffect, ChangeEvent } from "react";
+import { FormEvent, useContext, useState, useEffect} from "react";
 import { AppContext } from "../../context/IsPlayingContext";
 import axios from "axios";
-import UploadButton from "../UploadButton/UploadButton";
 import { Button, CircularProgress, SxProps, Theme } from "@mui/material";
 import ChatMessage from "./ChatMessage";
 
@@ -10,13 +9,22 @@ interface Message {
   text: string;
 }
 
-const TextToSpeech = () => {
+const chatBotApiEndpoint = `${process.env.VITE_BACKEND_API}/api/ChatBot/generateResponse`;
+
+
+const generatePromptFromtMessages = (messages: Message[]) => {
+  let prompt = '';
+  messages.map((message) => {
+    prompt += message.sender + ': ' + message.text.trim() + ' ||| ';
+  });
+  return prompt.trim();
+};
+const TextToSpeech = ()=> {
   const [userText, setUserText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { isPlaying, setIsPlaying } = useContext(AppContext);
   const [audioUrl, setAudioUrl] = useState("");
   const [conversation, setConversation] = useState<Message[]>(fakeData);
-  const [file, setFile] = useState<File | null>(null);
 
   const generateSpeech = async (textToSpeak: string) => {
     try {
@@ -38,8 +46,31 @@ const TextToSpeech = () => {
     }
   };
 
-  const getReply = (prompt: string) => {
-    return "placeholder bot reply";
+  const getReply = (): void => {
+    const conversationToSend = generatePromptFromtMessages(conversation);
+    console.log(conversationToSend)
+    const params = {
+      conversation: encodeURIComponent(conversationToSend),
+    };
+
+    axios
+      .get(chatBotApiEndpoint, { params })
+      .then((res) => {
+        console.log("this is the reply: ", res.data.resultItem);
+        setConversation((prev) => [
+          ...prev,
+          { sender: "user", text: userText },
+          {
+            sender: "bot",
+            text: res.data.resultItem,
+          },
+        ]);
+        console.log("reply has been set", res.data.resultItem)
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(" error getting bot reply | check console");
+      })
   };
 
   const handleUserText = async (event: FormEvent) => {
@@ -47,22 +78,11 @@ const TextToSpeech = () => {
     if (userText === "") return alert("Please enter text");
     setIsLoading(true);
     try {
-      const botReply = getReply(userText);
-      const audioUrl = await generateSpeech(botReply);
-      setConversation((prev) => [
-        ...prev,
-        { sender: "user", text: userText },
-        {
-          sender: "bot",
-          text: botReply,
-        },
-      ]);
-      setAudioUrl(audioUrl);
-      setIsPlaying(true);
+      getReply();
+      //const audioUrl = await generateSpeech(botReply);
+      //setAudioUrl(audioUrl);
+      //setIsPlaying(true);
     } catch (error) {
-      let message = "";
-      if (error instanceof Error) message = error.message;
-      console.log(message);
       alert("an error occured");
     } finally {
       setIsLoading(false);
@@ -78,11 +98,7 @@ const TextToSpeech = () => {
         setIsPlaying(false);
       };
     }
-  }, [audioUrl, isPlaying]);
-
-  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    setFile(event.target.files ? event.target.files[0] : null);
-  };
+  }, [audioUrl, isPlaying, setIsPlaying]);
 
   return (
     <div className="flex flex-col items-center h-full">
@@ -112,10 +128,6 @@ const TextToSpeech = () => {
         }}
       >
         <div className="flex gap-3 items-center p-2 w-3/4">
-          <div>
-            <UploadButton onChange={handleFileUpload} />
-            {file && <p className="ml-2">File selected: {file.name}</p>}
-          </div>
           <div
             style={{
               background:
