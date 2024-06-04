@@ -1,0 +1,42 @@
+.summaryContainer {
+    border-radius: 7px;
+    border-width: 0px !important;
+    border-color: rgb(255, 255, 255) !important;
+    background-color: rgba(240, 248, 255, 0.144) !important;
+    height: 600px;
+    overflow: auto;
+}
+
+.upload-btn {
+    border-radius: 20px;
+    width: 200px;
+    height: 30px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0px 20px 5px rgba(230, 0, 255, 0.3);
+}
+
+.upload-btn:hover {
+    scale: 1.05;
+    box-shadow: 0 0px 20px 5px rgba(230, 0, 255, 0.4);
+}
+
+.upload-btn:focus {
+    outline: none;
+}
+
+.summaryContainer::-webkit-scrollbar {
+    width: 12px;
+}
+
+.summaryContainer::-webkit-scrollbar-track {
+    background: #00000023;
+}
+
+.summaryContainer::-webkit-scrollbar-thumb {
+    background: #f8e9ff;
+    border-radius: 6px;
+}
+
+.summaryContainer::-webkit-scrollbar-thumb:hover {
+    background: #dfbfff;
+}

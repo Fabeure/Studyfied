@@ -28,6 +28,7 @@ const titleStyle: React.CSSProperties = {
   fontWeight: "bold",
   textAlign: "left",
   lineHeight: "1",
+  color: "white",
 };
 
 export default function QuizResult({
@@ -41,7 +42,7 @@ export default function QuizResult({
   const navigate = useNavigate();
 
   const handleReturn = () => {
-    navigate("/Studyfied/quiz");
+    navigate("/quiz");
   };
 
   useEffect(() => {
@@ -91,6 +92,7 @@ export default function QuizResult({
               width: "fit-content",
               fontSize: "3rem",
               fontWeight: "100",
+              color: "white"
             }}
           >
             You got {correctAnswers} out of {totalQuestions} questions right

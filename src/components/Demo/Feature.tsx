@@ -7,6 +7,10 @@ import summary from "../../assets/demo/summary.png";
 import quiz from "../../assets/demo/quiz.png";
 import screenshot from "../../assets/screenshot.png";
 import { useNavigate } from "react-router-dom";
+import flashcardScreen from "../../assets/demo/screenshots/flashCards.jpg";
+import chatbotScreen from "../../assets/demo/screenshots/chat.jpg";
+import summaryScreen from "../../assets/demo/screenshots/summary.jpg";
+import quizScreen from "../../assets/demo/screenshots/quiz.jpg";
 
 const Feature = ({ id }: { id: number }) => {
   const data = demoData[id - 1];
@@ -17,7 +21,7 @@ const Feature = ({ id }: { id: number }) => {
   return (
     <>
       <div
-        className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row light-background " : "flex-row-reverse"} `}
+        className={` text-left feature-container flex text-white  ${!(id % 2) ? "flex-row " : "flex-row-reverse  light-background"} `}
       >
         <div className="description-container w-[50%]">
           <div className={`positioning  ${!(id % 2) ? null : "ml-[5%] "} `}>
@@ -59,7 +63,15 @@ const Feature = ({ id }: { id: number }) => {
             <Tilt options={{ max: 45, scale: 1, speed: 450 }}>
               <div className="relative full ">
                 <img
-                  src={screenshot}
+                  src={
+                    data.topic === "flashcard"
+                      ? flashcardScreen
+                      : data.topic === "chatbot"
+                        ? chatbotScreen
+                        : data.topic === "summary"
+                          ? summaryScreen
+                          : quizScreen
+                  }
                   alt={screenshot}
                   className="w-full h-full object-cover screenshot-img rounded-[40px] "
                 />

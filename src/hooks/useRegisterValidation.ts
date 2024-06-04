@@ -1,22 +1,15 @@
 import { useEffect } from "react";
 import { isEmail } from "../components/validators";
 
-interface SettersType {
-  email?: React.Dispatch<React.SetStateAction<string>>;
-  password?: React.Dispatch<React.SetStateAction<string>>;
-  confirmPassword?: React.Dispatch<React.SetStateAction<string>>;
-  username?: React.Dispatch<React.SetStateAction<string>>;
-  fullName?: React.Dispatch<React.SetStateAction<string>>;
-  errorMessages: React.Dispatch<
-    React.SetStateAction<{
-      email: string;
-      password: string;
-      confirmPassword: string;
-      fullName: string;
-      username: string;
-    }>
-  >;
-}
+type errorSetterType = React.Dispatch<
+  React.SetStateAction<{
+    email: string;
+    password: string;
+    confirmPassword: string;
+    fullName: string;
+    username: string;
+  }>
+>;
 
 interface DependencyType {
   email?: string;
@@ -35,13 +28,13 @@ interface DependencyType {
 
 export const useRegisterValidation = (
   dependencies: DependencyType,
-  setters: SettersType
+  errorMessages: errorSetterType
 ) => {
   useEffect(() => {
     let helperText = "";
     if (!isEmail(dependencies.email) && dependencies.email != "")
       helperText = "Invalid email";
-    setters.errorMessages((errorMessages) => ({
+    errorMessages((errorMessages) => ({
       ...errorMessages,
       email: helperText,
     }));
@@ -63,7 +56,7 @@ export const useRegisterValidation = (
         helperText = "Must contain a symbol";
     }
 
-    setters.errorMessages((errorMessages) => ({
+    errorMessages((errorMessages) => ({
       ...errorMessages,
       password: helperText,
     }));
@@ -77,7 +70,7 @@ export const useRegisterValidation = (
       dependencies.confirmPassword != ""
     )
       helperText = "Passwords don't match";
-    setters.errorMessages((errorMessages) => ({
+    errorMessages((errorMessages) => ({
       ...errorMessages,
       confirmPassword: helperText,
     }));
@@ -89,7 +82,7 @@ export const useRegisterValidation = (
     if (typeof dependencies.fullName != "string") helperText = "Invalid";
     else if (dependencies.fullName.length < 3 && dependencies.fullName != "")
       helperText = "Full name too short";
-    setters.errorMessages((errorMessages) => ({
+    errorMessages((errorMessages) => ({
       ...errorMessages,
       fullName: helperText,
     }));
@@ -104,7 +97,7 @@ export const useRegisterValidation = (
       if (dependencies.username.length < 3 && dependencies.username != "")
         helperText = "Username too short";
     }
-    setters.errorMessages((errorMessages) => ({
+    errorMessages((errorMessages) => ({
       ...errorMessages,
       username: helperText,
     }));

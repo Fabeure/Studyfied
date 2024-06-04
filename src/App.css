@@ -5,6 +5,17 @@
   text-align: center;
   background-color: #10002b;
 }
+
+.chatbot-canvas-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+   /* Adjust the width as needed */
+  /* Adjust the height as needed */
+  z-index: 1000; /* Ensure it appears above other elements */
+  pointer-events: none;
+  background-color: #ffffff00; /* Ensure it doesn't interfere with other UI elements */
+}
 /* 
 .logo {
   height: 6em;

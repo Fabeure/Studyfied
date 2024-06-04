@@ -95,7 +95,6 @@
   z-index: 1000; /* Ensure button is above other elements */
 }
 
-.button {
-  width: auto; /* Make button width dynamic */
-  padding: 10px 20px; /* Example padding for button */
+.submitBtn:hover{
+box-shadow: inset 0 0 7px rgb(202, 66, 255);
 }

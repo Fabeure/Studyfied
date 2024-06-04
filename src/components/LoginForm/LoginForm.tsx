@@ -1,12 +1,20 @@
-import { Box, Button, Grid, SxProps, TextField, Theme } from "@mui/material";
-import { useState } from "react";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  SxProps,
+  TextField,
+  Theme,
+} from "@mui/material";
+import { useRef, useState } from "react";
 import axios from "axios";
 import MarkunreadRoundedIcon from "@mui/icons-material/MarkunreadRounded";
 import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const loginEndpoint = `${process.env.VITE_BACKEND_API}/api/v1/authenticate/login`;
-
 interface LoginFormProps {
   onRegister: () => void;
 }
@@ -36,23 +44,29 @@ const buttonSx: SxProps<Theme> = {
   borderRadius: "3em",
   boxShadow: 0,
   textTransform: "none",
-  backgroundColor: "#A693CD",
+  background:
+    "linear-gradient(318deg, rgba(240,177,255,0.8) 0%, rgba(115,66,238,0.5) 100%)",
   fontWeight: "bold",
   color: "white",
   ["&:hover"]: {
     boxShadow: 0,
-    backgroundColor: "#AA4DB2",
+    background:
+      "linear-gradient(318deg, rgba(240,177,255,1) 0%, rgba(115,66,238,1) 100%)",
   },
 };
 
 function LoginForm({ onRegister }: LoginFormProps) {
+  const navigate = useNavigate();
   const [logEmail, setLogEmail] = useState("");
   const [logPassword, setLogPassword] = useState("");
   const [loginDenied, setLoginDenied] = useState(false);
   const { setUser } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const hasChangedForm = useRef(false);
 
   // input handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    hasChangedForm.current = true;
     const { name, value } = event.target;
     switch (name) {
       case "logEmail":
@@ -73,6 +87,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
       Email: logEmail,
       Password: logPassword,
     };
+    setLoading(true);
     axios
       .post(loginEndpoint, loginData)
       .then((res) => {
@@ -81,17 +96,18 @@ function LoginForm({ onRegister }: LoginFormProps) {
         const userId = res.data?.userId;
         const name = res.data?.name;
         setUser({ accessToken, email, userId, name });
-        window.location.href = "/Studyfied/profile";
+        navigate("welcome");
       })
       .catch((err) => {
         console.log(err);
         alert(" | check console");
         setLoginDenied(true);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
-    <Box>
+    <Box component="div">
       <Grid container direction={"column"} rowGap={3} minWidth={"350px"}>
         <Grid
           item
@@ -159,10 +175,12 @@ function LoginForm({ onRegister }: LoginFormProps) {
           <Button
             variant="contained"
             color="primary"
+            disabled={loading || !hasChangedForm.current}
             sx={buttonSx}
             onClick={handleLogin}
           >
-            Log in
+            {!loading && "Log in"}
+            {loading && <CircularProgress sx={{ color: "rgb(240,177,255)" }} />}
           </Button>
         </Grid>
         <Grid item xs sx={{ color: "white" }}>
@@ -172,7 +190,7 @@ function LoginForm({ onRegister }: LoginFormProps) {
             onClick={onRegister}
           >
             Register here
-          </span>{" "}
+          </span>
         </Grid>
       </Grid>
     </Box>

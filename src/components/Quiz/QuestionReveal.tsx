@@ -18,6 +18,7 @@ const answerStyle: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   borderRadius: "2em",
+  color: "white",
 };
 
 const promptStyle: React.CSSProperties = {
@@ -25,6 +26,7 @@ const promptStyle: React.CSSProperties = {
   textAlign: "left",
   paddingLeft: "1em",
   fontWeight: "600",
+  color: "white",
 };
 
 const Answer = ({

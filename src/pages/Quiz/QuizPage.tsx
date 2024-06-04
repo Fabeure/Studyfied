@@ -12,6 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../models/QuizModel";
 import axios from "axios";
 import QuizSelection from "../../components/Quiz/QuizSelection";
+import { IsPlayingProvider } from "../../context/IsPlayingContext";
+import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
+import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
+import HowItWorks from "../../components/HowItWorks/HowItWorks";
+import quizs from "../../assets/demo/quiz.png";
+import useAuth from "../../hooks/useAuth";
 
 const inputStyle: React.CSSProperties = {
   flexGrow: 1,
@@ -37,8 +43,7 @@ const genButtonSx: SxProps<Theme> = {
   color: "white",
 };
 
-// const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
-const quizEndpoint = `https://localhost:7001/api/Quiz/getQuiz`;
+const quizEndpoint = `${process.env.VITE_BACKEND_API}/api/Quiz/getQuiz`;
 
 export default function QuizPage() {
   const [quizTopic, setQuizTopic] = useState<string>("");
@@ -46,11 +51,43 @@ export default function QuizPage() {
   const [quizDifficulty, setQuizDifficulty] = useState("medium");
   const [loading, setLoading] = useState(false);
   const [generatedQuiz, setGeneratedQuiz] = useState(null);
+  const { user } = useAuth();
   const navigate = useNavigate();
+
+  const scriptedTexts = [
+    `Welcome to the Quiz Page! Excited to test your knowledge? Get ready to answer some questions on your chosen topic!`,
+    `Great to have you here! Let's see how much you know. Choose a topic, and let's get started with the quiz!`,
+    `First time on the Quiz Page? Awesome! Let's challenge your mind. Select a topic, and let the quiz begin!`,
+    `Welcome back to the Quiz Page! Ready to test your skills again? Choose a new topic, and let's see how much you've learned!`,
+    `You're back for more! Excellent! Let's dive into another round of questions. Choose a topic, and let's ace this quiz together!`,
+    `Exciting to see you again! Consistency is key to learning. Pick a topic, and let's continue our journey of knowledge with another quiz!`,
+  ];
+
+
+  
+  const  [isFirstVisit] = useState(() => {
+    const visitKey = `visited_qui`;
+    const first = localStorage.getItem(visitKey);
+
+    return first !== "false";
+
+    });
+
+    useEffect(() => {
+   
+      if (isFirstVisit) {
+        localStorage.setItem("visited_qui", "false");
+      }
+    
+    }, [isFirstVisit]);
+  
+
+
+  
 
   useEffect(() => {
     if (generatedQuiz)
-      navigate("/Studyfied/quiz/play", {
+      navigate("/quizPlay", {
         state: { quiz: generatedQuiz as Quiz },
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +98,7 @@ export default function QuizPage() {
       topic: encodeURIComponent(quizTopic || "the roman empire"),
       difficulty: quizDifficulty,
       numberOfQuestion: quizLength,
+      token: user.accessToken,
     };
     axios
       .post(quizEndpoint, {}, { params })
@@ -101,12 +139,31 @@ export default function QuizPage() {
   };
 
   return (
+    
     <Box
+      component="div"
       paddingBottom={"2rem"}
       paddingTop={"1rem"}
       paddingX={"2rem"}
       minWidth={"fit-content"}
     >
+      {isFirstVisit && (
+        <HowItWorks
+          image={{ url:quizs }}
+          steps={[
+            {
+              text: "Enter a Topic: Type in the subject you want to be quizzed on. Whether it's the Roman Empire or any other topic, our quiz generator has got you covered.",
+            },
+            {
+              text: "Set the Parameters: Choose the number of questions and the difficulty level that suits you best. Customize your quiz to match your learning needs.",
+            },
+            {
+              text: "Generate Quiz: Click on the 'Generate Quiz' button to create your personalized quiz. In seconds, you'll have a set of questions ready to test your knowledge.",
+            }
+           
+          ]}
+        />
+      )}
       <Grid container direction={"row"} columnGap={2}>
         {/* //////////////////////// left hand side */}
         <Grid
@@ -126,6 +183,7 @@ export default function QuizPage() {
                 fontWeight: "bold",
                 textAlign: "left",
                 lineHeight: "1",
+                color: "white",
               }}
             >
               Test your knowledge <br />
@@ -135,6 +193,7 @@ export default function QuizPage() {
                   fontSize: "3rem",
                   fontWeight: "100",
                   fontStyle: "italic",
+                  color: "white",
                 }}
               >
                 What's the topic ?
@@ -151,6 +210,7 @@ export default function QuizPage() {
           >
             <Grid item xs minWidth={"500px"}>
               <Box
+                component="div"
                 sx={{
                   background:
                     "linear-gradient(to right, rgb(187, 87, 254), rgb(112, 216, 222))",
@@ -177,7 +237,7 @@ export default function QuizPage() {
           >
             <Grid item xs>
               <QuizSelection
-                options={[1, 2, 3, 4, 5, 6, 7, 8]}
+                options={[1, 2, 3, 4]}
                 defaultValue={4}
                 onChange={handleLengthChange}
               />
@@ -190,13 +250,17 @@ export default function QuizPage() {
               />
             </Grid>
             <Grid item xs>
-              <Box sx={{ textAlign: "left", fontSize: "1.3rem" }}>
+              <Box
+                component="div"
+                sx={{ textAlign: "left", fontSize: "1.3rem" }}
+              >
                 <h1
                   style={{
                     width: "fit-content",
                     fontSize: "2rem",
                     fontWeight: "100",
                     fontStyle: "italic",
+                    color: "white",
                   }}
                 >
                   questions.
@@ -227,7 +291,7 @@ export default function QuizPage() {
           direction={"column"}
           alignItems={"center"}
           justifyContent={"end"}
-          height={"520px"}
+          height={"320px"}
           minWidth={"fit-content"}
         >
           <Grid item>
@@ -235,6 +299,10 @@ export default function QuizPage() {
           </Grid>
         </Grid>
       </Grid>
+      <IsPlayingProvider>
+        <FirstVisitSpeech scriptedTexts={scriptedTexts} pageName={"quizes"} />
+        <ChatBotCanvas />
+      </IsPlayingProvider>
     </Box>
   );
 }
