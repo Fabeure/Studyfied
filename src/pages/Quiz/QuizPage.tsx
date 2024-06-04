@@ -15,6 +15,8 @@ import QuizSelection from "../../components/Quiz/QuizSelection";
 import { IsPlayingProvider } from "../../context/IsPlayingContext";
 import FirstVisitSpeech from "../../components/FirstVisitSpeech/FirstVisitSpeech";
 import { ChatBotCanvas } from "../../components/ChatBotCanvas/ChatBotCanvas";
+import HowItWorks from "../../components/HowItWorks/HowItWorks";
+import quizs from "../../assets/demo/quiz.png";
 import useAuth from "../../hooks/useAuth";
 
 const inputStyle: React.CSSProperties = {
@@ -60,6 +62,28 @@ export default function QuizPage() {
     `You're back for more! Excellent! Let's dive into another round of questions. Choose a topic, and let's ace this quiz together!`,
     `Exciting to see you again! Consistency is key to learning. Pick a topic, and let's continue our journey of knowledge with another quiz!`,
   ];
+
+
+  
+  const  [isFirstVisit] = useState(() => {
+    const visitKey = `visited_qui`;
+    const first = localStorage.getItem(visitKey);
+
+    return first !== "false";
+
+    });
+
+    useEffect(() => {
+   
+      if (isFirstVisit) {
+        localStorage.setItem("visited_qui", "false");
+      }
+    
+    }, [isFirstVisit]);
+  
+
+
+  
 
   useEffect(() => {
     if (generatedQuiz)
@@ -115,6 +139,7 @@ export default function QuizPage() {
   };
 
   return (
+    
     <Box
       component="div"
       paddingBottom={"2rem"}
@@ -122,6 +147,23 @@ export default function QuizPage() {
       paddingX={"2rem"}
       minWidth={"fit-content"}
     >
+      {isFirstVisit && (
+        <HowItWorks
+          image={{ url:quizs }}
+          steps={[
+            {
+              text: "Enter a Topic: Type in the subject you want to be quizzed on. Whether it's the Roman Empire or any other topic, our quiz generator has got you covered.",
+            },
+            {
+              text: "Set the Parameters: Choose the number of questions and the difficulty level that suits you best. Customize your quiz to match your learning needs.",
+            },
+            {
+              text: "Generate Quiz: Click on the 'Generate Quiz' button to create your personalized quiz. In seconds, you'll have a set of questions ready to test your knowledge.",
+            }
+           
+          ]}
+        />
+      )}
       <Grid container direction={"row"} columnGap={2}>
         {/* //////////////////////// left hand side */}
         <Grid
