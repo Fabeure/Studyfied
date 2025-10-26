@@ -1,0 +1,67 @@
+name: Vulnerability Test Scenario
+
+on:
+  workflow_dispatch:
+    inputs:
+      vulnerability-type:
+        description: 'Type of vulnerability to test'
+        required: true
+        default: 'insecure-route'
+        type: choice
+        options:
+        - insecure-route
+        - vulnerable-dependency
+        - sql-injection
+        - xss
+
+jobs:
+  test-security-pipeline:
+    name: Test Security Pipeline with ${{ github.event.inputs.vulnerability-type }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Introduce test vulnerability
+        run: |
+          echo "🧪 Testing vulnerability type: ${{ github.event.inputs.vulnerability-type }}"
+          case "${{ github.event.inputs.vulnerability-type }}" in
+            "insecure-route")
+              echo "🔓 Adding insecure route simulation..."
+              # Simulate finding an insecure route
+              echo "Insecure API endpoint detected: /api/users without authentication"
+              ;;
+            "vulnerable-dependency")
+              echo "📦 Adding vulnerable dependency simulation..."
+              # Simulate finding vulnerable package
+              echo "Vulnerable package detected: lodash@4.17.15 (Prototype Pollution)"
+              ;;
+            "sql-injection")
+              echo "💉 Adding SQL injection vulnerability simulation..."
+              # Simulate SQL injection finding
+              echo "SQL Injection vulnerability detected in user input handling"
+              ;;
+            "xss")
+              echo "🖥️ Adding XSS vulnerability simulation..."
+              # Simulate XSS finding
+              echo "XSS vulnerability detected in user content rendering"
+              ;;
+          esac
+          
+      - name: Run security scan simulation
+        run: |
+          echo "🔍 Running security scan..."
+          echo "Vulnerability type: ${{ github.event.inputs.vulnerability-type }}"
+          echo "❌ Security check failed - vulnerability detected"
+          echo "This would block deployment in a real scenario"
+          
+      - name: Generate test report
+        run: |
+          echo "📊 Vulnerability Test Report" > test-report.md
+          echo "==========================" >> test-report.md
+          echo "Vulnerability Type: ${{ github.event.inputs.vulnerability-type }}" >> test-report.md
+          echo "Status: ❌ DETECTED" >> test-report.md
+          echo "Pipeline: ✅ BLOCKED" >> test-report.md
+          echo "Test: ✅ SUCCESSFUL" >> test-report.md
+          cat test-report.md
