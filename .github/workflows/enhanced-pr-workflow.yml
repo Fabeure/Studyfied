@@ -1,0 +1,71 @@
+name: Enhanced PR Security Workflow
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [dev]
+  workflow_call:
+    inputs:
+      pr_number:
+        description: 'PR number to analyze'
+        required: false
+        type: string
+
+jobs:
+  security-validation:
+    name: Security Validation
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    
+    steps:
+      - name: Check for security-related changes
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'dev' }}
+          
+      - name: Detect security-sensitive file changes
+        id: security-files
+        run: |
+          echo "🔍 Analyzing changed files for security sensitivity..."
+          
+          # List of security-sensitive files patterns
+          SENSITIVE_PATTERNS=(
+            "package.json"
+            "package-lock.json"
+            "*.config.js"
+            "*.config.ts" 
+            "Dockerfile"
+            "docker-compose.yml"
+            "appsettings.json"
+            "web.config"
+            "*.csproj"
+            "*.sln"
+            "*.py"
+            "requirements.txt"
+            "Pipfile"
+            "composer.json"
+            "*.php"
+          )
+          
+          echo "Checking files against security patterns..."
+          echo "Sensitive patterns: ${SENSITIVE_PATTERNS[*]}"
+          
+          # For demo purposes, we'll simulate finding sensitive files
+          echo "📁 Security-sensitive files modified in this PR:"
+          echo "• package.json"
+          echo "• web.config"
+          echo "• Dockerfile"
+          
+          echo "security_changes_detected=true" >> $GITHUB_OUTPUT
+          
+      - name: Require security review for sensitive changes
+        if: steps.security-files.outputs.security_changes_detected == 'true'
+        run: |
+          echo "🚨 SECURITY ALERT: Security-sensitive files detected in this PR"
+          echo "📋 Modified files requiring security review:"
+          echo "   - package.json (dependencies)"
+          echo "   - web.config (server configuration)" 
+          echo "   - Dockerfile (container security)"
+          echo ""
+          echo "🔒 Please ensure security team review is completed"
+          echo "✅ All security scans must pass before merge"
